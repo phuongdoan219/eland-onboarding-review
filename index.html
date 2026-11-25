@@ -158,6 +158,7 @@
     max-width: 100%;
     height: clamp(276px, 52svh, 490px);
     max-height: none;
+    aspect-ratio: 6 / 7;
   }
   #eland-onboarding-desktop-1123 .eland-hero { position: relative; }
   #eland-onboarding-desktop-1123 .eland-hero-layout { position: relative; z-index: 1; }
@@ -177,8 +178,6 @@
     --stone-y3: 74%;
     --gate-x: 92%;
     --gate-y: 42%;
-    --wing-range: clamp(38px, 5cqw, 92px);
-    --wing-rise: clamp(34px, 7cqh, 76px);
     position: absolute;
     left: 50%;
     top: var(--eland-welcome-position-y);
@@ -196,10 +195,26 @@
     object-fit: contain;
   }
   #eland-onboarding-desktop-1123 .eland-welcome-cloud {
-    left: 86%;
-    top: 12%;
-    width: clamp(108px, 16cqw, 258px);
+    position: absolute;
+    left: 100%;
+    top: var(--cloud-y);
+    width: var(--cloud-width);
     aspect-ratio: 3;
+    opacity: 0;
+  }
+  #eland-onboarding-desktop-1123 .eland-cloud-one {
+    --cloud-y: 10%;
+    --cloud-width: clamp(116px, 15vw, 280px);
+    --cloud-duration: 20.8s;
+    --cloud-delay: .18s;
+    --cloud-opacity: .63;
+  }
+  #eland-onboarding-desktop-1123 .eland-cloud-two {
+    --cloud-y: 21%;
+    --cloud-width: clamp(88px, 11vw, 204px);
+    --cloud-duration: 17.8s;
+    --cloud-delay: 3s;
+    --cloud-opacity: .48;
   }
   #eland-onboarding-desktop-1123 .eland-welcome-cloud[data-fallback] {
     border-radius: 60% 45% 55% 45%;
@@ -213,10 +228,14 @@
     transform: translate(-50%, -50%) rotate(-25deg);
     background: radial-gradient(ellipse, #fff4c7d4, transparent 69%);
   }
+  #eland-onboarding-desktop-1123 .eland-wolf-play {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  #eland-onboarding-desktop-1123 .eland-wolf-play > * { position: absolute; opacity: 0; }
   #eland-onboarding-desktop-1123 .eland-welcome-butterfly {
-    left: 84%;
-    top: 59%;
-    width: clamp(40px, 3.8cqw, 72px);
+    width: clamp(39px, 19%, 74px);
     aspect-ratio: 1;
   }
   #eland-onboarding-desktop-1123 .eland-welcome-butterfly[data-fallback]::before,
@@ -252,15 +271,13 @@
   }
   #eland-onboarding-desktop-1123 .eland-flight-card::before { color: #996008; content: "✦"; }
   #eland-onboarding-desktop-1123 .eland-flight-card-hello {
-    --card-x: 83%;
-    --card-y: 73%;
-    --card-delay: 4.24s;
+    --card-x: 77%;
+    --card-y: 71%;
     --card-tilt: -8deg;
   }
   #eland-onboarding-desktop-1123 .eland-flight-card-fly {
-    --card-x: 91%;
-    --card-y: 67%;
-    --card-delay: 4.86s;
+    --card-x: 96%;
+    --card-y: 77%;
     --card-tilt: 8deg;
   }
   #eland-onboarding-desktop-1123 .eland-step-light {
@@ -292,46 +309,32 @@
   }
   @media (prefers-reduced-motion: no-preference) {
     #eland-onboarding-desktop-1123 .eland-welcome-cloud {
-      animation: eland-cloud-pass 3.4s linear .15s 1 both;
+      animation: eland-cloud-cross var(--cloud-duration) linear var(--cloud-delay) 1 both;
     }
     #eland-onboarding-desktop-1123 .eland-cloud-glint {
-      animation: eland-gate-glint .88s ease-in-out 1.72s 1 both;
-    }
-    #eland-onboarding-desktop-1123 .eland-welcome-butterfly {
-      animation: eland-butterfly-loop 3.75s ease-in-out 2.86s 1 both;
-    }
-    #eland-onboarding-desktop-1123 .eland-flight-card {
-      animation: eland-card-land 2.6s ease-out var(--card-delay) 1 both;
+      animation: eland-gate-glint .88s ease-in-out 2.75s 1 both;
     }
   }
-  @keyframes eland-cloud-pass {
-    0% { opacity: 0; transform: translate(35%, 5%); }
-    21% { opacity: .76; }
-    69% { opacity: .56; }
-    100% { opacity: 0; transform: translate(-78%, -11%); }
+  @keyframes eland-cloud-cross {
+    0% { opacity: 0; transform: translateX(4px); }
+    7% { opacity: var(--cloud-opacity); }
+    90% { opacity: var(--cloud-opacity); }
+    100% { opacity: 0; transform: translateX(calc(-100vw - 100% - 4px)); }
   }
   @keyframes eland-gate-glint {
     0%, 100% { opacity: 0; }
-    46% { opacity: .7; }
+    46% { opacity: .58; }
   }
-  @keyframes eland-butterfly-loop {
-    0% { opacity: 0; transform: translate(22%, 25%) rotate(-17deg) scaleX(.83); }
-    14% { opacity: 1; }
-    29% { transform: translate(calc(-.66 * var(--wing-range)), calc(-.74 * var(--wing-rise))) rotate(-19deg) scaleX(.72); }
-    44% { transform: translate(-5%, calc(-1 * var(--wing-rise))) rotate(6deg) scaleX(1); }
-    62% { transform: translate(calc(.44 * var(--wing-range)), calc(-.63 * var(--wing-rise))) rotate(17deg) scaleX(.69); }
-    77% { opacity: .94; transform: translate(calc(.29 * var(--wing-range)), calc(-.06 * var(--wing-rise))) rotate(6deg) scaleX(1); }
-    100% { opacity: 0; transform: translate(82%, 34%) rotate(10deg) scaleX(.85); }
-  }
-  @keyframes eland-card-land {
-    0% { opacity: 0; transform: translate(-30%, -54px) rotate(-13deg) scale(.82); }
-    19% { opacity: 1; }
-    34% { opacity: 1; transform: translate(-50%, 0) rotate(var(--card-tilt)); }
-    42% { transform: translate(-50%, -3px) rotate(var(--card-tilt)); }
-    51%, 78% { opacity: 1; transform: translate(-50%, 0) rotate(var(--card-tilt)); }
-    100% { opacity: 0; transform: translate(-50%, 0) rotate(var(--card-tilt)); }
+  @media (max-height: 710px) {
+    #eland-onboarding-desktop-1123 .eland-cloud-one { --cloud-y: 8%; }
+    #eland-onboarding-desktop-1123 .eland-cloud-two { --cloud-y: 16%; }
   }
   #eland-onboarding-desktop-1123 .eland-wolf-greeting {
+    --wolf-approach-x: 94%;
+    --wolf-approach-y: 21%;
+    --wolf-paw-x: 98%;
+    --wolf-paw-y: 42%;
+    --wolf-play-lean: 2deg;
     position: relative;
     display: grid;
     min-width: 0;
@@ -656,8 +659,6 @@
       --stone-y3: 70%;
       --gate-x: 86%;
       --gate-y: 52%;
-      --wing-range: 38px;
-      --wing-rise: 38px;
       left: 72%;
       top: 0;
       width: max(100cqw, 680px);
@@ -665,10 +666,9 @@
       aspect-ratio: 1672 / 941;
       transform: translateX(-72%);
     }
-    #eland-onboarding-desktop-1123 .eland-welcome-cloud { left: 82%; top: 12%; }
-    #eland-onboarding-desktop-1123 .eland-welcome-butterfly { left: 82%; top: 58%; }
-    #eland-onboarding-desktop-1123 .eland-flight-card-hello { --card-x: 77%; --card-y: 73%; }
-    #eland-onboarding-desktop-1123 .eland-flight-card-fly { --card-x: 84%; --card-y: 64%; }
+    #eland-onboarding-desktop-1123 .eland-cloud-one { --cloud-y: 7%; }
+    #eland-onboarding-desktop-1123 .eland-cloud-two { --cloud-y: 19%; }
+    #eland-onboarding-desktop-1123 .eland-flight-card-fly { --card-x: 94%; }
     #eland-onboarding-desktop-1123 .eland-hero-layout {
       grid-template-columns: minmax(0, 1fr);
       width: min(100%, 430px);
@@ -714,16 +714,14 @@
 
   <section class="eland-hero" data-pane="welcome" aria-labelledby="eland-desktop-welcome">
     <div class="eland-welcome-scene" aria-hidden="true">
+      <div class="eland-motion-sprite eland-welcome-cloud eland-cloud-one">
+        <img src="./assets/eland-welcome-cloud.webp" alt="" decoding="async">
+      </div>
+      <div class="eland-motion-sprite eland-welcome-cloud eland-cloud-two">
+        <img src="./assets/eland-welcome-cloud.webp" alt="" decoding="async">
+      </div>
       <div class="eland-animation-board" data-welcome-scene>
-        <div class="eland-motion-sprite eland-welcome-cloud">
-          <img src="./assets/eland-welcome-cloud.webp" alt="" decoding="async">
-        </div>
         <div class="eland-cloud-glint"></div>
-        <div class="eland-motion-sprite eland-welcome-butterfly">
-          <img src="./assets/eland-welcome-butterfly.webp" alt="" decoding="async">
-        </div>
-        <span class="eland-flight-card eland-flight-card-hello">HELLO</span>
-        <span class="eland-flight-card eland-flight-card-fly">FLY</span>
         <div class="eland-step-light eland-step-one" data-guide-step></div>
         <div class="eland-step-light eland-step-two" data-guide-step></div>
         <div class="eland-step-light eland-step-three" data-guide-step></div>
@@ -742,7 +740,14 @@
       </div>
       <div class="eland-hero-art">
         <button type="button" class="eland-wolf-greeting" data-welcome-greeting aria-label="Chào Sói Nhỏ">
-          <img class="eland-wolf" src="./assets/4d7588ca6aeeabd147669a4d.webp" alt="" width="360" height="420">
+          <img class="eland-wolf" src="./assets/eland-welcome-wolf-playing.webp" alt="" width="360" height="420">
+          <span class="eland-wolf-play" aria-hidden="true">
+            <span class="eland-motion-sprite eland-welcome-butterfly">
+              <img src="./assets/eland-welcome-butterfly.webp" alt="" decoding="async">
+            </span>
+            <span class="eland-flight-card eland-flight-card-hello">HELLO</span>
+            <span class="eland-flight-card eland-flight-card-fly">FLY</span>
+          </span>
           <span class="eland-greeting-star" aria-hidden="true"></span>
         </button>
       </div>
@@ -1110,18 +1115,22 @@
 
 <script>
   (() => {
-    const button = document.querySelector('[data-welcome-greeting]');
+    const hero = document.querySelector('[data-pane="welcome"]');
+    const button = hero.querySelector('[data-welcome-greeting]');
     const wolf = button.querySelector('.eland-wolf');
     const star = button.querySelector('.eland-greeting-star');
-    const scene = document.querySelector('[data-welcome-scene]');
+    const butterfly = button.querySelector('.eland-welcome-butterfly');
+    const cards = button.querySelectorAll('.eland-flight-card');
+    const scene = hero.querySelector('[data-welcome-scene]');
     const stones = scene.querySelectorAll('[data-guide-step]');
     const spark = scene.querySelector('.eland-path-spark');
     const gate = scene.querySelector('.eland-gate-light');
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let active = [];
     let stillTimer;
+    let playedOnEntry = false;
 
-    for (const sprite of scene.querySelectorAll('.eland-motion-sprite')) {
+    for (const sprite of hero.querySelectorAll('.eland-motion-sprite')) {
       const image = sprite.querySelector('img');
       const showFallback = () => {
         image.hidden = true;
@@ -1131,12 +1140,68 @@
       if (image.complete && !image.naturalWidth) showFallback();
     }
 
+    const showOriginalWolf = () => { wolf.src = './assets/4d7588ca6aeeabd147669a4d.webp'; };
+    if (wolf.complete && !wolf.naturalWidth) showOriginalWolf();
+    else wolf.addEventListener('error', showOriginalWolf, { once: true });
+
     function clearGreeting() {
       active.forEach(effect => effect.cancel());
       active = [];
       window.clearTimeout(stillTimer);
       star.removeAttribute('data-visible');
     }
+
+    function flyAt(left, top, wing, angle, opacity, offset) {
+      return { left, top, opacity, offset,
+        transform: 'translate(-50%, -50%) rotate(' + angle + 'deg) scaleX(' + wing + ')' };
+    }
+
+    function playWithButterfly(delay) {
+      const timing = { duration: 4200, delay, easing: 'linear' };
+      active.push(
+        butterfly.animate([
+          flyAt('101%', '63%', .82, -18, 0, 0),
+          flyAt('97%', '43%', 1, -13, 1, .14),
+          flyAt('89%', '20%', .66, -24, 1, .24),
+          flyAt('62%', '8%', 1, 0, 1, .35),
+          flyAt('31%', '13%', .73, 15, 1, .46),
+          flyAt('var(--wolf-approach-x)', 'var(--wolf-approach-y)', .89, -5, 1, .61),
+          flyAt('var(--wolf-paw-x)', 'var(--wolf-paw-y)', 1, 9, 1, .72),
+          flyAt('var(--wolf-paw-x)', 'var(--wolf-paw-y)', .73, 0, 1, .79),
+          flyAt('95%', '29%', 1, -13, 1, .91),
+          flyAt('101%', '19%', .81, -18, 0, 1),
+        ], timing),
+        wolf.animate([
+          { transform: 'none' },
+          { transform: 'rotate(-1deg)', offset: .45 },
+          { transform: 'none', offset: .58 },
+          { transform: 'translateY(-7px) rotate(var(--wolf-play-lean))', offset: .72 },
+          { transform: 'translateY(-5px) rotate(var(--wolf-play-lean))', offset: .79 },
+          { transform: 'none', offset: .93 },
+          { transform: 'none' },
+        ], timing),
+        ...Array.from(cards, (card, index) => card.animate([
+          { opacity: 0, transform: 'translate(-50%, -40px) rotate(-12deg) scale(.84)' },
+          { opacity: 1, transform: 'translate(-50%, 0) rotate(var(--card-tilt))', offset: .3 },
+          { opacity: 1, transform: 'translate(-50%, -3px) rotate(var(--card-tilt))', offset: .38 },
+          { opacity: 1, transform: 'translate(-50%, 0) rotate(var(--card-tilt))', offset: .48 },
+          { opacity: 1, transform: 'translate(-50%, 0) rotate(var(--card-tilt))', offset: .78 },
+          { opacity: 0, transform: 'translate(-50%, 0) rotate(var(--card-tilt))' },
+        ], { duration: 1850, delay: delay + 3060 + index * 440, easing: 'ease-out' })),
+      );
+    }
+
+    function playOnEntry() {
+      if (hero.hidden) {
+        clearGreeting();
+      } else if (!playedOnEntry && !motion.matches && typeof wolf.animate === 'function') {
+        playedOnEntry = true;
+        playWithButterfly(530);
+      }
+    }
+
+    new MutationObserver(playOnEntry).observe(hero, { attributes: true, attributeFilter: ['hidden'] });
+    playOnEntry();
 
     button.addEventListener('click', () => {
       clearGreeting();
@@ -1146,13 +1211,8 @@
         return;
       }
 
-      active = [
-        wolf.animate([
-          { transform: 'none' },
-          { transform: 'translateY(-12px) rotate(-2deg)', offset: .32 },
-          { transform: 'translateY(-2px) rotate(1deg)', offset: .67 },
-          { transform: 'none' },
-        ], { duration: 560, easing: 'ease-in-out' }),
+      playWithButterfly(0);
+      active.push(
         star.animate([
           { opacity: 0, transform: 'scale(.55)' },
           { opacity: 1, transform: 'scale(1)', offset: .28 },
@@ -1176,7 +1236,7 @@
           { opacity: .84, offset: .37 },
           { opacity: 0 },
         ], { duration: 610, delay: 1520, easing: 'ease-in-out' }),
-      ];
+      );
     });
     motion.addEventListener('change', clearGreeting);
   })();
