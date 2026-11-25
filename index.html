@@ -248,7 +248,9 @@
   #eland-onboarding-desktop-1123 .eland-wolf-poses {
     position: absolute;
     inset: 0;
+    isolation: isolate;
     pointer-events: none;
+    filter: drop-shadow(0 6px 8px #56374c26);
   }
   #eland-onboarding-desktop-1123 .eland-wolf-pose {
     position: absolute;
@@ -257,7 +259,8 @@
     height: 100%;
     object-fit: contain;
     opacity: 0;
-    filter: drop-shadow(0 6px 8px #56374c26);
+    /* Add the two pose weights inside the group so the scene cannot show through. */
+    mix-blend-mode: plus-lighter;
   }
   #eland-onboarding-desktop-1123 .eland-wolf-greeting[data-posed] > .eland-wolf { opacity: 0; }
   #eland-onboarding-desktop-1123 .eland-motion-toggle {
