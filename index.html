@@ -259,14 +259,6 @@
     opacity: 0;
     filter: drop-shadow(0 6px 8px #56374c26);
   }
-  #eland-onboarding-desktop-1123 .eland-wolf-atlas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 6px 8px #56374c26);
-  }
   #eland-onboarding-desktop-1123 .eland-wolf-greeting[data-posed] > .eland-wolf { opacity: 0; }
   #eland-onboarding-desktop-1123 .eland-motion-toggle {
     position: absolute;
@@ -301,13 +293,10 @@
   #eland-onboarding-desktop-1123 .eland-wolf-play {
     position: absolute;
     inset: 0;
-    container-type: size;
     pointer-events: none;
   }
   #eland-onboarding-desktop-1123 .eland-wolf-play > * { position: absolute; opacity: 0; }
   #eland-onboarding-desktop-1123 .eland-welcome-butterfly {
-    top: 0;
-    left: 0;
     width: clamp(39px, 19%, 74px);
     aspect-ratio: 1;
   }
@@ -805,9 +794,7 @@
       <div class="eland-hero-art">
         <button type="button" class="eland-wolf-greeting" data-welcome-greeting aria-label="Chào Sói Nhỏ">
           <img class="eland-wolf" src="./assets/eland-welcome-wolf-playing.webp" alt="" width="360" height="420">
-          <span class="eland-wolf-poses" aria-hidden="true">
-            <canvas class="eland-wolf-atlas" hidden></canvas>
-          </span>
+          <span class="eland-wolf-poses" aria-hidden="true"></span>
           <span class="eland-wolf-play" aria-hidden="true">
             <span class="eland-motion-sprite eland-welcome-butterfly">
               <img src="./assets/eland-welcome-butterfly.webp" alt="" decoding="async">
@@ -1194,8 +1181,6 @@
     const toggle = hero.querySelector('[data-welcome-motion-toggle]');
     const wolf = button.querySelector('.eland-wolf');
     const poseContainer = button.querySelector('.eland-wolf-poses');
-    const poseCanvas = poseContainer.querySelector('canvas');
-    const poseContext = poseCanvas.getContext('2d');
     const star = button.querySelector('.eland-greeting-star');
     const butterfly = button.querySelector('.eland-welcome-butterfly');
     const cards = Array.from(button.querySelectorAll('.eland-flight-card'));
@@ -1204,23 +1189,15 @@
     const spark = scene.querySelector('.eland-path-spark');
     const gate = scene.querySelector('.eland-gate-light');
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let reduceMotion = motion.matches;
     const supportsAnimation = typeof butterfly.animate === 'function';
     const cycle = 12400;
     const timing = { duration: cycle, iterations: Infinity, easing: 'linear' };
     const poseSequence = [
-      [0, '01', 0], [2220, '03', 435], [3470, '04', 420], [4830, '05', 480], [5700, '04', 420],
-      [6330, '03', 400], [9510, '07', 420], [9970, '08', 295], [10320, '07', 310],
-      [10670, '08', 310], [11030, '07', 320], [12230, '01', 470],
+      [0, '01'], [2220, '03'], [3470, '04'], [4830, '05'], [5700, '04'],
+      [6330, '03'], [9510, '07'], [9970, '08'], [10320, '07'],
+      [10670, '08'], [11030, '07'], [12230, '01'],
     ];
-    const atlasColumns = 5;
-    const atlasPairs = ['01>03', '03>04', '04>05', '03>07', '07>08', '07>01'];
-    let atlasImage;
-    let flightAnimation;
-    let displayedFrame;
-    let poseRaf = 0;
     let poseLayers = [];
-    let poseEffects = [];
     let posesRequested = false;
     let posesReady = false;
     let userPaused = false;
@@ -1245,7 +1222,6 @@
     function preparePoses() {
       if (posesRequested) return;
       posesRequested = true;
-      prepareAtlas();
       const ids = [...new Set(poseSequence.map(([, id]) => id))];
       const pending = ids.map(async id => {
         const image = new Image();
@@ -1267,156 +1243,15 @@
       });
     }
 
-    function prepareAtlas() {
-      if (!poseContext) return;
-      const image = new Image();
-      image.src = './assets/eland-welcome-pose-inbetweens.webp';
-      image.decode().then(() => {
-        const width = image.naturalWidth / atlasColumns;
-        const height = image.naturalHeight / atlasPairs.length;
-        if (!Number.isInteger(width) || !Number.isInteger(height) || !height ||
-            Math.abs(width / height - 760 / 900) > .01) return;
-        atlasImage = image;
-        poseCanvas.width = width;
-        poseCanvas.height = height;
-        updatePosePlayback();
-      }).catch(() => {
-        // Keep the original pose transition if the atlas cannot be loaded.
-      });
-    }
-
-    function drawAtlasFrame() {
-      if (!atlasImage || !flightAnimation || poseLayers.length !== 6) return;
-      const ms = (Number(flightAnimation.currentTime) || 0) % cycle;
-      const nextIndex = poseSequence.findIndex(([at]) => ms < at);
-      const [at, to, duration] = poseSequence[nextIndex] || [cycle, poseSequence.at(-1)[1], 0];
-      const from = poseSequence[nextIndex < 0 ? poseSequence.length - 1 : nextIndex - 1][1];
-      let id = from;
-      let row = -1;
-      let column = -1;
-      if (duration && ms >= at - duration) {
-        const t = (ms - (at - duration)) / duration;
-        const frame = Math.round(t * t * (3 - 2 * t) * (atlasColumns + 1));
-        if (frame >= atlasColumns + 1) {
-          id = to;
-        } else if (frame > 0) {
-          row = atlasPairs.indexOf(from + '>' + to);
-          if (row >= 0) {
-            column = frame - 1;
-          } else {
-            row = atlasPairs.indexOf(to + '>' + from);
-            column = atlasColumns - frame;
-          }
-        }
-      }
-
-      const key = row < 0 ? id : row + ':' + column;
-      if (key === displayedFrame) return;
-      const { width, height } = poseCanvas;
-      poseContext.clearRect(0, 0, width, height);
-      if (row >= 0) {
-        poseContext.drawImage(atlasImage, column * width, row * height, width, height, 0, 0, width, height);
-      } else {
-        const pose = poseLayers.find(layer => layer.id === id);
-        poseContext.drawImage(pose.image, 0, 0, width, height);
-      }
-      displayedFrame = key;
-      poseCanvas.dataset.poseFrame = key;
-    }
-
-    function drawWhileRunning() {
-      poseRaf = 0;
-      if (flightAnimation?.playState !== 'running' || hero.hidden || document.hidden || userPaused) return;
-      drawAtlasFrame();
-      poseRaf = window.requestAnimationFrame(drawWhileRunning);
-    }
-
-    function updatePosePlayback() {
-      if (!atlasImage || !flightAnimation || poseLayers.length !== 6 || reduceMotion) return;
-      if (poseCanvas.hidden) {
-        drawAtlasFrame();
-        poseCanvas.hidden = false;
-        poseEffects.forEach(effect => effect.cancel());
-        poseEffects = [];
-      }
-      if (!poseRaf && flightAnimation.playState === 'running' && !hero.hidden && !document.hidden && !userPaused) {
-        poseRaf = window.requestAnimationFrame(drawWhileRunning);
-      }
-    }
-
     const phase = ms => ms / cycle;
-    const flyAt = (ms, left, top, wing, angle, opacity = 1) => ({ ms, left, top, wing, angle, opacity });
-    const narrowScene = window.matchMedia('(max-width: 780px), (max-aspect-ratio: 5/4)');
-    let waypoints = [];
-
-    function tangent(points, index, axis) {
-      const middle = points[index];
-      const before = points[index - 1];
-      const after = points[index + 1];
-      if (!before || !after) return 0;
-      const incoming = (middle[axis] - before[axis]) / (middle.ms - before.ms);
-      const outgoing = (after[axis] - middle[axis]) / (after.ms - middle.ms);
-      return incoming * outgoing <= 0 ? 0 : (2 * incoming * outgoing) / (incoming + outgoing);
+    function flyAt(ms, left, top, wing, angle, opacity = 1) {
+      return { left, top, opacity, offset: phase(ms),
+        transform: 'translate(-50%, -50%) rotate(' + angle + 'deg) scaleX(' + wing + ')' };
     }
-
-    function curve(start, end, startSlope, endSlope, duration, progress) {
-      const t2 = progress * progress;
-      const t3 = t2 * progress;
-      return (2 * t3 - 3 * t2 + 1) * start + (t3 - 2 * t2 + progress) * duration * startSlope +
-        (-2 * t3 + 3 * t2) * end + (t3 - t2) * duration * endSlope;
-    }
-
-    function flightFrames() {
-      const properties = window.getComputedStyle(button);
-      const resolvePercent = (value, fallback) => {
-        const custom = value.match(/^var\((--[^)]+)\)$/);
-        const resolved = Number.parseFloat(custom ? properties.getPropertyValue(custom[1]) : value);
-        return Number.isFinite(resolved) ? resolved : fallback;
-      };
-      const points = waypoints.map(beat => ({
-        ...beat,
-        x: resolvePercent(beat.left, 105),
-        y: resolvePercent(beat.top, 35),
-      }));
-      const frames = [];
-      const frameAt = (ms, x, y, wing, angle, opacity) => ({
-        offset: phase(ms),
-        opacity,
-        transform: 'translate(' + x + 'cqw, ' + y + 'cqh) translate(-50%, -50%) rotate(' + angle + 'deg) scaleX(' + wing + ')',
-      });
-      for (let index = 0; index < points.length - 1; index++) {
-        const a = points[index];
-        const b = points[index + 1];
-        const duration = b.ms - a.ms;
-        const samples = Math.ceil(duration / 65);
-        const x1 = tangent(points, index, 'x');
-        const x2 = tangent(points, index + 1, 'x');
-        const y1 = tangent(points, index, 'y');
-        const y2 = tangent(points, index + 1, 'y');
-        for (let sample = 0; sample < samples; sample++) {
-          const progress = sample / samples;
-          frames.push(frameAt(
-            a.ms + duration * progress,
-            curve(a.x, b.x, x1, x2, duration, progress),
-            curve(a.y, b.y, y1, y2, duration, progress),
-            a.wing + (b.wing - a.wing) * progress,
-            a.angle + (b.angle - a.angle) * progress,
-            a.opacity + (b.opacity - a.opacity) * progress,
-          ));
-        }
-      }
-      const last = points.at(-1);
-      frames.push(frameAt(last.ms, last.x, last.y, last.wing, last.angle, last.opacity));
-      return frames;
-    }
-
-    narrowScene.addEventListener('change', () => {
-      if (flightAnimation) flightAnimation.effect.setKeyframes(flightFrames());
-    });
 
     function releaseCard(card, step, driftX, driftY, tilt) {
       const position = { left: step.left, top: step.top };
-      const at = step.ms;
+      const at = step.offset * cycle;
       const origin = 'translate(-50%, -50%) scale(.76)';
       const down = 'translate(-50%, -50%) translate(' + driftX + 'px, ' + driftY + 'px) rotate(' + tilt + 'deg)';
       const frames = [
@@ -1450,7 +1285,8 @@
       const welcome = flyAt(5100, '15%', '16%', .73, 15);
       const hand = flyAt(6600, '100%', '41%', .86, 5);
       const brand = flyAt(8000, 'var(--drop-brand-x)', '26%', 1, -13);
-      waypoints = [
+      effects = [
+        butterfly.animate([
           flyAt(0, 'var(--drop-entry-x)', '72%', .83, -18, 0),
           flyAt(440, 'var(--drop-hi-x)', '67%', 1, -15),
           hi, flyAt(1840, 'var(--drop-there-x)', '38%', .83, -25), there,
@@ -1462,20 +1298,16 @@
           hand, flyAt(7190, '100%', '41%', 1, 0), brand,
           flyAt(8930, 'var(--drop-entry-x)', '8%', .83, -21, 0),
           flyAt(cycle, 'var(--drop-entry-x)', '72%', .83, -18, 0),
-      ];
-      flightAnimation = butterfly.animate(flightFrames(), timing);
-      effects = [
-        flightAnimation,
+        ], timing),
         releaseCard(cards[0], hi, 6, 17, -7),
         releaseCard(cards[1], there, 8, 16, 7),
         releaseCard(cards[2], warm, -7, 18, -7),
         releaseCard(cards[3], welcome, -8, 16, -7),
         releaseCard(cards[4], hand, 9, 20, 7),
         releaseCard(cards[5], brand, 7, 19, 6),
+        ...poseLayers.map(({ id, image }) => image.animate(poseFrames(id), timing)),
       ];
-      if (!atlasImage) poseEffects = poseLayers.map(({ id, image }) => image.animate(poseFrames(id), timing));
       button.toggleAttribute('data-posed', poseLayers.length > 0);
-      updatePosePlayback();
     }
 
     function clearGreeting() {
@@ -1486,7 +1318,7 @@
     }
 
     function syncPlayback() {
-      const reduced = reduceMotion || !supportsAnimation;
+      const reduced = motion.matches || !supportsAnimation;
       const visible = !hero.hidden && !document.hidden;
       const running = !reduced && visible && !userPaused;
       const toggleLabel = userPaused ? 'Phát chuyển động' : 'Tạm dừng chuyển động';
@@ -1496,18 +1328,9 @@
       toggle.toggleAttribute('data-paused', userPaused);
       hero.toggleAttribute('data-motion-paused', !running);
 
-      if (!running && poseRaf) {
-        window.cancelAnimationFrame(poseRaf);
-        poseRaf = 0;
-      }
-
       if (reduced) {
-        [...effects, ...poseEffects].forEach(effect => effect.cancel());
+        effects.forEach(effect => effect.cancel());
         effects = [];
-        poseEffects = [];
-        flightAnimation = undefined;
-        poseCanvas.hidden = true;
-        displayedFrame = undefined;
         button.removeAttribute('data-posed');
         clearGreeting();
         return;
@@ -1518,19 +1341,15 @@
         else preparePoses();
       }
 
-      for (const effect of [...effects, ...poseEffects, ...greeting]) {
+      for (const effect of [...effects, ...greeting]) {
         if (running && effect.playState === 'paused') effect.play();
         if (!running && effect.playState === 'running') effect.pause();
       }
-      if (running) updatePosePlayback();
     }
 
     new MutationObserver(syncPlayback).observe(hero, { attributes: true, attributeFilter: ['hidden'] });
     document.addEventListener('visibilitychange', syncPlayback);
-    motion.addEventListener('change', event => {
-      reduceMotion = event.matches;
-      syncPlayback();
-    });
+    motion.addEventListener('change', syncPlayback);
     toggle.addEventListener('click', () => {
       userPaused = !userPaused;
       syncPlayback();
@@ -1539,14 +1358,13 @@
 
     button.addEventListener('click', () => {
       clearGreeting();
-      if (reduceMotion || !supportsAnimation || userPaused) {
+      if (motion.matches || !supportsAnimation || userPaused) {
         star.setAttribute('data-visible', '');
         stillTimer = window.setTimeout(() => star.removeAttribute('data-visible'), 550);
         return;
       }
 
-      [...effects, ...poseEffects].forEach(effect => { effect.currentTime = 0; });
-      drawAtlasFrame();
+      effects.forEach(effect => { effect.currentTime = 0; });
       greeting = [
         star.animate([
           { opacity: 0, transform: 'scale(.55)' },
