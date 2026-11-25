@@ -56,7 +56,9 @@
     --eland-welcome-lavender: #eae4fa;
     --eland-welcome-cream: #fbf1e8;
     --eland-welcome-art: url('./assets/eland-welcome-adventure-scene.webp');
-    --eland-welcome-position-y: 38%;
+    --eland-welcome-align-y: .38;
+    --eland-welcome-position-y: calc(100% * var(--eland-welcome-align-y));
+    --eland-welcome-wolf-height: clamp(276px, 52svh, 490px);
     --eland-welcome-background: var(--eland-welcome-art) center var(--eland-welcome-position-y) / cover no-repeat var(--eland-welcome-cream);
   }
   #eland-onboarding-desktop-1123:has(> .eland-hero:not([hidden])) {
@@ -136,29 +138,44 @@
     outline-color: var(--eland-welcome-purple);
   }
   #eland-onboarding-desktop-1123 .eland-hero-art {
+    --eland-scene-height: max(100dvh, 56.28vw);
+    --eland-stone-contact: calc(var(--eland-scene-height) * .775 + (100dvh - var(--eland-scene-height)) * var(--eland-welcome-align-y));
+    --eland-feet-at-rest: calc(50dvh + var(--eland-welcome-wolf-height) * .474);
+    --eland-wolf-ground-shift: clamp(0px, calc(var(--eland-stone-contact) - var(--eland-feet-at-rest)), 54px);
     position: relative;
     isolation: isolate;
     display: grid;
     justify-items: start;
+    translate: 0 var(--eland-wolf-ground-shift);
   }
   #eland-onboarding-desktop-1123 .eland-hero-art::before {
     position: absolute;
     z-index: -1;
-    bottom: -1%;
-    left: 51%;
-    width: min(55%, 220px);
-    height: 5%;
-    transform: translateX(-50%);
+    top: 95.8%;
+    left: 52%;
+    width: 71%;
+    height: 8.4%;
+    transform: translate(-50%, -35%) rotate(5deg);
     border-radius: 50%;
-    background: radial-gradient(ellipse, #3b285a50, transparent 72%);
+    background: radial-gradient(ellipse, #79514b63 7%, #79514b32 40%, transparent 73%);
+    content: "";
+  }
+  #eland-onboarding-desktop-1123 .eland-hero-art::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 11% 2.05% at 37.4% 97.5%, #62443d9c 16%, #62443d61 45%, transparent 100%),
+      radial-gradient(ellipse 11% 2.05% at 63.2% 97.5%, #62443d9c 16%, #62443d61 45%, transparent 100%);
     content: "";
   }
   #eland-onboarding-desktop-1123 .eland-hero-art .eland-wolf {
     width: auto;
     max-width: 100%;
-    height: clamp(276px, 52svh, 490px);
+    height: var(--eland-welcome-wolf-height);
     max-height: none;
     aspect-ratio: 6 / 7;
+    filter: drop-shadow(0 6px 8px #56374c26);
   }
   #eland-onboarding-desktop-1123 .eland-hero { position: relative; }
   #eland-onboarding-desktop-1123 .eland-hero-layout { position: relative; z-index: 1; }
@@ -252,8 +269,6 @@
     transform: scaleX(-1) rotate(-24deg);
   }
   #eland-onboarding-desktop-1123 .eland-flight-card {
-    left: var(--card-x);
-    top: var(--card-y);
     display: flex;
     align-items: center;
     gap: .24em;
@@ -270,16 +285,6 @@
     white-space: nowrap;
   }
   #eland-onboarding-desktop-1123 .eland-flight-card::before { color: #996008; content: "✦"; }
-  #eland-onboarding-desktop-1123 .eland-flight-card-hello {
-    --card-x: 77%;
-    --card-y: 71%;
-    --card-tilt: -8deg;
-  }
-  #eland-onboarding-desktop-1123 .eland-flight-card-fly {
-    --card-x: 96%;
-    --card-y: 77%;
-    --card-tilt: 8deg;
-  }
   #eland-onboarding-desktop-1123 .eland-step-light {
     left: var(--step-x);
     top: var(--step-y);
@@ -630,14 +635,20 @@
   }
   @media (min-aspect-ratio: 2/1) {
     #eland-onboarding-desktop-1123 {
-      --eland-welcome-position-y: 62%;
+      --eland-welcome-align-y: .62;
     }
   }
   @media (max-width: 780px), (max-aspect-ratio: 5/4) {
     #eland-onboarding-desktop-1123 {
+      --eland-welcome-wolf-height: clamp(172px, min(61vw, 30svh), 285px);
+      --eland-welcome-mobile-top: clamp(66px, 10svh, 92px);
+      --eland-welcome-mobile-floor: calc(var(--eland-welcome-mobile-top) + var(--eland-welcome-wolf-height));
+      --eland-welcome-mobile-scene-width: max(100vw, 680px, calc((var(--eland-welcome-mobile-floor) + 1px) / .442));
+      --eland-welcome-mobile-scene-y: calc(var(--eland-welcome-mobile-floor) - var(--eland-welcome-mobile-scene-width) * .442);
       --eland-welcome-background:
-        linear-gradient(180deg, #fbf1e800 160px, #fbf1e8d9 325px, var(--eland-welcome-cream) 390px),
-        var(--eland-welcome-art) 72% top / max(100vw, 680px) auto no-repeat,
+        linear-gradient(180deg, #fbf1e800 calc(var(--eland-welcome-mobile-floor) - 26px),
+          #fbf1e850 calc(var(--eland-welcome-mobile-floor) + 2px), var(--eland-welcome-cream) calc(var(--eland-welcome-mobile-floor) + 26px)),
+        var(--eland-welcome-art) 72% var(--eland-welcome-mobile-scene-y) / var(--eland-welcome-mobile-scene-width) auto no-repeat,
         var(--eland-welcome-cream);
     }
     #eland-onboarding-desktop-1123:has(> .eland-hero:not([hidden])) > .eland-header {
@@ -648,7 +659,7 @@
     }
     #eland-onboarding-desktop-1123 .eland-hero {
       place-items: start center;
-      padding: clamp(66px, 10svh, 92px) 22px 28px;
+      padding: var(--eland-welcome-mobile-top) 22px 28px;
     }
     #eland-onboarding-desktop-1123 .eland-animation-board {
       --stone-x1: 70%;
@@ -660,15 +671,14 @@
       --gate-x: 86%;
       --gate-y: 52%;
       left: 72%;
-      top: 0;
-      width: max(100cqw, 680px);
+      top: var(--eland-welcome-mobile-scene-y);
+      width: var(--eland-welcome-mobile-scene-width);
       height: auto;
       aspect-ratio: 1672 / 941;
       transform: translateX(-72%);
     }
     #eland-onboarding-desktop-1123 .eland-cloud-one { --cloud-y: 7%; }
     #eland-onboarding-desktop-1123 .eland-cloud-two { --cloud-y: 19%; }
-    #eland-onboarding-desktop-1123 .eland-flight-card-fly { --card-x: 94%; }
     #eland-onboarding-desktop-1123 .eland-hero-layout {
       grid-template-columns: minmax(0, 1fr);
       width: min(100%, 430px);
@@ -678,9 +688,7 @@
     #eland-onboarding-desktop-1123 .eland-hero-art {
       grid-row: 1;
       justify-items: center;
-    }
-    #eland-onboarding-desktop-1123 .eland-hero-art .eland-wolf {
-      height: clamp(172px, min(61vw, 30svh), 285px);
+      --eland-wolf-ground-shift: 0px;
     }
     #eland-onboarding-desktop-1123 .eland-hero-title { font-size: clamp(32px, 9.4vw, 48px); }
     #eland-onboarding-desktop-1123 .eland-hero .eland-hero-copy {
@@ -1156,38 +1164,54 @@
         transform: 'translate(-50%, -50%) rotate(' + angle + 'deg) scaleX(' + wing + ')' };
     }
 
+    function releaseCard(card, beat, timing, driftX, driftY, tilt) {
+      const { left, top, offset } = beat;
+      const land = 'translate(-50%, -50%) translate(' + driftX + 'px, ' + driftY + 'px) rotate(' + tilt + 'deg)';
+      return card.animate([
+        { opacity: .38, transform: 'translate(-50%, -50%) scale(.72)' },
+        { opacity: 1, transform: land, offset: .35 },
+        { opacity: 1, transform: land + ' translateY(-3px)', offset: .42 },
+        { opacity: 1, transform: land, offset: .52 },
+        { opacity: 1, transform: land, offset: .82 },
+        { opacity: 0, transform: land },
+      ].map(frame => ({ ...frame, left, top })), {
+        duration: 1900,
+        delay: timing.delay + timing.duration * offset,
+        easing: 'ease-out',
+      });
+    }
+
     function playWithButterfly(delay) {
-      const timing = { duration: 4200, delay, easing: 'linear' };
+      const timing = { duration: 6900, delay, easing: 'linear' };
+      const hello = flyAt('14%', '18%', .81, 12, 1, .45);
+      const hand = flyAt('var(--wolf-paw-x)', 'var(--wolf-paw-y)', 1, 9, 1, .71);
+      const fly = flyAt(hand.left, hand.top, .72, 1, 1, .81);
       active.push(
         butterfly.animate([
           flyAt('101%', '63%', .82, -18, 0, 0),
-          flyAt('97%', '43%', 1, -13, 1, .14),
-          flyAt('89%', '20%', .66, -24, 1, .24),
-          flyAt('62%', '8%', 1, 0, 1, .35),
-          flyAt('31%', '13%', .73, 15, 1, .46),
-          flyAt('var(--wolf-approach-x)', 'var(--wolf-approach-y)', .89, -5, 1, .61),
-          flyAt('var(--wolf-paw-x)', 'var(--wolf-paw-y)', 1, 9, 1, .72),
-          flyAt('var(--wolf-paw-x)', 'var(--wolf-paw-y)', .73, 0, 1, .79),
-          flyAt('95%', '29%', 1, -13, 1, .91),
+          flyAt('97%', '43%', 1, -13, 1, .12),
+          flyAt('89%', '20%', .66, -24, 1, .22),
+          flyAt('62%', '8%', 1, 0, 1, .32),
+          flyAt('32%', '10%', .73, 15, 1, .39),
+          hello,
+          flyAt('29%', '8%', 1, -8, 1, .51),
+          flyAt('var(--wolf-approach-x)', 'var(--wolf-approach-y)', .89, -5, 1, .62),
+          hand,
+          fly,
+          flyAt('95%', '29%', 1, -13, 1, .92),
           flyAt('101%', '19%', .81, -18, 0, 1),
         ], timing),
         wolf.animate([
           { transform: 'none' },
-          { transform: 'rotate(-1deg)', offset: .45 },
+          { transform: 'rotate(-1deg)', offset: hello.offset },
           { transform: 'none', offset: .58 },
-          { transform: 'translateY(-7px) rotate(var(--wolf-play-lean))', offset: .72 },
-          { transform: 'translateY(-5px) rotate(var(--wolf-play-lean))', offset: .79 },
+          { transform: 'translateY(-3px) rotate(var(--wolf-play-lean))', offset: hand.offset },
+          { transform: 'translateY(-2px) rotate(var(--wolf-play-lean))', offset: fly.offset },
           { transform: 'none', offset: .93 },
           { transform: 'none' },
         ], timing),
-        ...Array.from(cards, (card, index) => card.animate([
-          { opacity: 0, transform: 'translate(-50%, -40px) rotate(-12deg) scale(.84)' },
-          { opacity: 1, transform: 'translate(-50%, 0) rotate(var(--card-tilt))', offset: .3 },
-          { opacity: 1, transform: 'translate(-50%, -3px) rotate(var(--card-tilt))', offset: .38 },
-          { opacity: 1, transform: 'translate(-50%, 0) rotate(var(--card-tilt))', offset: .48 },
-          { opacity: 1, transform: 'translate(-50%, 0) rotate(var(--card-tilt))', offset: .78 },
-          { opacity: 0, transform: 'translate(-50%, 0) rotate(var(--card-tilt))' },
-        ], { duration: 1850, delay: delay + 3060 + index * 440, easing: 'ease-out' })),
+        releaseCard(cards[0], hello, timing, -7, 46, -8),
+        releaseCard(cards[1], fly, timing, 9, 40, 8),
       );
     }
 
