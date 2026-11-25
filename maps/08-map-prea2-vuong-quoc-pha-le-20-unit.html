@@ -491,8 +491,8 @@ body{background:#b48458}.stage{background:#b48458}.world{width:1px;height:1px;ov
     if(e.button!==undefined&&e.button!==0)return;
     if(e.target.closest('.ui'))return;
     pointers.set(e.pointerId,point(e));
-    // Capturing on the stage during a pin tap would retarget its click to the stage.
-    if(!e.target.closest('.pin')){try{stage.setPointerCapture(e.pointerId)}catch{}}
+    // Capturing on the stage during a pin or zone badge tap would retarget its click to the stage.
+    if(!e.target.closest('.pin, .zone-badge')){try{stage.setPointerCapture(e.pointerId)}catch{}}
     rebase();
     if(pointers.size>1){suppressUntil=performance.now()+300;}
   });

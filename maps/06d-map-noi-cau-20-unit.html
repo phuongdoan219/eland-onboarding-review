@@ -499,8 +499,8 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
     if(e.button!==undefined&&e.button!==0)return;
     if(e.target.closest('.ui'))return;
     pointers.set(e.pointerId,point(e));
-    // Capturing on the stage during a pin tap would retarget its click to the stage.
-    if(!e.target.closest('.pin')){try{stage.setPointerCapture(e.pointerId)}catch{}}
+    // Capturing on the stage during a pin or zone badge tap would retarget its click to the stage.
+    if(!e.target.closest('.pin, .zone-badge')){try{stage.setPointerCapture(e.pointerId)}catch{}}
     rebase();
     if(pointers.size>1){suppressUntil=performance.now()+300;}
   });

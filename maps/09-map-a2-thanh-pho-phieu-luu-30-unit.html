@@ -391,7 +391,6 @@ body{background:#327997}.stage{background:#327997}.world{width:1px;height:1px;ov
     world.style.transform=`translate(${camera.x}px,${camera.y}px) scale(${camera.scale})`;
     if(!overview)zone=inferZone();
     stage.classList.toggle('overview-mode',overview);$('#pins').hidden=overview;$('#overview-labels').hidden=!overview;
-    const zoneTotal=d.last-d.first+1;
     for(const pin of pinNodes){const u=unit(pin.dataset.unit),x=u.x*camera.scale+camera.x,y=u.y*camera.scale+camera.y;pin.style.left=x+'px';pin.style.top=y+'px';pin.hidden=overview||x<-70||x>camera.width+70||y<0||y>camera.height+70;}
     for(const badge of badgeNodes){const z=model.districts[Number(badge.dataset.zone)];badge.style.left=(z.label[0]*camera.scale+camera.x)+'px';badge.style.top=(z.label[1]*camera.scale+camera.y)+'px';}
   }
@@ -484,8 +483,8 @@ body{background:#327997}.stage{background:#327997}.world{width:1px;height:1px;ov
     if(e.button!==undefined&&e.button!==0)return;
     if(e.target.closest('.ui'))return;
     pointers.set(e.pointerId,point(e));
-    // Capturing on the stage during a pin tap would retarget its click to the stage.
-    if(!e.target.closest('.pin')){try{stage.setPointerCapture(e.pointerId)}catch{}}
+    // Capturing on the stage during a pin or zone badge tap would retarget its click to the stage.
+    if(!e.target.closest('.pin, .zone-badge')){try{stage.setPointerCapture(e.pointerId)}catch{}}
     rebase();
     if(pointers.size>1){suppressUntil=performance.now()+300;}
   });
