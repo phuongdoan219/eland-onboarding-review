@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="vi" data-eland-map-url="./maps/06d-map-noi-cau-20-unit.html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; form-action 'none'; base-uri 'none'">
+<title>ELand · Hành trình học tiếng Anh</title>
+<style>
+  body { margin: 0; }
+  #eland-onboarding-desktop-1123 {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+</style>
+</head>
+<body>
+<style>
+  @font-face{font-family:Nunito;font-style:normal;font-weight:600;font-display:swap;src:url('./assets/45f437de32ff5973eb5616b4.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:Nunito;font-style:normal;font-weight:800;font-display:swap;src:url('./assets/2363d3ed037283ebb961e8c4.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:Nunito;font-style:normal;font-weight:600;font-display:swap;src:url('./assets/cf95b95d712b0185f0e61550.woff2') format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;}
+  @font-face{font-family:Nunito;font-style:normal;font-weight:800;font-display:swap;src:url('./assets/fac6740eb7a0d5627c287a82.woff2') format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;}
+  #eland-onboarding-desktop-1123 {
+    --eland-ink: #172047;
+    --eland-muted: #566078;
+    --eland-purple: #5a55e7;
+    --eland-purple-deep: #4843c8;
+    --eland-border: #dfe3ef;
+    overflow: hidden;
+    width: 100%;
+    background: #f7f8fc;
+    color: var(--eland-ink);
+    font: 600 16px/1.5 Nunito, "Segoe UI", sans-serif;
+  }
+  #eland-onboarding-desktop-1123,
+  #eland-onboarding-desktop-1123 * { box-sizing: border-box; }
+  #eland-onboarding-desktop-1123 [hidden] { display: none !important; }
+  #eland-onboarding-desktop-1123 :is(h1, p) { margin: 0; }
+  #eland-onboarding-desktop-1123 :is(button, input) { font: inherit; }
+  #eland-onboarding-desktop-1123 :is(button, input):focus-visible {
+    outline: 3px solid var(--eland-purple);
+    outline-offset: 3px;
+  }
+  #eland-onboarding-desktop-1123 .eland-header {
+    display: flex;
+    min-height: 76px;
+    align-items: center;
+    padding: 12px clamp(22px, 6vw, 70px);
+    border-bottom: 1px solid #eaedf5;
+    background: #fff;
+  }
+  #eland-onboarding-desktop-1123 .eland-logo { display: block; width: 115px; height: auto; }
+  #eland-onboarding-desktop-1123 .eland-hero {
+    display: grid;
+    grid-template-columns: 1.08fr .92fr;
+    align-items: center;
+    gap: clamp(22px, 5vw, 58px);
+    min-height: 510px;
+    padding: 54px clamp(22px, 6vw, 70px);
+    background: radial-gradient(ellipse at 83% 48%, #eceaff 0%, transparent 56%), #fbfbff;
+  }
+  #eland-onboarding-desktop-1123 .eland-hero-title {
+    font-size: clamp(36px, 5.4vw, 59px);
+    font-weight: 800;
+    line-height: 1.07;
+    letter-spacing: -.045em;
+    text-wrap: balance;
+  }
+  #eland-onboarding-desktop-1123 .eland-hero-title span { color: var(--eland-purple-deep); }
+  #eland-onboarding-desktop-1123 .eland-hero-copy {
+    max-width: 34ch;
+    margin-top: 18px;
+    color: var(--eland-muted);
+    font-size: clamp(16px, 2vw, 19px);
+  }
+  #eland-onboarding-desktop-1123 .eland-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  #eland-onboarding-desktop-1123 .eland-hero-art {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: 325px;
+    place-items: center;
+  }
+  #eland-onboarding-desktop-1123 .eland-hero-art::before {
+    position: absolute;
+    z-index: -1;
+    inset: 6% 8%;
+    border-radius: 48% 52% 57% 43% / 49% 52% 48% 51%;
+    background: linear-gradient(155deg, #f8f6ff 6%, #ded8ff 90%);
+    box-shadow: 0 0 0 12px #efedff9c;
+    content: "";
+  }
+  #eland-onboarding-desktop-1123 .eland-hero-art::after {
+    position: absolute;
+    z-index: -1;
+    right: 18%;
+    bottom: 9%;
+    left: 19%;
+    height: 10%;
+    border-radius: 50%;
+    background: #aaa0ea40;
+    content: "";
+    filter: blur(10px);
+  }
+  #eland-onboarding-desktop-1123 .eland-wolf {
+    display: block;
+    width: min(100%, 345px);
+    max-height: 350px;
+    object-fit: contain;
+    filter: drop-shadow(0 13px 17px #6457a82c);
+  }
+  #eland-onboarding-desktop-1123 .eland-button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 10px 18px;
+    background: var(--eland-purple);
+    color: #fff;
+    box-shadow: 0 3px 0 var(--eland-purple-deep);
+    font-weight: 800;
+    line-height: 1.35;
+    text-align: center;
+  }
+  #eland-onboarding-desktop-1123 .eland-button:hover { background: var(--eland-purple-deep); }
+  #eland-onboarding-desktop-1123 .eland-button.eland-secondary {
+    border-color: #cbc8f8;
+    background: #fff;
+    color: var(--eland-purple-deep);
+    box-shadow: 0 2px 0 #dedbf8;
+  }
+  #eland-onboarding-desktop-1123 .eland-button.eland-secondary:hover { background: #eeedff; }
+  #eland-onboarding-desktop-1123 .eland-link {
+    min-height: 44px;
+    padding: 4px 5px;
+    border: 0;
+    background: transparent;
+    color: var(--eland-purple-deep);
+    font-weight: 800;
+    text-underline-offset: 3px;
+  }
+  #eland-onboarding-desktop-1123 .eland-link:hover { text-decoration: underline; }
+  #eland-onboarding-desktop-1123 .eland-content {
+    display: grid;
+    min-height: 510px;
+    place-items: center;
+    padding: 38px clamp(17px, 5vw, 56px);
+  }
+  #eland-onboarding-desktop-1123 .eland-survey {
+    display: grid;
+    min-height: 530px;
+    place-items: center;
+    padding: clamp(24px, 5vw, 64px);
+    background:
+      radial-gradient(ellipse at 17% 46%, #e1dcff 0%, transparent 45%),
+      linear-gradient(140deg, #f6f3ff, #f7f8fc 68%);
+  }
+  #eland-onboarding-desktop-1123 .eland-survey-layout {
+    display: grid;
+    width: min(100%, 1230px);
+    grid-template-columns: minmax(220px, .85fr) minmax(355px, 1.15fr);
+    align-items: center;
+    gap: clamp(20px, 5vw, 76px);
+  }
+  #eland-onboarding-desktop-1123 .eland-survey-art {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: clamp(250px, 30vw, 430px);
+    place-items: center;
+  }
+  #eland-onboarding-desktop-1123 .eland-survey-art::before {
+    position: absolute;
+    z-index: -1;
+    inset: 8% 4%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 37% 22%, #faf8ff, #d8d0fb);
+    content: "";
+  }
+  #eland-onboarding-desktop-1123 .eland-survey-art .eland-wolf {
+    width: min(82%, 345px);
+  }
+  #eland-onboarding-desktop-1123 .eland-panel {
+    width: min(100%, 630px);
+    border: 1px solid var(--eland-border);
+    border-radius: 24px;
+    padding: clamp(20px, 4vw, 34px);
+    background: #fff;
+    box-shadow: 0 10px 32px #1720470a;
+  }
+  #eland-onboarding-desktop-1123 .eland-panel h1 {
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -.028em;
+    text-wrap: pretty;
+  }
+  #eland-onboarding-desktop-1123 .eland-panel .eland-muted {
+    margin-top: 8px;
+    color: var(--eland-muted);
+  }
+  #eland-onboarding-desktop-1123 .eland-survey .eland-panel {
+    width: 100%;
+    padding: clamp(24px, 4vw, 48px);
+  }
+  #eland-onboarding-desktop-1123 .eland-survey .eland-panel h1 {
+    font-size: clamp(26px, 4vw, 42px);
+  }
+  #eland-onboarding-desktop-1123 .eland-survey-bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    color: var(--eland-muted);
+    font-size: 14px;
+    font-weight: 800;
+  }
+  #eland-onboarding-desktop-1123 .eland-progress {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+  #eland-onboarding-desktop-1123 .eland-progress span {
+    height: 6px;
+    border-radius: 8px;
+    background: #eeedff;
+  }
+  #eland-onboarding-desktop-1123 .eland-progress span.eland-active { background: var(--eland-purple); }
+  #eland-onboarding-desktop-1123 .eland-answers {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  #eland-onboarding-desktop-1123 .eland-answer {
+    min-height: 72px;
+    padding: 12px 16px;
+    border: 1px solid var(--eland-border);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--eland-ink);
+    box-shadow: 0 2px 0 #e8eaf3;
+    font-weight: 800;
+    text-align: left;
+    text-wrap: pretty;
+  }
+  #eland-onboarding-desktop-1123 .eland-answer:hover {
+    border-color: #b6b0f8;
+    background: #f2f0ff;
+  }
+  #eland-onboarding-desktop-1123 .eland-auth { width: min(100%, 456px); }
+  #eland-onboarding-desktop-1123 .eland-auth h1 { margin-top: 10px; }
+  #eland-onboarding-desktop-1123 .eland-form {
+    display: grid;
+    gap: 14px;
+    margin-top: 20px;
+  }
+  #eland-onboarding-desktop-1123 .eland-field {
+    display: grid;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  #eland-onboarding-desktop-1123 .eland-field input {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #d5dae9;
+    border-radius: 11px;
+    background: #fff;
+    color: var(--eland-ink);
+    font-weight: 600;
+  }
+  #eland-onboarding-desktop-1123 .eland-auth-switch {
+    margin-top: 12px;
+    text-align: center;
+  }
+  #eland-onboarding-desktop-1123 .eland-success {
+    width: min(calc(100% - 32px), 420px);
+    color: var(--eland-ink);
+    box-shadow: 0 20px 64px #17204738;
+    text-align: center;
+  }
+  #eland-onboarding-desktop-1123 .eland-success::backdrop {
+    background: rgb(23 32 71 / .42);
+    backdrop-filter: blur(2px);
+  }
+  #eland-onboarding-desktop-1123 .eland-success h2 {
+    margin: 0;
+    font-size: clamp(23px, 3.6vw, 30px);
+    font-weight: 800;
+    line-height: 1.18;
+  }
+  #eland-onboarding-desktop-1123 .eland-success .eland-check {
+    display: grid;
+    width: 64px;
+    height: 64px;
+    place-items: center;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #e7f7ef;
+    color: #16805f;
+    font-size: 31px;
+    font-weight: 800;
+  }
+  #eland-onboarding-desktop-1123 .eland-success .eland-button { margin-top: 22px; }
+  #eland-onboarding-desktop-1123 .eland-map {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background: #241d4b;
+  }
+  #eland-onboarding-desktop-1123 .eland-map-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px 18px;
+    padding: 14px clamp(18px, 5vw, 56px);
+    background: #f7f5ff;
+  }
+  #eland-onboarding-desktop-1123 .eland-map-head h1 {
+    font-size: clamp(22px, 3vw, 32px);
+    line-height: 1.2;
+  }
+  #eland-onboarding-desktop-1123 .eland-map-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: 730px) {
+    #eland-onboarding-desktop-1123 .eland-survey { padding-block: 20px 30px; }
+    #eland-onboarding-desktop-1123 .eland-survey-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+    #eland-onboarding-desktop-1123 .eland-survey-art { min-height: 0; }
+    #eland-onboarding-desktop-1123 .eland-survey-art::before {
+      inset: 3% calc(50% - 88px);
+    }
+    #eland-onboarding-desktop-1123 .eland-survey-art .eland-wolf { width: 138px; }
+  }
+  @media (max-width: 690px) {
+    #eland-onboarding-desktop-1123 .eland-hero {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      gap: 10px;
+      padding-block: 30px;
+    }
+    #eland-onboarding-desktop-1123 .eland-hero-art { min-height: 225px; }
+    #eland-onboarding-desktop-1123 .eland-wolf { max-height: 220px; }
+  }
+  @media (max-width: 430px) {
+    #eland-onboarding-desktop-1123 .eland-answers { grid-template-columns: 1fr; }
+    #eland-onboarding-desktop-1123 .eland-survey-bar { gap: 8px; }
+    #eland-onboarding-desktop-1123 .eland-hero-actions .eland-button { width: 100%; }
+  }
+</style>
+
+<main id="eland-onboarding-desktop-1123" aria-label="ELand">
+  <header class="eland-header">
+    <img class="eland-logo" src="./assets/4ce346ba2079b6504a12aef6.webp" alt="ELand" width="115" height="39">
+  </header>
+
+  <section class="eland-hero" data-pane="welcome" aria-labelledby="eland-desktop-welcome">
+    <div>
+      <h1 class="eland-hero-title" id="eland-desktop-welcome">Học tiếng Anh <span>cùng Sói Nhỏ</span></h1>
+      <p class="eland-hero-copy">Khám phá bản đồ và học tiếng Anh qua từng chuyến phiêu lưu.</p>
+      <div class="eland-hero-actions">
+        <button type="button" class="eland-button" data-show="survey-1" data-focus>Bắt đầu ngay</button>
+        <button type="button" class="eland-button eland-secondary" data-show="login">Đã có tài khoản</button>
+      </div>
+    </div>
+    <div class="eland-hero-art">
+      <img class="eland-wolf" src="./assets/4d7588ca6aeeabd147669a4d.webp" alt="Sói Nhỏ ELand" width="345" height="345">
+    </div>
+  </section>
+
+  <div class="eland-survey" hidden>
+    <div class="eland-survey-layout">
+      <div class="eland-survey-art" aria-hidden="true">
+        <img class="eland-wolf" src="./assets/4d7588ca6aeeabd147669a4d.webp" alt="" width="345" height="345">
+      </div>
+      <div>
+        <section data-pane="survey-1" hidden aria-labelledby="eland-desktop-q1">
+          <div class="eland-panel">
+            <div class="eland-survey-bar">
+              <button type="button" class="eland-link" data-show="welcome">Quay lại</button>
+              <div class="eland-progress" aria-hidden="true"><span class="eland-active"></span><span></span><span></span></div>
+              <span>Câu 1 / 3</span>
+            </div>
+            <h1 id="eland-desktop-q1">Bạn thấy tiếng Anh của mình thế nào?</h1>
+            <p class="eland-muted">Chọn mức gần đúng nhất, mình sẽ chỉnh sau.</p>
+            <div class="eland-answers">
+              <button type="button" class="eland-answer" data-show="survey-2" data-focus>Mới bắt đầu, biết vài từ</button>
+              <button type="button" class="eland-answer" data-show="survey-2">Nói được câu đơn giản</button>
+              <button type="button" class="eland-answer" data-show="survey-2">Hiểu hội thoại ngắn</button>
+              <button type="button" class="eland-answer" data-show="survey-2">Tự tin giao tiếp cơ bản</button>
+            </div>
+          </div>
+        </section>
+
+        <section data-pane="survey-2" hidden aria-labelledby="eland-desktop-q2">
+          <div class="eland-panel">
+            <div class="eland-survey-bar">
+              <button type="button" class="eland-link" data-show="survey-1">Quay lại</button>
+              <div class="eland-progress" aria-hidden="true"><span class="eland-active"></span><span class="eland-active"></span><span></span></div>
+              <span>Câu 2 / 3</span>
+            </div>
+            <h1 id="eland-desktop-q2">Bạn muốn giỏi điều gì nhất?</h1>
+            <p class="eland-muted">Mình sẽ ưu tiên luyện phần đó.</p>
+            <div class="eland-answers">
+              <button type="button" class="eland-answer" data-show="survey-3" data-focus>Nghe hiểu</button>
+              <button type="button" class="eland-answer" data-show="survey-3">Nói tự tin</button>
+              <button type="button" class="eland-answer" data-show="survey-3">Nhớ nhiều từ</button>
+              <button type="button" class="eland-answer" data-show="survey-3">Chuẩn bị cho bài kiểm tra</button>
+            </div>
+          </div>
+        </section>
+
+        <section data-pane="survey-3" hidden aria-labelledby="eland-desktop-q3">
+          <div class="eland-panel">
+            <div class="eland-survey-bar">
+              <button type="button" class="eland-link" data-show="survey-2">Quay lại</button>
+              <div class="eland-progress" aria-hidden="true"><span class="eland-active"></span><span class="eland-active"></span><span class="eland-active"></span></div>
+              <span>Câu 3 / 3</span>
+            </div>
+            <h1 id="eland-desktop-q3">Mỗi ngày bạn học được bao lâu?</h1>
+            <p class="eland-muted">Chọn để mình chia nhịp học vừa sức.</p>
+            <div class="eland-answers">
+              <button type="button" class="eland-answer" data-open-map="survey" data-focus>Khoảng 10 phút</button>
+              <button type="button" class="eland-answer" data-open-map="survey">Khoảng 20 phút</button>
+              <button type="button" class="eland-answer" data-open-map="survey">30 phút trở lên</button>
+              <button type="button" class="eland-answer" data-open-map="survey">Tùy ngày</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <section class="eland-content" data-pane="login" hidden aria-labelledby="eland-desktop-login">
+    <div class="eland-panel eland-auth">
+      <button type="button" class="eland-link" data-show="welcome">Quay lại</button>
+      <h1 id="eland-desktop-login">Đăng nhập</h1>
+      <form class="eland-form" method="dialog" autocomplete="off" data-form="login">
+        <label class="eland-field">Số điện thoại hoặc tên đăng nhập
+          <input type="text" required minlength="3" maxlength="60" data-account data-focus>
+        </label>
+        <label class="eland-field">Mật khẩu
+          <input type="password" placeholder="Ít nhất 8 ký tự" autocomplete="new-password" required minlength="8" maxlength="80" data-password>
+        </label>
+        <button class="eland-button" type="submit">Đăng nhập</button>
+      </form>
+      <p class="eland-auth-switch">Chưa có tài khoản? <button type="button" class="eland-link" data-show="signup">Tạo tài khoản mới</button></p>
+    </div>
+  </section>
+
+  <section class="eland-content" data-pane="signup" hidden aria-labelledby="eland-desktop-signup">
+    <div class="eland-panel eland-auth">
+      <button type="button" class="eland-link" data-show="login" data-signup-back>Quay lại đăng nhập</button>
+      <h1 id="eland-desktop-signup">Tạo tài khoản phụ huynh</h1>
+      <form class="eland-form" method="dialog" autocomplete="off" data-form="signup">
+        <label class="eland-field">Số điện thoại
+          <input type="tel" inputmode="numeric" placeholder="Nhập 10 chữ số" required pattern="0[0-9]{9}" maxlength="10" title="Nhập 10 chữ số, bắt đầu bằng 0" data-account data-focus>
+        </label>
+        <label class="eland-field">Mật khẩu
+          <input type="password" placeholder="Ít nhất 8 ký tự" autocomplete="new-password" required minlength="8" maxlength="80" data-password>
+        </label>
+        <label class="eland-field">Nhập lại mật khẩu
+          <input type="password" autocomplete="new-password" required minlength="8" maxlength="80" data-confirm>
+        </label>
+        <button class="eland-button" type="submit">Đăng ký</button>
+      </form>
+    </div>
+  </section>
+
+  <dialog class="eland-panel eland-success" id="eland-signup-success-dialog" aria-labelledby="eland-desktop-success">
+    <div class="eland-check" aria-hidden="true">✓</div>
+    <h2 id="eland-desktop-success">Đăng ký thành công</h2>
+    <button type="button" class="eland-button" data-success-continue>Vào học ngay</button>
+  </dialog>
+
+  <section class="eland-map" data-pane="map" hidden aria-labelledby="eland-desktop-map">
+    <div class="eland-map-head">
+      <div>
+        <h1 id="eland-desktop-map">Học viện Ánh Sao</h1>
+      </div>
+      <button type="button" class="eland-link" data-show="welcome" data-focus>Về màn chào</button>
+    </div>
+    <img class="eland-map-image" src="./assets/7c1b0fa5c48bb3a31ef03a36.webp" alt="Bản đồ ELand Học viện Ánh Sao" width="1000" height="486">
+  </section>
+</main>
+
+<script>
+  (() => {
+    const root = document.getElementById('eland-onboarding-desktop-1123');
+    const survey = root.querySelector('.eland-survey');
+    const panes = new Map(Array.from(root.querySelectorAll('[data-pane]'), pane => [pane.dataset.pane, pane]));
+    const login = root.querySelector('[data-form="login"]');
+    const signup = root.querySelector('[data-form="signup"]');
+    const confirmation = signup.querySelector('[data-confirm]');
+    const successDialog = root.querySelector('#eland-signup-success-dialog');
+    const continueButton = successDialog.querySelector('[data-success-continue]');
+    const signupBack = root.querySelector('[data-signup-back]');
+    const maps = {
+      'pre-a1': '06d-map-noi-cau-20-unit.html',
+      a1: '07-map-a1-rung-thi-tham-30-unit.html',
+      'pre-a2': '08-map-prea2-vuong-quoc-pha-le-20-unit.html',
+      a2: '09-map-a2-thanh-pho-phieu-luu-30-unit.html'
+    };
+    const params = new URLSearchParams(window.location.search);
+    const sourceMap = params.get('map');
+    const guestOrigin = params.get('from');
+    const fromGuest = ['guest-profile', 'guest-map'].includes(guestOrigin) && Object.hasOwn(maps, sourceMap);
+    const mapPath = document.documentElement.dataset.elandMapUrl;
+
+    function show(name, focus = true) {
+      const pane = panes.get(name);
+      if (!pane) return;
+      login.reset();
+      signup.reset();
+      confirmation.setCustomValidity('');
+      for (const screen of panes.values()) screen.hidden = screen !== pane;
+      survey.hidden = !survey.contains(pane);
+      if (focus) pane.querySelector('[data-focus]').focus({ preventScroll: true });
+    }
+
+    function openMap(flow) {
+      if (!mapPath) {
+        show('map');
+        return;
+      }
+
+      const defaultMapUrl = new URL(mapPath, window.location.href);
+      const mapUrl = fromGuest ? new URL(maps[sourceMap], defaultMapUrl) : defaultMapUrl;
+      mapUrl.searchParams.set('flow', flow);
+      if (fromGuest) {
+        window.location.replace(mapUrl.href);
+        return;
+      }
+      show('welcome', false);
+      window.location.assign(mapUrl.href);
+    }
+
+    root.addEventListener('click', event => {
+      if (successDialog.open) return;
+
+      const map = event.target.closest('[data-open-map]');
+      if (map) {
+        openMap(map.dataset.openMap);
+        return;
+      }
+
+      const next = event.target.closest('[data-show]');
+      if (next === signupBack && fromGuest) {
+        if (guestOrigin === 'guest-map') {
+          openMap('survey');
+          return;
+        }
+        const profileUrl = new URL('10-tien-do.html', new URL(mapPath, window.location.href));
+        profileUrl.search = new URLSearchParams({map: sourceMap, flow: 'survey'});
+        window.location.replace(profileUrl.href);
+        return;
+      }
+      if (next) show(next.dataset.show);
+
+    });
+
+    login.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!login.reportValidity()) return;
+      const account = login.querySelector('[data-account]');
+      const password = login.querySelector('[data-password]');
+      if (!account.value.trim() || password.value.length < 8) return;
+      openMap('signup');
+    });
+
+    function validateConfirmation() {
+      const password = signup.querySelector('[data-password]');
+      confirmation.setCustomValidity(confirmation.value === password.value ? '' : 'Mật khẩu nhập lại chưa khớp.');
+    }
+
+    successDialog.addEventListener('cancel', event => event.preventDefault());
+    continueButton.addEventListener('click', () => {
+      if (!successDialog.open) return;
+      successDialog.close();
+      signup.reset();
+      openMap('signup');
+    });
+
+    signup.addEventListener('input', validateConfirmation);
+    signup.addEventListener('submit', event => {
+      event.preventDefault();
+      if (successDialog.open) return;
+      validateConfirmation();
+      if (!signup.reportValidity()) return;
+      if (!/^0[0-9]{9}$/.test(signup.querySelector('[data-account]').value) ||
+          signup.querySelector('[data-password]').value.length < 8) return;
+      successDialog.showModal();
+      continueButton.focus({ preventScroll: true });
+    });
+
+    if (fromGuest) {
+      signupBack.textContent = guestOrigin === 'guest-profile' ? 'Quay lại hồ sơ' : 'Quay lại bản đồ';
+      show('signup', false);
+    }
+  })();
+</script>
+
+</body>
+</html>
