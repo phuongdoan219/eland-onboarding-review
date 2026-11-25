@@ -91,7 +91,7 @@
     display: grid;
     grid-template-columns: minmax(0, max-content) minmax(0, max-content);
     align-items: center;
-    gap: clamp(22px, 2.2vw, 42px);
+    gap: clamp(12px, 1.15vw, 22px);
     width: fit-content;
     max-width: 100%;
     color: #35184a;
@@ -102,20 +102,22 @@
     line-height: 1.08;
     letter-spacing: -.035em;
   }
-  #eland-onboarding-desktop-1123 .eland-hero-title span { display: block; }
-  #eland-onboarding-desktop-1123 .eland-hero .eland-hero-copy {
-    max-width: 33ch;
-    margin: 14px 0 0;
+  #eland-onboarding-desktop-1123 .eland-hero-title > span { display: block; }
+  #eland-onboarding-desktop-1123 .eland-hero-title-emphasis { color: var(--eland-welcome-purple); }
+  #eland-onboarding-desktop-1123 .eland-hero-title-tail {
+    margin-top: 9px;
     color: #4c355c;
-    font-size: clamp(18px, 1.32vw, 22px);
-    line-height: 1.42;
+    font-size: clamp(23px, 1.44vw, 28px);
+    font-weight: 600;
+    letter-spacing: -.012em;
+    line-height: 1.24;
     text-wrap: balance;
   }
   #eland-onboarding-desktop-1123 .eland-hero-actions {
     display: grid;
     width: min(100%, 336px);
-    gap: 12px;
-    margin: 24px 0 0;
+    gap: 10px;
+    margin: 20px 0 0;
   }
   #eland-onboarding-desktop-1123 .eland-hero-actions .eland-button {
     min-height: 56px;
@@ -834,14 +836,13 @@
       --eland-wolf-ground-shift: 0px;
     }
     #eland-onboarding-desktop-1123 .eland-hero-title { font-size: clamp(32px, 9.4vw, 48px); }
-    #eland-onboarding-desktop-1123 .eland-hero .eland-hero-copy {
-      margin: 10px auto 0;
-      font-size: clamp(16px, 3.8vw, 19px);
+    #eland-onboarding-desktop-1123 .eland-hero-title-tail {
+      font-size: clamp(18px, 4.8vw, 20px);
     }
     #eland-onboarding-desktop-1123 .eland-hero-actions {
       width: min(100%, 334px);
       gap: 10px;
-      margin: 18px auto 0;
+      margin: 20px auto 0;
     }
     #eland-onboarding-desktop-1123 .eland-hero-actions .eland-button {
       min-height: 50px;
@@ -878,8 +879,7 @@
     </div>
     <div class="eland-hero-layout">
       <div>
-        <h1 class="eland-hero-title" id="eland-desktop-welcome">Giỏi Tiếng Anh, <span>Tự Tin Nghe Nói</span></h1>
-        <p class="eland-hero-copy">qua từng chuyến phiêu lưu</p>
+        <h1 class="eland-hero-title" id="eland-desktop-welcome"><span>Giỏi Tiếng Anh,</span> <span class="eland-hero-title-emphasis">Tự Tin Nghe Nói</span> <span class="eland-hero-title-tail">qua từng chuyến phiêu lưu</span></h1>
         <div class="eland-hero-actions">
           <button type="button" class="eland-button" data-show="survey-1" data-focus>Bắt đầu ngay</button>
           <button type="button" class="eland-button eland-secondary" data-show="login">Đã có tài khoản</button>
