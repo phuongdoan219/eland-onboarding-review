@@ -56,7 +56,8 @@
     --eland-welcome-lavender: #eae4fa;
     --eland-welcome-cream: #fbf1e8;
     --eland-welcome-art: url('./assets/eland-welcome-adventure-scene.webp');
-    --eland-welcome-background: var(--eland-welcome-art) center 38% / cover no-repeat var(--eland-welcome-cream);
+    --eland-welcome-position-y: 38%;
+    --eland-welcome-background: var(--eland-welcome-art) center var(--eland-welcome-position-y) / cover no-repeat var(--eland-welcome-cream);
   }
   #eland-onboarding-desktop-1123:has(> .eland-hero:not([hidden])) {
     position: relative;
@@ -160,23 +161,175 @@
   }
   #eland-onboarding-desktop-1123 .eland-hero { position: relative; }
   #eland-onboarding-desktop-1123 .eland-hero-layout { position: relative; z-index: 1; }
-  #eland-onboarding-desktop-1123 .eland-scene-glimmers {
+  #eland-onboarding-desktop-1123 .eland-welcome-scene {
     position: absolute;
     inset: 0;
+    container-type: size;
     overflow: hidden;
     pointer-events: none;
   }
-  #eland-onboarding-desktop-1123 .eland-scene-glimmers span {
+  #eland-onboarding-desktop-1123 .eland-animation-board {
+    --stone-x1: 70%;
+    --stone-y1: 86%;
+    --stone-x2: 79%;
+    --stone-y2: 80%;
+    --stone-x3: 87%;
+    --stone-y3: 74%;
+    --gate-x: 92%;
+    --gate-y: 42%;
+    --wing-range: clamp(38px, 5cqw, 92px);
+    --wing-rise: clamp(34px, 7cqh, 76px);
     position: absolute;
-    top: var(--y);
-    left: var(--x);
-    width: var(--size);
+    left: 50%;
+    top: var(--eland-welcome-position-y);
+    width: 100%;
+    height: 100%;
+    width: max(100cqw, 177.683cqh);
+    height: max(100cqh, 56.28cqw);
+    transform: translate(-50%, calc(-1 * var(--eland-welcome-position-y)));
+  }
+  #eland-onboarding-desktop-1123 .eland-animation-board > * { position: absolute; opacity: 0; }
+  #eland-onboarding-desktop-1123 .eland-motion-sprite img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  #eland-onboarding-desktop-1123 .eland-welcome-cloud {
+    left: 86%;
+    top: 12%;
+    width: clamp(108px, 16cqw, 258px);
+    aspect-ratio: 3;
+  }
+  #eland-onboarding-desktop-1123 .eland-welcome-cloud[data-fallback] {
+    border-radius: 60% 45% 55% 45%;
+    background: radial-gradient(ellipse at 48% 58%, #fff6e9 8%, #fff6e9a6 40%, transparent 72%);
+  }
+  #eland-onboarding-desktop-1123 .eland-cloud-glint {
+    left: var(--gate-x);
+    top: 22%;
+    width: clamp(24px, 5cqw, 100px);
+    aspect-ratio: 1.7;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    background: radial-gradient(ellipse, #fff4c7d4, transparent 69%);
+  }
+  #eland-onboarding-desktop-1123 .eland-welcome-butterfly {
+    left: 84%;
+    top: 59%;
+    width: clamp(40px, 3.8cqw, 72px);
+    aspect-ratio: 1;
+  }
+  #eland-onboarding-desktop-1123 .eland-welcome-butterfly[data-fallback]::before,
+  #eland-onboarding-desktop-1123 .eland-welcome-butterfly[data-fallback]::after {
+    position: absolute;
+    inset: 17% 50% 9% 6%;
+    border-radius: 80% 55% 62% 26%;
+    background: radial-gradient(ellipse at 44% 26%, #ffd527 7%, #cda7f8 40%, #7040c1 81%);
+    transform: rotate(-24deg);
+    content: "";
+  }
+  #eland-onboarding-desktop-1123 .eland-welcome-butterfly[data-fallback]::after {
+    inset: 10% 4% 19% 50%;
+    transform: scaleX(-1) rotate(-24deg);
+  }
+  #eland-onboarding-desktop-1123 .eland-flight-card {
+    left: var(--card-x);
+    top: var(--card-y);
+    display: flex;
+    align-items: center;
+    gap: .24em;
+    padding: .22em .43em;
+    border: 1px solid #d5b86e;
+    border-radius: 5px;
+    background: #fff2cd;
+    color: #5038bc;
+    box-shadow: 1px 3px 3px #44287939;
+    font-size: clamp(12px, 1cqw, 16px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: .035em;
+    white-space: nowrap;
+  }
+  #eland-onboarding-desktop-1123 .eland-flight-card::before { color: #996008; content: "✦"; }
+  #eland-onboarding-desktop-1123 .eland-flight-card-hello {
+    --card-x: 83%;
+    --card-y: 73%;
+    --card-delay: 4.24s;
+    --card-tilt: -8deg;
+  }
+  #eland-onboarding-desktop-1123 .eland-flight-card-fly {
+    --card-x: 91%;
+    --card-y: 67%;
+    --card-delay: 4.86s;
+    --card-tilt: 8deg;
+  }
+  #eland-onboarding-desktop-1123 .eland-step-light {
+    left: var(--step-x);
+    top: var(--step-y);
+    width: clamp(26px, 6cqw, 108px);
+    aspect-ratio: 3.6;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    background: radial-gradient(ellipse, #fff8c7df 6%, #ffd527a6 38%, transparent 72%);
+  }
+  #eland-onboarding-desktop-1123 .eland-step-one { --step-x: var(--stone-x1); --step-y: var(--stone-y1); }
+  #eland-onboarding-desktop-1123 .eland-step-two { --step-x: var(--stone-x2); --step-y: var(--stone-y2); }
+  #eland-onboarding-desktop-1123 .eland-step-three { --step-x: var(--stone-x3); --step-y: var(--stone-y3); }
+  #eland-onboarding-desktop-1123 .eland-path-spark {
+    width: clamp(7px, .65cqw, 12px);
     aspect-ratio: 1;
     border-radius: 50%;
-    background: #fff1ac;
-    box-shadow: 0 0 9px 2px #ffd527b0;
-    opacity: 0;
-    animation: eland-welcome-glimmer 2.6s ease-out var(--delay) 1 both;
+    background: #fff5b6;
+    box-shadow: 0 0 10px 2px #ffd527ca;
+    transform: translate(-50%, -50%);
+  }
+  #eland-onboarding-desktop-1123 .eland-gate-light {
+    left: var(--gate-x);
+    top: var(--gate-y);
+    width: clamp(43px, 8cqw, 145px);
+    aspect-ratio: .83;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, #fff7d9cf 4%, #ffe58a8a 33%, #dcc0f84d 52%, transparent 71%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    #eland-onboarding-desktop-1123 .eland-welcome-cloud {
+      animation: eland-cloud-pass 3.4s linear .15s 1 both;
+    }
+    #eland-onboarding-desktop-1123 .eland-cloud-glint {
+      animation: eland-gate-glint .88s ease-in-out 1.72s 1 both;
+    }
+    #eland-onboarding-desktop-1123 .eland-welcome-butterfly {
+      animation: eland-butterfly-loop 3.75s ease-in-out 2.86s 1 both;
+    }
+    #eland-onboarding-desktop-1123 .eland-flight-card {
+      animation: eland-card-land 2.6s ease-out var(--card-delay) 1 both;
+    }
+  }
+  @keyframes eland-cloud-pass {
+    0% { opacity: 0; transform: translate(35%, 5%); }
+    21% { opacity: .76; }
+    69% { opacity: .56; }
+    100% { opacity: 0; transform: translate(-78%, -11%); }
+  }
+  @keyframes eland-gate-glint {
+    0%, 100% { opacity: 0; }
+    46% { opacity: .7; }
+  }
+  @keyframes eland-butterfly-loop {
+    0% { opacity: 0; transform: translate(22%, 25%) rotate(-17deg) scaleX(.83); }
+    14% { opacity: 1; }
+    29% { transform: translate(calc(-.66 * var(--wing-range)), calc(-.74 * var(--wing-rise))) rotate(-19deg) scaleX(.72); }
+    44% { transform: translate(-5%, calc(-1 * var(--wing-rise))) rotate(6deg) scaleX(1); }
+    62% { transform: translate(calc(.44 * var(--wing-range)), calc(-.63 * var(--wing-rise))) rotate(17deg) scaleX(.69); }
+    77% { opacity: .94; transform: translate(calc(.29 * var(--wing-range)), calc(-.06 * var(--wing-rise))) rotate(6deg) scaleX(1); }
+    100% { opacity: 0; transform: translate(82%, 34%) rotate(10deg) scaleX(.85); }
+  }
+  @keyframes eland-card-land {
+    0% { opacity: 0; transform: translate(-30%, -54px) rotate(-13deg) scale(.82); }
+    19% { opacity: 1; }
+    34% { opacity: 1; transform: translate(-50%, 0) rotate(var(--card-tilt)); }
+    42% { transform: translate(-50%, -3px) rotate(var(--card-tilt)); }
+    51%, 78% { opacity: 1; transform: translate(-50%, 0) rotate(var(--card-tilt)); }
+    100% { opacity: 0; transform: translate(-50%, 0) rotate(var(--card-tilt)); }
   }
   #eland-onboarding-desktop-1123 .eland-wolf-greeting {
     position: relative;
@@ -207,15 +360,6 @@
     pointer-events: none;
   }
   #eland-onboarding-desktop-1123 .eland-greeting-star[data-visible] { opacity: 1; }
-  @keyframes eland-welcome-glimmer {
-    0% { opacity: 0; transform: translateY(4px); }
-    35% { opacity: .75; }
-    62% { opacity: .45; }
-    100% { opacity: 0; transform: translateY(-12px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    #eland-onboarding-desktop-1123 .eland-scene-glimmers span { animation: none; }
-  }
   #eland-onboarding-desktop-1123 .eland-wolf {
     display: block;
     width: min(100%, 345px);
@@ -483,7 +627,7 @@
   }
   @media (min-aspect-ratio: 2/1) {
     #eland-onboarding-desktop-1123 {
-      --eland-welcome-background: var(--eland-welcome-art) center 62% / cover no-repeat var(--eland-welcome-cream);
+      --eland-welcome-position-y: 62%;
     }
   }
   @media (max-width: 780px), (max-aspect-ratio: 5/4) {
@@ -503,7 +647,28 @@
       place-items: start center;
       padding: clamp(66px, 10svh, 92px) 22px 28px;
     }
-    #eland-onboarding-desktop-1123 .eland-scene-glimmers { height: 310px; }
+    #eland-onboarding-desktop-1123 .eland-animation-board {
+      --stone-x1: 70%;
+      --stone-y1: 84%;
+      --stone-x2: 77%;
+      --stone-y2: 77%;
+      --stone-x3: 83%;
+      --stone-y3: 70%;
+      --gate-x: 86%;
+      --gate-y: 52%;
+      --wing-range: 38px;
+      --wing-rise: 38px;
+      left: 72%;
+      top: 0;
+      width: max(100cqw, 680px);
+      height: auto;
+      aspect-ratio: 1672 / 941;
+      transform: translateX(-72%);
+    }
+    #eland-onboarding-desktop-1123 .eland-welcome-cloud { left: 82%; top: 12%; }
+    #eland-onboarding-desktop-1123 .eland-welcome-butterfly { left: 82%; top: 58%; }
+    #eland-onboarding-desktop-1123 .eland-flight-card-hello { --card-x: 77%; --card-y: 73%; }
+    #eland-onboarding-desktop-1123 .eland-flight-card-fly { --card-x: 84%; --card-y: 64%; }
     #eland-onboarding-desktop-1123 .eland-hero-layout {
       grid-template-columns: minmax(0, 1fr);
       width: min(100%, 430px);
@@ -548,12 +713,23 @@
   </header>
 
   <section class="eland-hero" data-pane="welcome" aria-labelledby="eland-desktop-welcome">
-    <div class="eland-scene-glimmers" aria-hidden="true">
-      <span style="--x:84%;--y:47%;--size:4px;--delay:.2s"></span>
-      <span style="--x:94%;--y:36%;--size:5px;--delay:.65s"></span>
-      <span style="--x:89%;--y:70%;--size:4px;--delay:1.12s"></span>
-      <span style="--x:97%;--y:75%;--size:3px;--delay:.5s"></span>
-      <span style="--x:9%;--y:76%;--size:4px;--delay:1.32s"></span>
+    <div class="eland-welcome-scene" aria-hidden="true">
+      <div class="eland-animation-board" data-welcome-scene>
+        <div class="eland-motion-sprite eland-welcome-cloud">
+          <img src="./assets/eland-welcome-cloud.webp" alt="" decoding="async">
+        </div>
+        <div class="eland-cloud-glint"></div>
+        <div class="eland-motion-sprite eland-welcome-butterfly">
+          <img src="./assets/eland-welcome-butterfly.webp" alt="" decoding="async">
+        </div>
+        <span class="eland-flight-card eland-flight-card-hello">HELLO</span>
+        <span class="eland-flight-card eland-flight-card-fly">FLY</span>
+        <div class="eland-step-light eland-step-one" data-guide-step></div>
+        <div class="eland-step-light eland-step-two" data-guide-step></div>
+        <div class="eland-step-light eland-step-three" data-guide-step></div>
+        <div class="eland-path-spark"></div>
+        <div class="eland-gate-light"></div>
+      </div>
     </div>
     <div class="eland-hero-layout">
       <div>
@@ -937,9 +1113,23 @@
     const button = document.querySelector('[data-welcome-greeting]');
     const wolf = button.querySelector('.eland-wolf');
     const star = button.querySelector('.eland-greeting-star');
+    const scene = document.querySelector('[data-welcome-scene]');
+    const stones = scene.querySelectorAll('[data-guide-step]');
+    const spark = scene.querySelector('.eland-path-spark');
+    const gate = scene.querySelector('.eland-gate-light');
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let active = [];
     let stillTimer;
+
+    for (const sprite of scene.querySelectorAll('.eland-motion-sprite')) {
+      const image = sprite.querySelector('img');
+      const showFallback = () => {
+        image.hidden = true;
+        sprite.setAttribute('data-fallback', '');
+      };
+      image.addEventListener('error', showFallback, { once: true });
+      if (image.complete && !image.naturalWidth) showFallback();
+    }
 
     function clearGreeting() {
       active.forEach(effect => effect.cancel());
@@ -968,6 +1158,24 @@
           { opacity: 1, transform: 'scale(1)', offset: .28 },
           { opacity: 0, transform: 'translateY(-8px) scale(.82)' },
         ], { duration: 710, easing: 'ease-out' }),
+        spark.animate([
+          { left: 'var(--stone-x1)', top: 'var(--stone-y1)', opacity: 0 },
+          { left: 'var(--stone-x1)', top: 'var(--stone-y1)', opacity: 1, offset: .12 },
+          { left: 'var(--stone-x2)', top: 'var(--stone-y2)', opacity: 1, offset: .36 },
+          { left: 'var(--stone-x3)', top: 'var(--stone-y3)', opacity: 1, offset: .63 },
+          { left: 'var(--gate-x)', top: 'var(--gate-y)', opacity: 1, offset: .9 },
+          { left: 'var(--gate-x)', top: 'var(--gate-y)', opacity: 0 },
+        ], { duration: 1480, delay: 210, easing: 'linear' }),
+        ...Array.from(stones, (stone, index) => stone.animate([
+          { opacity: 0 },
+          { opacity: .89, offset: .31 },
+          { opacity: 0 },
+        ], { duration: 580, delay: [310, 690, 1070][index], easing: 'ease-out' })),
+        gate.animate([
+          { opacity: 0 },
+          { opacity: .84, offset: .37 },
+          { opacity: 0 },
+        ], { duration: 610, delay: 1520, easing: 'ease-in-out' }),
       ];
     });
     motion.addEventListener('change', clearGreeting);
