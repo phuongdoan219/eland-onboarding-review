@@ -148,6 +148,15 @@
     text-underline-offset: 3px;
   }
   #eland-onboarding-desktop-1123 .eland-link:hover { text-decoration: underline; }
+  #eland-onboarding-desktop-1123 .eland-header .eland-route-switch {
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding-inline: 12px;
+    border: 1px solid #dcd8f6;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+  #eland-onboarding-desktop-1123 .eland-header .eland-route-switch:hover { background: #f2f0ff; }
   #eland-onboarding-desktop-1123 .eland-content {
     display: grid;
     min-height: 510px;
@@ -269,15 +278,10 @@
   }
   #eland-onboarding-desktop-1123 .eland-survey-actions {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px 16px;
+    justify-content: flex-end;
     margin-top: 16px;
   }
-  #eland-onboarding-desktop-1123 .eland-survey-actions .eland-button { margin-left: auto; }
   #eland-onboarding-desktop-1123 .eland-survey-bar .eland-link { text-align: left; }
-  #eland-onboarding-desktop-1123 .eland-route-switch { margin-top: 16px; }
   #eland-onboarding-desktop-1123 .eland-auth { width: min(100%, 456px); }
   #eland-onboarding-desktop-1123 .eland-auth h1 { margin-top: 10px; }
   #eland-onboarding-desktop-1123 .eland-form {
@@ -389,6 +393,7 @@
 <main id="eland-onboarding-desktop-1123" aria-label="ELand">
   <header class="eland-header">
     <img class="eland-logo" src="./assets/4ce346ba2079b6504a12aef6.webp" alt="ELand" width="115" height="39">
+    <button type="button" class="eland-link eland-route-switch" data-route-switch hidden>Đổi cách vào</button>
   </header>
 
   <section class="eland-hero" data-pane="welcome" aria-labelledby="eland-desktop-welcome">
@@ -447,8 +452,7 @@
               <button type="button" class="eland-answer" data-answer="2" aria-pressed="false">Nhớ nhiều từ</button>
               <button type="button" class="eland-answer" data-answer="3" aria-pressed="false">Chuẩn bị cho bài kiểm tra</button>
             </div>
-            <div class="eland-survey-actions">
-              <button type="button" class="eland-link" data-survey-switch>Đổi cách vào</button>
+            <div class="eland-survey-actions" hidden>
               <button type="button" class="eland-button" data-survey-continue hidden>Tiếp tục</button>
             </div>
           </div>
@@ -469,8 +473,7 @@
               <button type="button" class="eland-answer" data-answer="2" aria-pressed="false">30 phút trở lên</button>
               <button type="button" class="eland-answer" data-answer="3" aria-pressed="false">Tùy ngày</button>
             </div>
-            <div class="eland-survey-actions">
-              <button type="button" class="eland-link" data-survey-switch>Đổi cách vào</button>
+            <div class="eland-survey-actions" hidden>
               <button type="button" class="eland-button" data-survey-continue hidden>Vào bản đồ</button>
             </div>
           </div>
@@ -512,7 +515,6 @@
         </label>
         <button class="eland-button" type="submit">Đăng ký</button>
       </form>
-      <button type="button" class="eland-link eland-route-switch" data-signup-switch data-show="welcome">Đổi cách vào</button>
     </div>
   </section>
 
@@ -545,6 +547,7 @@
     const successDialog = root.querySelector('#eland-signup-success-dialog');
     const continueButton = successDialog.querySelector('[data-success-continue]');
     const signupBack = root.querySelector('[data-signup-back]');
+    const routeSwitch = root.querySelector('[data-route-switch]');
     const maps = {
       'pre-a1': '06d-map-noi-cau-20-unit.html',
       a1: '07-map-a1-rung-thi-tham-30-unit.html',
@@ -627,12 +630,13 @@
       survey.hidden = !survey.contains(pane);
 
       const index = questions.indexOf(name);
+      routeSwitch.hidden = index < 1 && (name !== 'signup' || fromGuest);
       let selected;
       if (index >= 0) {
         const choice = answers[index];
         const action = pane.querySelector('[data-survey-continue]');
         action.hidden = choice === null;
-        if (index === 0) action.parentElement.hidden = action.hidden;
+        action.parentElement.hidden = action.hidden;
         for (const option of pane.querySelectorAll('[data-answer]')) {
           const pressed = Number(option.dataset.answer) === choice;
           option.setAttribute('aria-pressed', String(pressed));
@@ -696,7 +700,7 @@
         advanceSurvey(index);
       } else if (index >= 0 && button.hasAttribute('data-survey-continue')) {
         advanceSurvey(index);
-      } else if (button.hasAttribute('data-survey-switch')) {
+      } else if (button === routeSwitch) {
         if (editing) returnToGuestSource();
         else goTo('welcome');
       } else if (button.dataset.back) {
@@ -739,11 +743,10 @@
 
     if (fromGuest && !editing) {
       signupBack.textContent = source === 'guest-profile' ? 'Quay lại hồ sơ' : 'Quay lại bản đồ';
-      root.querySelector('[data-signup-switch]').hidden = true;
     }
     if (editing) {
       panes.get(questions[0]).querySelector('[data-back]').textContent = 'Quay lại bản đồ';
-      for (const button of survey.querySelectorAll('[data-survey-switch]')) button.textContent = 'Về bản đồ';
+      routeSwitch.textContent = 'Về bản đồ';
     }
 
     window.addEventListener('popstate', event => {
