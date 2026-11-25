@@ -599,15 +599,29 @@
     cursor: pointer;
   }
   #eland-onboarding-desktop-1123 .eland-answer-icon {
-    display: grid;
-    width: 34px;
-    height: 34px;
-    place-items: center;
-    border-radius: 9px;
-    background: #f3edff;
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-    font-size: 19px;
-    line-height: 1;
+    display: block;
+    width: var(--eland-card-art-size, 40px);
+    aspect-ratio: 1;
+    flex: none;
+    border-radius: 10px;
+    background: #f3edff url('./assets/eland-survey-wolf-cards.webp') no-repeat;
+    background-size: 400% 300%;
+    background-position: var(--eland-card-x, 0%) var(--eland-card-y, 0%);
+  }
+  #eland-onboarding-desktop-1123 .eland-answer[data-answer="1"] { --eland-card-x: 33.333333%; }
+  #eland-onboarding-desktop-1123 .eland-answer[data-answer="2"] { --eland-card-x: 66.666667%; }
+  #eland-onboarding-desktop-1123 .eland-answer[data-answer="3"] { --eland-card-x: 100%; }
+  #eland-onboarding-desktop-1123 [data-pane="survey-2"] { --eland-card-y: 50%; }
+  #eland-onboarding-desktop-1123 [data-pane="survey-3"] { --eland-card-y: 100%; }
+  @media (max-width: 359px) {
+    #eland-onboarding-desktop-1123 .eland-survey-top {
+      grid-template-columns: 44px minmax(0, 1fr);
+    }
+    #eland-onboarding-desktop-1123 .eland-survey .eland-panel h1 {
+      padding-inline: 4px 14px;
+      font-size: 17px;
+    }
+    #eland-onboarding-desktop-1123 .eland-answer { padding-block: 5px; }
   }
   @media (hover: hover) {
     #eland-onboarding-desktop-1123 .eland-survey-back:hover,
@@ -628,11 +642,7 @@
       min-height: 68px;
       font-size: 17px;
     }
-    #eland-onboarding-desktop-1123 .eland-answer-icon {
-      width: 38px;
-      height: 38px;
-      font-size: 21px;
-    }
+    #eland-onboarding-desktop-1123 .eland-answer { --eland-card-art-size: 52px; }
     #eland-onboarding-desktop-1123 .eland-survey-art { width: 104px; }
   }
   @media (min-width: 900px) {
@@ -681,12 +691,7 @@
       border-radius: 16px;
       font-size: 20px;
     }
-    #eland-onboarding-desktop-1123 .eland-answer-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      font-size: 30px;
-    }
+    #eland-onboarding-desktop-1123 .eland-answer { --eland-card-art-size: 58px; }
     #eland-onboarding-desktop-1123 .eland-survey-art {
       width: clamp(108px, 14svh, 124px);
     }
@@ -911,14 +916,14 @@
           <div class="eland-panel">
             <div class="eland-survey-top">
               <button type="button" class="eland-survey-back" data-back="welcome" aria-label="Quay lại màn chào"><span aria-hidden="true">←</span></button>
-              <h1 id="eland-desktop-q1">Bạn học lớp mấy?</h1>
+              <h1 id="eland-desktop-q1">Bé đang học lớp mấy nhỉ?</h1>
             </div>
             <progress class="eland-progress" value="1" max="3" aria-label="Tiến độ khảo sát" aria-valuetext="Câu 1 trên 3"></progress>
             <div class="eland-answers">
-              <button type="button" class="eland-answer" data-answer="0" aria-pressed="false" data-focus><span class="eland-answer-icon" aria-hidden="true">📘</span><span>Lớp 1–3</span></button>
-              <button type="button" class="eland-answer" data-answer="1" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">📗</span><span>Lớp 4–5</span></button>
-              <button type="button" class="eland-answer" data-answer="2" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">📙</span><span>Lớp 6–7</span></button>
-              <button type="button" class="eland-answer" data-answer="3" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">📕</span><span>Lớp 8–9</span></button>
+              <button type="button" class="eland-answer" data-answer="0" aria-pressed="false" data-focus><span class="eland-answer-icon" aria-hidden="true"></span><span>Lớp 1–3</span></button>
+              <button type="button" class="eland-answer" data-answer="1" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>Lớp 4–5</span></button>
+              <button type="button" class="eland-answer" data-answer="2" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>Lớp 6–7</span></button>
+              <button type="button" class="eland-answer" data-answer="3" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>Lớp 8–9</span></button>
             </div>
           </div>
         </section>
@@ -927,14 +932,14 @@
           <div class="eland-panel">
             <div class="eland-survey-top">
               <button type="button" class="eland-survey-back" data-back="survey-1" aria-label="Quay lại câu 1"><span aria-hidden="true">←</span></button>
-              <h1 id="eland-desktop-q2">Bạn muốn giỏi gì?</h1>
+              <h1 id="eland-desktop-q2">Bé muốn giỏi gì hơn nhỉ?</h1>
             </div>
             <progress class="eland-progress" value="2" max="3" aria-label="Tiến độ khảo sát" aria-valuetext="Câu 2 trên 3"></progress>
             <div class="eland-answers">
-              <button type="button" class="eland-answer" data-answer="0" aria-pressed="false" data-focus><span class="eland-answer-icon" aria-hidden="true">👂</span><span>Nghe hiểu</span></button>
-              <button type="button" class="eland-answer" data-answer="1" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">🎙️</span><span>Nói tự tin</span></button>
-              <button type="button" class="eland-answer" data-answer="2" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">📚</span><span>Nhớ nhiều từ</span></button>
-              <button type="button" class="eland-answer" data-answer="3" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">📝</span><span>Chuẩn bị cho bài kiểm tra</span></button>
+              <button type="button" class="eland-answer" data-answer="0" aria-pressed="false" data-focus><span class="eland-answer-icon" aria-hidden="true"></span><span>Nghe hiểu</span></button>
+              <button type="button" class="eland-answer" data-answer="1" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>Nói tự tin</span></button>
+              <button type="button" class="eland-answer" data-answer="2" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>Nhớ nhiều từ</span></button>
+              <button type="button" class="eland-answer" data-answer="3" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>Chuẩn bị cho bài kiểm tra</span></button>
             </div>
           </div>
         </section>
@@ -943,20 +948,20 @@
           <div class="eland-panel">
             <div class="eland-survey-top">
               <button type="button" class="eland-survey-back" data-back="survey-2" aria-label="Quay lại câu 2"><span aria-hidden="true">←</span></button>
-              <h1 id="eland-desktop-q3">Mỗi ngày học bao lâu?</h1>
+              <h1 id="eland-desktop-q3">Bé học bao lâu mỗi ngày?</h1>
             </div>
             <progress class="eland-progress" value="3" max="3" aria-label="Tiến độ khảo sát" aria-valuetext="Câu 3 trên 3"></progress>
             <div class="eland-answers">
-              <button type="button" class="eland-answer" data-answer="0" aria-pressed="false" data-focus><span class="eland-answer-icon" aria-hidden="true">⏱️</span><span>Khoảng 10 phút</span></button>
-              <button type="button" class="eland-answer" data-answer="1" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">⏳</span><span>Khoảng 20 phút</span></button>
-              <button type="button" class="eland-answer" data-answer="2" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">🕰️</span><span>30 phút trở lên</span></button>
-              <button type="button" class="eland-answer" data-answer="3" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true">📅</span><span>Tùy ngày</span></button>
+              <button type="button" class="eland-answer" data-answer="0" aria-pressed="false" data-focus><span class="eland-answer-icon" aria-hidden="true"></span><span>Khoảng 10 phút</span></button>
+              <button type="button" class="eland-answer" data-answer="1" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>Khoảng 20 phút</span></button>
+              <button type="button" class="eland-answer" data-answer="2" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>30 phút trở lên</span></button>
+              <button type="button" class="eland-answer" data-answer="3" aria-pressed="false"><span class="eland-answer-icon" aria-hidden="true"></span><span>Tùy ngày</span></button>
             </div>
           </div>
         </section>
       </div>
       <div class="eland-survey-art" aria-hidden="true">
-        <img class="eland-wolf" src="./assets/4d7588ca6aeeabd147669a4d.webp" alt="" width="360" height="420">
+        <img class="eland-wolf" src="./assets/eland-welcome-pose-07.webp" alt="" width="760" height="900">
       </div>
     </div>
   </div>
