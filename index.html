@@ -698,8 +698,6 @@
       width: clamp(108px, 14svh, 124px);
     }
   }
-  #eland-onboarding-desktop-1123 .eland-auth { width: min(100%, 456px); }
-  #eland-onboarding-desktop-1123 .eland-auth h1 { margin-top: 10px; }
   #eland-onboarding-desktop-1123 .eland-form {
     display: grid;
     gap: 14px;
@@ -721,25 +719,65 @@
     color: var(--eland-ink);
     font-weight: 600;
   }
-  #eland-onboarding-desktop-1123 .eland-login {
+  #eland-onboarding-desktop-1123:has(> .eland-auth-stage:not([hidden])) {
+    position: relative;
+    grid-template-rows: 1fr;
+  }
+  #eland-onboarding-desktop-1123:has(> .eland-auth-stage:not([hidden])) > .eland-header {
+    position: absolute;
+    z-index: 3;
+    inset: 0 0 auto;
     min-height: 0;
-    padding: clamp(16px, 3.7svh, 44px) clamp(16px, 5vw, 56px) clamp(20px, 5svh, 54px);
-    background: radial-gradient(ellipse at 50% 18%, #f7f2fe 0%, transparent 70%), #efe8f9;
+    padding: 15px clamp(16px, 4vw, 54px);
+    border: 0;
+    background: transparent;
+    pointer-events: none;
   }
-  #eland-onboarding-desktop-1123 .eland-login-layout {
-    --eland-login-peek-width: 96px;
-    --eland-login-peek-overlap: 12px;
-    width: min(100%, 580px);
+  #eland-onboarding-desktop-1123:has(> .eland-auth-stage:not([hidden])) > .eland-header button {
+    pointer-events: auto;
   }
-  #eland-onboarding-desktop-1123 .eland-login-back {
+  #eland-onboarding-desktop-1123 .eland-auth-stage {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: 100vh;
+    min-height: 100dvh;
+    place-items: center;
+    padding: clamp(78px, 10svh, 104px) clamp(16px, 5vw, 56px);
+    background: radial-gradient(ellipse at 48% 40%, #f7f2fe 0%, #eae4fa 79%);
+  }
+  #eland-onboarding-desktop-1123 .eland-auth-stage::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image:
+      url('./assets/eland-welcome-cloud.webp'),
+      url('./assets/eland-welcome-cloud.webp'),
+      url('./assets/eland-welcome-cloud.webp');
+    background-position: -34px 20%, right -42px top 45%, left 9% bottom 6%;
+    background-size: clamp(185px, 22vw, 370px) auto, clamp(155px, 20vw, 320px) auto, clamp(160px, 18vw, 290px) auto;
+    background-repeat: no-repeat;
+    opacity: .64;
+    pointer-events: none;
+    content: "";
+  }
+  #eland-onboarding-desktop-1123 .eland-auth-layout {
+    position: relative;
+    width: min(100%, 560px);
+  }
+  #eland-onboarding-desktop-1123 .eland-auth-back {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: inline-flex;
     align-items: center;
     gap: 7px;
+    min-height: 44px;
+    transform: translateY(calc(-100% - 8px));
   }
-  #eland-onboarding-desktop-1123 .eland-login-card {
+  #eland-onboarding-desktop-1123 .eland-auth-card {
     position: relative;
-    margin-top: 44px;
-    padding: 32px 42px 26px;
+    padding: 29px 42px 27px;
     border: 1px solid #e2d7f1;
     border-radius: 24px;
     background: #fff;
@@ -748,30 +786,52 @@
   #eland-onboarding-desktop-1123 .eland-login-peek {
     position: absolute;
     z-index: 1;
-    top: var(--eland-login-peek-overlap);
+    top: 12px;
     left: 50%;
-    width: var(--eland-login-peek-width);
+    width: 96px;
     height: auto;
     transform: translate(-50%, -100%);
     pointer-events: none;
   }
-  #eland-onboarding-desktop-1123 .eland-login-card h1 {
+  #eland-onboarding-desktop-1123 .eland-auth-card h1 {
     font-size: clamp(27px, 2.4vw, 35px);
     font-weight: 800;
     line-height: 1.18;
     letter-spacing: -.026em;
     text-align: center;
+    text-wrap: balance;
   }
-  #eland-onboarding-desktop-1123 .eland-login-card .eland-field { font-size: 16px; }
-  #eland-onboarding-desktop-1123 .eland-login-card input { min-height: 52px; }
-  #eland-onboarding-desktop-1123 .eland-login-card [type="submit"] {
+  #eland-onboarding-desktop-1123 .eland-auth-card .eland-field { font-size: 16px; }
+  #eland-onboarding-desktop-1123 .eland-auth-card input { min-height: 52px; }
+  #eland-onboarding-desktop-1123 .eland-auth-card [type="submit"] {
     min-height: 50px;
     background: var(--eland-welcome-purple);
     box-shadow: 0 3px 0 #402a9c;
     font-size: 17px;
     cursor: pointer;
   }
-  #eland-onboarding-desktop-1123 .eland-login-card [type="submit"]:hover { background: #402a9c; }
+  #eland-onboarding-desktop-1123 .eland-auth-card [type="submit"]:hover { background: #402a9c; }
+  #eland-onboarding-desktop-1123 .eland-login-password-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 10px;
+  }
+  #eland-onboarding-desktop-1123 .eland-forgot-password {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding-inline: 2px;
+    color: var(--eland-welcome-purple);
+    font-size: 14px;
+    text-underline-offset: 3px;
+  }
+  #eland-onboarding-desktop-1123 .eland-forgot-password:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid var(--eland-welcome-purple);
+    outline-offset: 2px;
+  }
   #eland-onboarding-desktop-1123 .eland-login-signup {
     display: flex;
     justify-content: center;
@@ -792,26 +852,29 @@
   }
   #eland-onboarding-desktop-1123 .eland-login-signup .eland-login-create:hover { background: #eae4fa; }
   @media (max-width: 719px) {
-    #eland-onboarding-desktop-1123 .eland-login {
-      place-items: start center;
-      padding-top: clamp(10px, calc((100svh - 580px) / 4), 48px);
+    #eland-onboarding-desktop-1123:has(> .eland-auth-stage:not([hidden])) > .eland-header {
+      padding: 12px 16px;
     }
-    #eland-onboarding-desktop-1123 .eland-login-layout {
-      --eland-login-peek-width: 74px;
-      --eland-login-peek-overlap: 9px;
-      width: min(100%, 465px);
+    #eland-onboarding-desktop-1123:has(> .eland-auth-stage:not([hidden])) .eland-logo { width: 91px; }
+    #eland-onboarding-desktop-1123 .eland-auth-stage { padding: 64px 16px; }
+    #eland-onboarding-desktop-1123 .eland-auth-stage::before {
+      background-position: -56px 15%, right -53px top 44%, left -68px bottom 4%;
+      background-size: 187px auto, 164px auto, 185px auto;
+      opacity: .53;
     }
-    #eland-onboarding-desktop-1123 .eland-login-card {
-      margin-top: 27px;
-      padding: 25px 16px 18px;
-      border-radius: 20px;
-    }
-    #eland-onboarding-desktop-1123 .eland-login-card h1 { font-size: 26px; }
-    #eland-onboarding-desktop-1123 .eland-login-card .eland-form { gap: 11px; margin-top: 14px; }
-    #eland-onboarding-desktop-1123 .eland-login-card .eland-field { font-size: 15px; }
-    #eland-onboarding-desktop-1123 .eland-login-card input { min-height: 46px; }
-    #eland-onboarding-desktop-1123 .eland-login-card [type="submit"] { min-height: 48px; font-size: 16px; }
+    #eland-onboarding-desktop-1123 .eland-auth-layout { width: min(100%, 465px); }
+    #eland-onboarding-desktop-1123 .eland-auth-back { transform: translateY(calc(-100% - 4px)); }
+    #eland-onboarding-desktop-1123 .eland-auth-card { padding: 24px 16px 19px; border-radius: 20px; }
+    #eland-onboarding-desktop-1123 .eland-auth-card h1 { font-size: 26px; }
+    #eland-onboarding-desktop-1123 .eland-auth-card .eland-form { gap: 11px; margin-top: 14px; }
+    #eland-onboarding-desktop-1123 .eland-auth-card .eland-field { font-size: 15px; }
+    #eland-onboarding-desktop-1123 .eland-auth-card input { min-height: 46px; }
+    #eland-onboarding-desktop-1123 .eland-auth-card [type="submit"] { min-height: 48px; font-size: 16px; }
     #eland-onboarding-desktop-1123 .eland-login-signup { margin-top: 15px; padding-top: 12px; }
+    #eland-onboarding-desktop-1123 .eland-login-peek { top: 9px; width: 74px; }
+  }
+  @media (max-width: 719px) and (max-height: 630px) {
+    #eland-onboarding-desktop-1123 .eland-auth-stage { padding-block: 89px 32px; }
   }
   #eland-onboarding-desktop-1123 .eland-success {
     width: min(calc(100% - 32px), 420px);
@@ -1054,19 +1117,23 @@
     </div>
   </div>
 
-  <section class="eland-content eland-login" data-pane="login" hidden aria-labelledby="eland-desktop-login">
-    <div class="eland-login-layout">
-      <button type="button" class="eland-link eland-login-back" data-back="welcome" aria-label="Quay lại màn chọn cách vào"><span aria-hidden="true">←</span> Quay lại</button>
-      <div class="eland-login-card">
+  <section class="eland-auth-stage" data-pane="login" hidden aria-labelledby="eland-desktop-login">
+    <div class="eland-auth-layout">
+      <button type="button" class="eland-link eland-auth-back" data-back="welcome" aria-label="Quay lại màn chọn cách vào"><span aria-hidden="true">←</span> Quay lại</button>
+      <div class="eland-auth-card">
         <img class="eland-login-peek" src="./assets/eland-login-wolf-peek.webp" alt="" aria-hidden="true" width="237" height="250" loading="lazy">
         <h1 id="eland-desktop-login">Đăng nhập</h1>
         <form class="eland-form" method="dialog" autocomplete="off" data-form="login">
           <label class="eland-field">Số điện thoại hoặc tên đăng nhập
             <input type="text" required minlength="3" maxlength="60" data-account data-focus>
           </label>
-          <label class="eland-field">Mật khẩu
-            <input type="password" placeholder="Ít nhất 8 ký tự" autocomplete="new-password" required minlength="8" maxlength="80" data-password>
-          </label>
+          <div class="eland-field">
+            <div class="eland-login-password-head">
+              <label for="eland-login-password">Mật khẩu</label>
+              <a class="eland-forgot-password" href="https://eland.edu.vn/forgot-password" target="_blank" rel="noopener">Quên mật khẩu?</a>
+            </div>
+            <input id="eland-login-password" type="password" placeholder="Ít nhất 8 ký tự" autocomplete="new-password" required minlength="8" maxlength="80" data-password>
+          </div>
           <button class="eland-button" type="submit">Đăng nhập</button>
         </form>
         <div class="eland-login-signup">
@@ -1076,22 +1143,24 @@
     </div>
   </section>
 
-  <section class="eland-content" data-pane="signup" hidden aria-labelledby="eland-desktop-signup">
-    <div class="eland-panel eland-auth">
-      <button type="button" class="eland-link" data-back="login" data-signup-back>Quay lại đăng nhập</button>
-      <h1 id="eland-desktop-signup">Tạo tài khoản phụ huynh</h1>
-      <form class="eland-form" method="dialog" autocomplete="off" data-form="signup">
-        <label class="eland-field">Số điện thoại
-          <input type="tel" inputmode="numeric" placeholder="Nhập 10 chữ số" required pattern="0[0-9]{9}" maxlength="10" title="Nhập 10 chữ số, bắt đầu bằng 0" data-account data-focus>
-        </label>
-        <label class="eland-field">Mật khẩu
-          <input type="password" placeholder="Ít nhất 8 ký tự" autocomplete="new-password" required minlength="8" maxlength="80" data-password>
-        </label>
-        <label class="eland-field">Nhập lại mật khẩu
-          <input type="password" autocomplete="new-password" required minlength="8" maxlength="80" data-confirm>
-        </label>
-        <button class="eland-button" type="submit">Đăng ký</button>
-      </form>
+  <section class="eland-auth-stage" data-pane="signup" hidden aria-labelledby="eland-desktop-signup">
+    <div class="eland-auth-layout">
+      <button type="button" class="eland-link eland-auth-back" data-back="login" data-signup-back>Quay lại đăng nhập</button>
+      <div class="eland-auth-card">
+        <h1 id="eland-desktop-signup">Tạo tài khoản phụ huynh</h1>
+        <form class="eland-form" method="dialog" autocomplete="off" data-form="signup">
+          <label class="eland-field">Số điện thoại
+            <input type="tel" inputmode="numeric" placeholder="Nhập 10 chữ số" required pattern="0[0-9]{9}" maxlength="10" title="Nhập 10 chữ số, bắt đầu bằng 0" data-account data-focus>
+          </label>
+          <label class="eland-field">Mật khẩu
+            <input type="password" placeholder="Ít nhất 8 ký tự" autocomplete="new-password" required minlength="8" maxlength="80" data-password>
+          </label>
+          <label class="eland-field">Nhập lại mật khẩu
+            <input type="password" autocomplete="new-password" required minlength="8" maxlength="80" data-confirm>
+          </label>
+          <button class="eland-button" type="submit">Đăng ký</button>
+        </form>
+      </div>
     </div>
   </section>
 
