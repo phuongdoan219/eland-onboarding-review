@@ -386,7 +386,7 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
   model.units.forEach(u=>{
     const pin=document.createElement('button');pin.type='button';pin.className='pin';pin.dataset.unit=u.id;$('#pins').append(pin);
   });
-  const pinNodes=$('.pin'),badgeNodes=$('.zone-badge');
+  const pinNodes=$$('.pin'),badgeNodes=$$('.zone-badge');
   const learnedLessons=u=>state.status(u.id)==='done'?4:state.status(u.id)==='active'&&u.id===2&&state.completed===1?3:0;
   function updateContent(){
     for(const pin of pinNodes){

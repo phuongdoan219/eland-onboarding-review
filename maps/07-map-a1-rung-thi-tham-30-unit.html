@@ -386,7 +386,7 @@ body{background:#243c35}.stage{background:#263f38}.world{width:1px;height:1px;ov
   model.units.forEach(u=>{
     const pin=document.createElement('button');pin.type='button';pin.className='pin';pin.dataset.unit=u.id;$('#pins').append(pin);
   });
-  const pinNodes=$('.pin'),badgeNodes=$('.zone-badge');
+  const pinNodes=$$('.pin'),badgeNodes=$$('.zone-badge');
   const learnedLessons=u=>state.status(u.id)==='done'?4:0;
   function updateContent(){
     for(const pin of pinNodes){
