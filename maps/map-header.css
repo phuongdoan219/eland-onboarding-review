@@ -1,0 +1,323 @@
+body {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100vh;
+  height: 100dvh;
+}
+
+body .stage {
+  height: auto;
+  min-height: 0;
+}
+
+.topbar {
+  height: auto;
+  min-height: 76px;
+  padding: 8px 30px;
+}
+
+.topbar .banner-start {
+  gap: 17px;
+}
+
+.topbar .brand-logo {
+  width: 84px;
+}
+
+.topbar .journey-button {
+  min-height: 40px;
+  padding: 8px 16px;
+  border-color: #e1d8fa;
+  background: #f3efff;
+  color: #5038bc;
+}
+
+.map-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.map-header-actions .account-trigger {
+  width: 48px;
+  height: 48px;
+  min-height: 48px;
+  border-color: #e1d8fa;
+  background: #eae4fa;
+  font-size: 11px;
+}
+
+.map-header-actions > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  white-space: nowrap;
+  border-radius: 12px;
+  font: 800 13px Nunito, "Segoe UI", sans-serif;
+}
+
+.map-header-actions > button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+}
+
+.map-report-trigger {
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  color: #746886;
+}
+
+.map-report-trigger:hover {
+  background: #f3efff;
+}
+
+.map-pricing-trigger {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid #ffe196;
+  background: linear-gradient(#ffe69d, #ffd56e);
+  box-shadow: 0 2px 0 #e7ae35;
+  color: #4f3519;
+}
+
+.map-pricing-trigger:hover {
+  background: #ffce5e;
+}
+
+.stage .pin-name {
+  font-size: 15px;
+}
+
+.stage .pin-copy {
+  max-width: 200px;
+}
+
+.stage .pin.done .pin-disc svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+.dialog.map-report {
+  width: min(400px, 100%);
+  padding: 23px;
+  background: #fff;
+}
+
+.dialog.map-report h2,
+.dialog.map-pricing h2 {
+  margin: 0 32px 18px 0;
+  font-size: 23px;
+}
+
+.dialog.map-report #dialog-kicker,
+.dialog.map-pricing #dialog-kicker {
+  display: none;
+}
+
+.map-report-form {
+  display: grid;
+  gap: 13px;
+}
+
+.map-report-form label {
+  display: block;
+  color: #38265e;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.map-report-form .map-report-optional {
+  color: #756988;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.map-report-form select,
+.map-report-form textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px 11px;
+  border: 1px solid #ddd4ee;
+  border-radius: 9px;
+  background: #fff;
+  color: #30214f;
+  font: 600 16px Nunito, "Segoe UI", sans-serif;
+}
+
+.map-report-form textarea {
+  min-height: 78px;
+  resize: vertical;
+}
+
+.map-report-counter {
+  display: block;
+  margin-top: 1px;
+  text-align: right;
+  color: #756988;
+  font-size: 12px;
+}
+
+.map-report-attachment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-report-form .map-report-upload,
+.map-report-remove {
+  position: relative;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid #ddd4ee;
+  border-radius: 9px;
+  background: #f7f2ff;
+  color: #5038bc;
+  cursor: pointer;
+}
+
+.map-report-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.map-report-upload:focus-within {
+  outline: 3px solid #5038bc;
+  outline-offset: 2px;
+}
+
+.map-report-file {
+  min-width: 0;
+  color: #625573;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.map-report-remove {
+  flex-shrink: 0;
+}
+
+.map-report-form .primary {
+  min-height: 44px;
+  background: #5038bc;
+  color: #fff;
+}
+
+.map-report-form .primary:disabled {
+  background: #e7e2ef;
+  color: #716681;
+  cursor: default;
+}
+
+.map-report-form .map-report-status {
+  margin: 0;
+  color: #625573;
+  line-height: 1.5;
+}
+
+.map-report-status:empty {
+  display: none;
+}
+
+.dialog.map-pricing {
+  width: min(660px, 100%);
+  background: #fff;
+}
+
+.map-pricing-plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.map-pricing-plans li {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid #e1d8fa;
+  border-radius: 11px;
+  background: #faf7ff;
+  color: #30214f;
+  font-size: 13px;
+}
+
+.map-pricing-plans strong {
+  color: #5038bc;
+  font-size: 16px;
+}
+
+.map-pricing-plans s {
+  color: #756988;
+}
+
+.map-pricing-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #5038bc;
+  font-weight: 800;
+}
+
+@media (max-width: 650px) {
+  .topbar {
+    padding: 6px 12px;
+  }
+
+  .topbar .brand-logo {
+    width: 70px;
+  }
+
+  .topbar .banner-start,
+  .map-header-actions {
+    gap: 7px;
+  }
+
+  .topbar .journey-button {
+    max-width: none;
+    min-height: 44px;
+    padding: 6px 9px;
+  }
+
+  .map-header-actions > button {
+    min-height: 44px;
+    padding-inline: 8px;
+  }
+
+  .map-header-actions .account-trigger {
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+
+  .stage .pin-name {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 525px) {
+  .topbar {
+    flex-wrap: wrap;
+    gap: 4px 6px;
+  }
+
+  .map-header-actions {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 460px) {
+  .map-pricing-plans {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; font-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Học viện Ánh Sao · Hành trình 20 Unit</title>
 <style>
 @font-face{font-family:Wonder;src:url('../assets/a5906e15ceb68f73d3b2c207.woff2')}@font-face{font-family:Wonder;src:url('../assets/2a755616268a9285541121f1.woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
@@ -129,8 +129,10 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
 @media(prefers-reduced-motion:reduce){.journey-arrow,.journey #journey-explore{transition:none}}
 
 </style>
+<link rel="stylesheet" href="./map-header.css">
 </head>
 <body data-onboarding-url="../index.html">
+<script src="./map-actions.js"></script>
 <svg class="icons" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
 <symbol id="star" viewBox="0 0 24 24"><path d="m12 2 2.5 6.8 7.3.3-5.7 4.6 1.9 7.1-6-4-6 4 1.9-7.1L2.2 9.1l7.3-.3Z"/></symbol>
 <symbol id="target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></symbol>
@@ -142,8 +144,9 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
 <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
 <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
 <symbol id="chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+<symbol id="map-report-flag" viewBox="0 0 24 24"><path d="M4 22V4m0 1c5-5 9 3 16-1v11c-7 4-11-4-16 1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
-<header class="topbar"><div class="banner-start"><div class="brand"><h1><img class="brand-logo" data-brand-logo="eland-logo" src="../assets/f38871835347383c43292fa0.png" alt="ELand" width="2164" height="727"></h1></div><button id="journey-open" class="journey-button" type="button">Xem toàn bộ hành trình</button></div><div id="account" class="account"><button id="account-open" class="account-trigger" type="button" aria-expanded="false" aria-controls="account-menu"><span id="learner-name">Bạn nhỏ</span></button><nav id="account-menu" class="account-menu" aria-label="Tài khoản" hidden><a id="account-profile" href="./10-tien-do.html?map=pre-a1">Hồ sơ</a><button id="account-logout" type="button">Đăng xuất</button></nav></div></header>
+<header class="topbar"><div class="banner-start"><div class="brand"><h1><img class="brand-logo" data-brand-logo="eland-logo" src="../assets/f38871835347383c43292fa0.png" alt="ELand" width="2164" height="727"></h1></div><button id="journey-open" class="journey-button" type="button">Xem toàn bộ hành trình</button></div><div class="map-header-actions"><button id="map-report-open" class="map-report-trigger" type="button"><svg aria-hidden="true"><use href="#map-report-flag"/></svg>Báo sự cố</button><button id="map-pricing-open" class="map-pricing-trigger" type="button">Gói học <svg aria-hidden="true"><use href="#arrow"/></svg></button><div id="account" class="account"><button id="account-open" class="account-trigger" type="button" aria-expanded="false" aria-controls="account-menu"><span id="learner-name">Bạn nhỏ</span></button><nav id="account-menu" class="account-menu" aria-label="Tài khoản" hidden><a id="account-profile" href="./10-tien-do.html?map=pre-a1">Hồ sơ</a><button id="account-logout" type="button">Đăng xuất</button></nav></div></div></header>
 <main id="stage" class="stage" tabindex="0" role="region" aria-label="Bản đồ 20 Unit, kéo để khám phá" aria-describedby="keyboard-help">
 <p class="sr-only" id="keyboard-help">Kéo để di chuyển. Dùng hai ngón tay để thu phóng. Phím mũi tên di chuyển, cộng trừ thu phóng, Home xem toàn cảnh, End về Unit đang học. Tab để chọn Unit; Escape đóng bảng.</p>
 <svg id="atmosphere" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
@@ -161,16 +164,6 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
 <img class="junction-source" data-junction="16-17" src="../assets/8af1ed07967f77e16b5e0a68.webp" alt="" hidden>
 </div>
 <div id="pins" class="pins"></div><div id="overview-labels" class="overview-labels"></div>
-<div class="location ui"><span id="location-status" class="eyebrow">ĐANG KHÁM PHÁ</span><h2 id="location-name">Viện Hào Quang</h2><span id="location-count">Unit 1–4</span></div>
-<button id="story-open" class="quest ui" type="button"><svg><use href="#star"/></svg><span>Đánh thức Ngôi Sao Ngủ Quên</span></button>
-<div id="overview-hint" class="overview-hint ui" hidden><span class="eyebrow">MỘT HỌC VIỆN · NĂM MIỀN KHÁM PHÁ</span><h2>Hành trình của em</h2><p>Chọn một khu để đến gần hơn.</p></div>
-<button id="previous-zone" class="edge-nav prev ui" type="button" aria-label="Đến khu trước"><svg><use href="#chevron"/></svg></button>
-<button id="next-zone" class="edge-nav next ui" type="button" aria-label="Đến khu tiếp theo"><svg><use href="#chevron"/></svg></button>
-<aside id="unit-card" class="unit-card ui" aria-label="Unit đã chọn"><button id="card-close" class="card-close" type="button" aria-label="Thu gọn thẻ Unit"><svg><use href="#close"/></svg></button><span id="card-kicker" class="eyebrow"></span><h2 id="card-title"></h2><p id="card-copy"></p><div id="lesson-progress" class="lesson-progress" aria-label="Tiến độ bài học"></div><button id="card-action" class="primary" type="button"></button></aside>
-<button id="resume" type="button" class="resume ui" hidden><svg><use href="#target"/></svg><span>Về bài đang học</span></button>
-<nav id="zone-nav" class="zone-nav ui" aria-label="Các khu trong học viện"></nav>
-<nav class="dock ui" aria-label="Điều khiển bản đồ"><button id="zoom-out" type="button" aria-label="Thu nhỏ"><svg><use href="#minus"/></svg></button><output id="zoom-value">100%</output><button id="zoom-in" type="button" aria-label="Phóng to"><svg><use href="#plus"/></svg></button><i></i><button id="fit-map" type="button"><svg><use href="#fit"/></svg><span>Toàn cảnh</span></button><i></i><button id="locate-current" type="button" aria-label="Về Unit đang học"><svg><use href="#target"/></svg></button><i></i><button id="about-open" class="map-info" type="button" aria-label="Cách dùng bản đồ">i</button></nav>
-<span id="drag-hint" class="drag-hint">Kéo để khám phá <span>·</span> Cuộn để thu phóng</span>
 <div id="toast" class="toast ui" role="status" aria-live="polite" hidden></div>
 </main>
 <div id="overlay" class="overlay" hidden><div id="backdrop" class="backdrop"></div><section id="dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" tabindex="-1"><button id="dialog-close" type="button" class="dialog-close" aria-label="Đóng"><svg><use href="#close"/></svg></button><span id="dialog-kicker" class="eyebrow"></span><h2 id="dialog-title"></h2><div id="dialog-body"></div></section></div>
@@ -370,7 +363,7 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
   const model=createModel(),stage=$('#stage'),world=$('#world'),storageKey='wonderland-map-20-unit-demo-v2';
   let saved={};try{const value=JSON.parse(localStorage.getItem(storageKey)||'{}');if(value&&typeof value==='object')saved=value;}catch{}
   const state=createState(saved),rect=stage.getBoundingClientRect(),camera=makeCamera(rect.width,rect.height,model.bounds);
-  let zone=Math.floor((state.active-1)/4),overview=false,cardOpen=true,suppressUntil=0,toastTimer,restoreFocus=null;
+  let zone=Math.floor((state.active-1)/4),overview=false,suppressUntil=0,toastTimer,restoreFocus=null;
   const pointers=new Map();let gesture=null;
   const icon=id=>`<svg aria-hidden="true"><use href="#${id}"/></svg>`;
   const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -381,7 +374,6 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
   model.districts.forEach(d=>{
     const img=$(`[data-image="${d.id}"]`);img.style.left=d.x+'px';img.style.top=d.y+'px';img.style.transform=d.flip?'scaleX(-1)':'none';
     img.addEventListener('error',()=>toast('Không tải được một phần bản đồ. Hãy tải lại trang.'));
-    const tab=document.createElement('button');tab.type='button';tab.className='zone-tab';tab.dataset.zone=d.index;tab.setAttribute('aria-label',d.name+`, Unit ${d.first}–${d.last}`);tab.innerHTML=`<b>${d.index+1}</b><span>${escape(d.index===0?'Viện Hào Quang':d.name)}</span>`;$('#zone-nav').append(tab);
     const badge=document.createElement('button');badge.type='button';badge.className='zone-badge';badge.dataset.zone=d.index;badge.innerHTML=`<strong>${escape(d.index===0?'Viện Hào Quang':d.name)}</strong><span>Unit ${d.first}–${d.last}</span>`;$('#overview-labels').append(badge);
   });
   const background=$('#world-background'),bridges=$('#world-bridges');
@@ -394,56 +386,33 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
   model.units.forEach(u=>{
     const pin=document.createElement('button');pin.type='button';pin.className='pin';pin.dataset.unit=u.id;$('#pins').append(pin);
   });
-  const pinNodes=$$('.pin'),badgeNodes=$$('.zone-badge'),tabNodes=$$('.zone-tab');
+  const pinNodes=$('.pin'),badgeNodes=$('.zone-badge');
   const learnedLessons=u=>state.status(u.id)==='done'?4:state.status(u.id)==='active'&&u.id===2&&state.completed===1?3:0;
   function updateContent(){
     for(const pin of pinNodes){
       const u=unit(pin.dataset.unit),status=state.status(u.id);pin.className=`pin ${status}${state.selected===u.id?' selected':''}`;
       const learned=learnedLessons(u);
-      pin.innerHTML=`<span class="pin-disc">${status==='done'?icon('check'):u.id}</span>${status==='locked'?'<span class="pin-lock">'+icon('lock')+'</span>':''}<span class="pin-copy"><span class="pin-name">${escape(u.title)}</span><span class="pin-progress">${learned}/4 bài</span></span>`;
+      pin.innerHTML=`<span class="pin-disc">${status==='done'?icon('star'):u.id}</span>${status==='locked'?'<span class="pin-lock">'+icon('lock')+'</span>':''}<span class="pin-copy"><span class="pin-name">${escape(u.title)}</span><span class="pin-progress">${learned}/4 bài</span></span>`;
       pin.setAttribute('title',u.title+' — '+learned+'/4 bài');
       pin.setAttribute('aria-label',`Unit ${u.id}: ${u.title}, ${learned}/4 bài, ${status==='done'?'đã hoàn thành':status==='active'?'đang học':'chưa mở'}`);
       if(status==='active')pin.setAttribute('aria-current','step');else pin.removeAttribute('aria-current');
     }
     model.districts.forEach(d=>$(`[data-image="${d.id}"]`).classList.toggle('future',d.first>state.active));
-    updateCard();render();
+    render();
   }
-  function updateCard(){
-    const u=unit(state.selected),d=model.districts[u.district],status=state.status(u.id),card=$('#unit-card');
-    card.classList.toggle('locked',status==='locked');
-    $('#card-kicker').textContent=`UNIT ${u.id} · ${u.id===1?'CỔNG ÁNH SAO':u.district===0?'VIỆN HÀO QUANG':d.name}`;
-    $('#card-title').textContent=u.title;
-    $('#card-copy').textContent=status==='locked'?`Hoàn thành Unit ${u.id-1} để mở địa điểm này.`:status==='done'?'Em đã khám phá địa điểm này. Cùng ôn lại nhé!':u.id===2&&state.completed===1?'3/4 bài đã hoàn thành':'Một khám phá mới đang chờ em.';
-    $('#lesson-progress').hidden=!(u.id===2&&state.completed===1);
-    $('#lesson-progress').innerHTML=Array.from({length:4},(_,i)=>`<i class="${i<3?'filled':''}"></i>`).join('');
-    $('#card-action').innerHTML=status==='locked'?`${icon('target')} Về bài đang học`:status==='done'?`Ôn lại ${icon('arrow')}`:`Học tiếp ${icon('arrow')}`;
-    card.hidden=!cardOpen||overview;
-    stage.classList.toggle('card-is-open',cardOpen&&!overview);
-    $('#resume').hidden=cardOpen||overview;
-  }
-  function setCard(open){cardOpen=open;updateCard();}
   function inferZone(){const center=camera.toWorld(camera.width/2,camera.height/2);return model.districts.reduce((best,d)=>Math.hypot(center.x-d.x-836,center.y-d.y-470)<Math.hypot(center.x-best.x-836,center.y-best.y-470)?d:best,model.districts[0]).index;}
   function render(){
     atmosphere.setAttribute('viewBox',`0 0 ${camera.width} ${camera.height}`);
     window.WonderlandAtmosphere.update(skyNodes,camera,model.bounds);
     world.style.transform=`translate(${camera.x}px,${camera.y}px) scale(${camera.scale})`;
     if(!overview)zone=inferZone();
-    stage.classList.toggle('overview-mode',overview);$('#pins').hidden=overview;$('#overview-labels').hidden=!overview;$('#overview-hint').hidden=!overview;
-    const d=model.districts[zone];$('#location-name').textContent=d.index===0?'Viện Hào Quang':d.name;
-    $('#location-count').textContent=`Unit ${d.first}–${d.last}`;$('#location-status').textContent=d.first>state.active?'VÙNG ĐẤT PHÍA TRƯỚC':'ĐANG KHÁM PHÁ';
+    stage.classList.toggle('overview-mode',overview);$('#pins').hidden=overview;$('#overview-labels').hidden=!overview;
     for(const pin of pinNodes){const u=unit(pin.dataset.unit),x=u.x*camera.scale+camera.x,y=u.y*camera.scale+camera.y;pin.style.left=x+'px';pin.style.top=y+'px';pin.hidden=overview||x<-70||x>camera.width+70||y<0||y>camera.height+70;}
     for(const badge of badgeNodes){const z=model.districts[Number(badge.dataset.zone)];badge.style.left=(z.label[0]*camera.scale+camera.x)+'px';badge.style.top=(z.label[1]*camera.scale+camera.y)+'px';}
-    for(const tab of tabNodes){const isCurrent=Number(tab.dataset.zone)===zone&&!overview;tab.setAttribute('aria-current',String(isCurrent));}
-    $('#previous-zone').disabled=zone===0;$('#next-zone').disabled=zone===4;
-    $('#zoom-value').textContent=Math.round(camera.scale/normalScale()*100)+'%';
-    $('#zoom-out').disabled=camera.scale<=camera.min+.001;$('#zoom-in').disabled=camera.scale>=camera.max-.001;
-    $('#unit-card').hidden=!cardOpen||overview;$('#resume').hidden=cardOpen||overview;stage.classList.toggle('card-is-open',cardOpen&&!overview);
   }
   function focusUnit(id){
     const u=unit(id);overview=false;zone=u.district;
     camera.focus(u.x,u.y,Math.max(normalScale(),camera.width<650?.7:.8));
-    // Keep the selected destination in the open area above/beside the card.
-    if(camera.width>=650){camera.x-=camera.width*.10;camera.constrain();}else{camera.y-=camera.height*.14;camera.constrain();}
     render();
   }
   function goZone(index){
@@ -451,17 +420,23 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
     state.selected=state.active>=d.first&&state.active<=d.last?state.active:d.first;
     camera.focus(d.x+836,d.y+470,normalScale());
     if(camera.width<650){const u=unit(state.selected);camera.focus(u.x,u.y,.7);camera.y-=camera.height*.13;camera.constrain();}
-    cardOpen=true;save();updateContent();
+    save();updateContent();
   }
-  function selectUnit(id,focus=false){if(performance.now()<suppressUntil)return;state.selected=unit(id).id;overview=false;cardOpen=true;save();if(focus)focusUnit(state.selected);updateContent();}
-  function locate(){state.selected=state.active;cardOpen=true;focusUnit(state.active);save();updateContent();}
-  function fit(){overview=true;setCard(false);camera.fitWorld();render();}
-  function zoom(factor,x=camera.width/2,y=camera.height/2){camera.zoomAt(camera.scale*factor,x,y);overview=camera.scale<normalScale()*.48;setCard(false);render();}
-  $('#pins').addEventListener('click',e=>{const p=e.target.closest('[data-unit]');if(p){if(performance.now()<suppressUntil)return;p.focus();selectUnit(p.dataset.unit,true);showUnitLessons();}});
-  $('#zone-nav').addEventListener('click',e=>{const z=e.target.closest('[data-zone]');if(z)goZone(z.dataset.zone);});
+  function selectUnit(id,focus=false){if(performance.now()<suppressUntil)return;state.selected=unit(id).id;overview=false;save();if(focus)focusUnit(state.selected);updateContent();}
+  function locate(){state.selected=state.active;focusUnit(state.active);save();updateContent();}
+  function fit(){overview=true;camera.fitWorld();render();}
+  function zoom(factor,x=camera.width/2,y=camera.height/2){camera.zoomAt(camera.scale*factor,x,y);overview=camera.scale<normalScale()*.48;render();}
+  $('#pins').addEventListener('click',event=>{
+    const pin=event.target.closest('[data-unit]');
+    if(!pin||performance.now()<suppressUntil)return;
+    const selected=unit(pin.dataset.unit);
+    if(state.status(selected.id)==='locked'){
+      toast('Hoàn thành Unit '+(selected.id-1)+' để mở bài này.');
+      return;
+    }
+    pin.focus();selectUnit(selected.id,true);launchUnit(selected.id);
+  });
   $('#overview-labels').addEventListener('click',e=>{const z=e.target.closest('[data-zone]');if(z)goZone(z.dataset.zone);});
-  $('#next-zone').addEventListener('click',()=>goZone(zone+1));$('#previous-zone').addEventListener('click',()=>goZone(zone-1));
-  $('#zoom-in').addEventListener('click',()=>zoom(1.25));$('#zoom-out').addEventListener('click',()=>zoom(1/1.25));$('#fit-map').addEventListener('click',fit);$('#locate-current').addEventListener('click',locate);$('#resume').addEventListener('click',locate);$('#card-close').addEventListener('click',()=>setCard(false));
   // Account links stay independent from map progress and camera controls.
   const account=$('#account'),accountButton=$('#account-open'),accountMenu=$('#account-menu');
   const entryFlow=String(window.location?.search||'').match(/[?&]flow=(survey|signup)(?:&|$)/)?.[1]||'survey';
@@ -485,12 +460,11 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
   $('#account-logout')?.addEventListener('click',()=>{closeAccount(true);if(window.dispatchEvent(new CustomEvent('wonderland:logout',{cancelable:true,detail:{prototype:true,flow:entryFlow}}))!==false)window.location.assign(document.body.dataset.onboardingUrl+'?flow='+entryFlow);});
   $('#journey-open').addEventListener('click',()=>window.WonderlandJourney.open({current:'pre-a1',flow:entryFlow,openDialog,closeDialog,fitCurrent:fit}));
   function openDialog(kind,title,kicker,body){
-    restoreFocus=document.activeElement;stage.setAttribute('inert','');$('.topbar').setAttribute('inert','');$('#overlay').classList.toggle('journey-overlay',kind==='journey');$('#dialog').className='dialog '+kind;$('#dialog-title').textContent=title;$('#dialog-kicker').textContent=kicker;$('#dialog-body').innerHTML=body;$('#overlay').hidden=false;$('#dialog-close').focus();
+    restoreFocus=document.activeElement;stage.setAttribute('inert','');$('.topbar').setAttribute('inert','');$('#overlay').classList.toggle('journey-overlay',kind==='journey');$('#dialog').className='dialog '+kind;$('#dialog-title').textContent=title;$('#dialog-kicker').textContent=kicker;$('#dialog-body').innerHTML=body;$('#overlay').hidden=false;const close=$('#dialog-close');close.setAttribute('aria-label',kind==='map-report'?'Đóng báo sự cố':'Đóng');close.focus();
   }
   function closeDialog(){if($('#overlay').hidden)return;$('#overlay').hidden=true;stage.removeAttribute('inert');$('.topbar').removeAttribute('inert');$('#overlay').classList.remove('journey-overlay');restoreFocus?.focus?.();}
   $('#dialog-close').addEventListener('click',closeDialog);$('#backdrop').addEventListener('click',closeDialog);
-  $('#about-open').addEventListener('click',()=>openDialog('about','Cách dùng bản đồ','',`<p>Kéo để di chuyển trên bản đồ. Cuộn hoặc dùng các nút thu phóng để xem rõ hơn.</p><p>Chọn một Unit để xem các bài học. Bấm Toàn cảnh để xem toàn bộ hành trình.</p>`));
-  $('#story-open').addEventListener('click',()=>openDialog('story','Đánh thức Ngôi Sao Ngủ Quên','BÍ MẬT CỦA HỌC VIỆN',`<div class="story-emblem">${icon('star')}</div><p>Trên đỉnh học viện, một ngôi sao đã ngủ quên từ rất lâu.</p><p>Từ tia hào quang, trang sách, mầm cây đến những cỗ máy kỳ diệu — mỗi miền đất đang giữ một phần bí mật. Con đường dẫn em tới ngôi sao bắt đầu ở đây.</p><button type="button" class="primary" data-dialog-locate>Theo dấu ánh sáng ${icon('arrow')}</button>`));
+  window.ELandMapActions.bind(openDialog);
   function showUnitLessons(id=state.selected){
     const u=unit(id);if(state.status(u.id)==='locked')return;
     const names=['Word Explorer','Grammar Quest','Listening Lab','Speaking Studio'];
@@ -507,14 +481,13 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
       if(proceed!==false)$('#unit-lesson-feedback').textContent=`Bài học này chưa khả dụng.`;
     });
   }
-  $('#card-action').addEventListener('click',()=>{
-    const payload=state.launch(state.selected);if(!payload){locate();return;}
+  function launchUnit(id){
+    const payload=state.launch(id);if(!payload)return;
     window.dispatchEvent(new CustomEvent('wonderland:open-unit',{detail:payload}));
-    showUnitLessons();
-  });
+    showUnitLessons(payload.unitId);
+  }
   $('#dialog-body').addEventListener('click',e=>{
     if(e.target.closest('[data-dialog-close]'))closeDialog();
-    if(e.target.closest('[data-dialog-locate]')){closeDialog();locate();}
   });
   const point=e=>{const r=stage.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
   const distance=(a,b)=>Math.max(1,Math.hypot(a.x-b.x,a.y-b.y));
@@ -529,7 +502,7 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
     // Capturing on the stage during a pin tap would retarget its click to the stage.
     if(!e.target.closest('.pin')){try{stage.setPointerCapture(e.pointerId)}catch{}}
     rebase();
-    if(pointers.size>1){setCard(false);suppressUntil=performance.now()+300;}
+    if(pointers.size>1){suppressUntil=performance.now()+300;}
   });
   stage.addEventListener('pointermove',e=>{
     if(!pointers.has(e.pointerId)||!gesture)return;const p=point(e);pointers.set(e.pointerId,p);
@@ -539,7 +512,7 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
       if(!gesture.moved&&Math.hypot(p.x-gesture.origin.x,p.y-gesture.origin.y)<5)return;
       camera.pan(p.x-gesture.last.x,p.y-gesture.last.y);gesture.last=p;gesture.moved=true;
     }
-    if(gesture.moved){try{stage.setPointerCapture(e.pointerId)}catch{};setCard(false);stage.classList.add('dragging');suppressUntil=performance.now()+250;$('#drag-hint').style.opacity='.45';}
+    if(gesture.moved){try{stage.setPointerCapture(e.pointerId)}catch{};stage.classList.add('dragging');suppressUntil=performance.now()+250;}
     render();
   });
   function endPointer(e){if(!pointers.has(e.pointerId))return;const moved=gesture?.moved;pointers.delete(e.pointerId);try{stage.releasePointerCapture(e.pointerId)}catch{};if(moved)suppressUntil=performance.now()+250;rebase();if(!pointers.size)stage.classList.remove('dragging');}
@@ -549,14 +522,14 @@ body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.
     if(!$('#overlay').hidden){
       if(e.key==='Escape'){e.preventDefault();closeDialog();return;}
       if(e.key==='Tab'){
-        const nodes=$$('#dialog button:not([disabled]),#dialog a[href],#dialog input,#dialog summary,#dialog [tabindex="0"]').filter(n=>{const details=n.closest('details');return !n.closest('[hidden]')&&(!details||details.hasAttribute('open')||n.tagName==='SUMMARY');}),first=nodes[0],last=nodes[nodes.length-1];
+        const nodes=$$('#dialog button:not([disabled]),#dialog a[href],#dialog input:not([disabled]),#dialog select:not([disabled]),#dialog textarea:not([disabled]),#dialog summary,#dialog [tabindex="0"]').filter(n=>{const details=n.closest('details');return !n.closest('[hidden]')&&(!details||details.hasAttribute('open')||n.tagName==='SUMMARY');}),first=nodes[0],last=nodes[nodes.length-1];
         if(e.shiftKey&&(document.activeElement===first||document.activeElement===$('#dialog'))){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
       }return;
     }
     if(e.target.closest?.('input,textarea,select'))return;
     const keys=['+','=','-','_','Home','End','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'];if(!keys.includes(e.key))return;
     if(e.key.startsWith('Arrow')&&e.target.closest?.('.ui'))return;
-    e.preventDefault();if(e.key==='Home')fit();else if(e.key==='End')locate();else if(e.key==='+'||e.key==='=')zoom(1.25);else if(e.key==='-'||e.key==='_')zoom(.8);else{camera.pan(e.key==='ArrowLeft'?100:e.key==='ArrowRight'?-100:0,e.key==='ArrowUp'?100:e.key==='ArrowDown'?-100:0);setCard(false);render();}
+    e.preventDefault();if(e.key==='Home')fit();else if(e.key==='End')locate();else if(e.key==='+'||e.key==='=')zoom(1.25);else if(e.key==='-'||e.key==='_')zoom(.8);else{camera.pan(e.key==='ArrowLeft'?100:e.key==='ArrowRight'?-100:0,e.key==='ArrowUp'?100:e.key==='ArrowDown'?-100:0);render();}
   });
   window.addEventListener('resize',()=>{const r=stage.getBoundingClientRect();camera.resize(r.width,r.height);if(overview)camera.fitWorld();render();});
   window.WonderlandMapDemo={getSnapshot:()=>({completed:state.completed,active:state.active,selected:state.selected,zone,overview,pointerCount:pointers.size,camera:{x:camera.x,y:camera.y,scale:camera.scale,min:camera.min,max:camera.max,width:camera.width,height:camera.height}})};
