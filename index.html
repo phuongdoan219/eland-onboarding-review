@@ -600,11 +600,11 @@
   }
   #eland-onboarding-desktop-1123 .eland-answer-icon {
     display: block;
-    width: var(--eland-card-art-size, 40px);
-    aspect-ratio: 1;
+    width: var(--eland-card-art-width, 60px);
+    aspect-ratio: 5 / 4;
     flex: none;
     border-radius: 10px;
-    background: #f3edff url('./assets/eland-survey-wolf-cards.webp') no-repeat;
+    background: #f3edff url('./assets/eland-survey-wolf-cards-v2.webp') no-repeat;
     background-size: 400% 300%;
     background-position: var(--eland-card-x, 0%) var(--eland-card-y, 0%);
   }
@@ -621,7 +621,7 @@
       padding-inline: 4px 14px;
       font-size: 17px;
     }
-    #eland-onboarding-desktop-1123 .eland-answer { padding-block: 5px; }
+    #eland-onboarding-desktop-1123 .eland-answer { --eland-card-art-width: 55px; padding-block: 4px; }
   }
   @media (hover: hover) {
     #eland-onboarding-desktop-1123 .eland-survey-back:hover,
@@ -642,7 +642,7 @@
       min-height: 68px;
       font-size: 17px;
     }
-    #eland-onboarding-desktop-1123 .eland-answer { --eland-card-art-size: 52px; }
+    #eland-onboarding-desktop-1123 .eland-answer { --eland-card-art-width: 70px; }
     #eland-onboarding-desktop-1123 .eland-survey-art { width: 104px; }
   }
   @media (min-width: 900px) {
@@ -691,7 +691,7 @@
       border-radius: 16px;
       font-size: 20px;
     }
-    #eland-onboarding-desktop-1123 .eland-answer { --eland-card-art-size: 58px; }
+    #eland-onboarding-desktop-1123 .eland-answer { --eland-card-art-width: 80px; }
     #eland-onboarding-desktop-1123 .eland-survey-art {
       width: clamp(108px, 14svh, 124px);
     }
