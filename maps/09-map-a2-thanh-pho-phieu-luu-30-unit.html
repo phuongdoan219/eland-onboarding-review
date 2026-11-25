@@ -433,6 +433,18 @@ body{background:#327997}.stage{background:#327997}.world{width:1px;height:1px;ov
     const signupParams=new URLSearchParams({from:'guest-map',map:mapKey});
     createAccount.href='../index.html?'+signupParams.toString();
     $('#account-logout').replaceWith(createAccount);
+    const editAnswers=document.createElement('a');
+    editAnswers.id='account-edit-answers';
+    editAnswers.textContent='Sửa câu trả lời';
+    const editParams=new URLSearchParams({from:'guest-survey',map:mapKey});
+    editAnswers.href='../index.html?'+editParams.toString();
+    accountMenu.append(editAnswers);
+    accountButton.addEventListener('click',()=>{
+      for(const [link,params] of [[createAccount,signupParams],[editAnswers,editParams]]){
+        if(overview)params.set('view','overview');else params.delete('view');
+        link.href='../index.html?'+params.toString();
+      }
+    });
   }
   function closeAccount(restore=false){accountMenu.hidden=true;accountButton.setAttribute('aria-expanded','false');if(restore)accountButton.focus();}
   accountButton.addEventListener('click',()=>{const open=accountMenu.hidden;accountMenu.hidden=!open;accountButton.setAttribute('aria-expanded',String(open));});
