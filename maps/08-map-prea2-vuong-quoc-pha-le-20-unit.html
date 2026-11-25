@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; font-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Vương quốc Núi Pha Lê · Pre A2 · Hành trình 20 Unit</title>
+<style>
+@font-face{font-family:Wonder;src:url('../assets/a5906e15ceb68f73d3b2c207.woff2')}@font-face{font-family:Wonder;src:url('../assets/2a755616268a9285541121f1.woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}body{font-family:Wonder,'Segoe UI',sans-serif;color:#271952;background:#302757}button,input{font:inherit}button{cursor:pointer;color:inherit}button:disabled{cursor:default;opacity:.4}button:focus-visible,input:focus-visible,.stage:focus-visible{outline:3px solid #f2ce64;outline-offset:4px}button,svg{touch-action:manipulation}svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}button svg{pointer-events:none}button span{pointer-events:none}[hidden]{display:none!important}.icons{position:absolute;width:0;height:0;overflow:hidden}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.topbar{height:76px;background:#fffcf6;display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:22px;border-bottom:1px solid #e8e1ed;position:relative;z-index:30}.brand{display:flex;align-items:center;gap:13px}.brand-mark{display:grid;place-items:center;width:45px;height:45px;border-radius:50%;background:#312064;outline:1px solid #6e5995;outline-offset:3px;color:#fff1b1}.brand-mark svg{width:30px;height:30px;stroke-width:1}.brand h1{font-family:Georgia,'Times New Roman',serif;font-size:25px;margin:0 0 3px;font-weight:700;letter-spacing:-.5px}.brand div>span{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:800;letter-spacing:1.8px;color:#857696}.brand i{width:3px;height:3px;background:#a295ab;border-radius:100%}.header-actions{display:flex;align-items:center;gap:22px}.total{display:flex;position:relative;align-items:baseline;gap:3px;padding-bottom:9px;font-size:13px}.total strong{font-size:18px}.total-track{position:absolute;bottom:0;left:0;width:100%;height:3px;background:#e6e0ef;border-radius:3px;overflow:hidden}.total-track i{display:block;height:100%;background:#7b4dc1;width:5%}.avatar{width:39px;height:39px;border-radius:50%;border:1px solid #bcaae0;background:#e5dbf6;color:#5c3b99;font-size:10px;font-weight:900}
+.stage{height:calc(100dvh - 76px);height:calc(100vh - 76px);position:relative;overflow:hidden;touch-action:none;isolation:isolate;cursor:grab;background:radial-gradient(ellipse at 50% 75%,#ccbee4 0,transparent 65%),linear-gradient(#4d4688,#8c83bd 42%,#b5a8cf 75%,#d5c5e5)}.stage.dragging{cursor:grabbing}.world{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none;will-change:transform}.tile{position:absolute;display:block;max-width:none;width:1672px;height:941px;user-select:none;mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent),linear-gradient(to bottom,transparent,#000 15px,#000 calc(100% - 40px),transparent);mask-composite:intersect}.tile.future{filter:saturate(.88) brightness(.91)}.pins,.overview-labels{position:absolute;inset:0;pointer-events:none;z-index:3}.pin{position:absolute;left:0;top:0;width:46px;height:50px;border:0;padding:0;background:none;transform:translate(-50%,-100%);pointer-events:auto;filter:drop-shadow(0 3px 5px #17123677);will-change:left,top}.pin-disc{display:grid;place-items:center;position:absolute;top:0;left:2px;width:42px;height:42px;border:2px solid #fffaf4;border-radius:50%;background:#584e75;color:#fff;font-size:19px;font-weight:900;z-index:1}.pin:after{content:'';position:absolute;width:14px;height:14px;background:#584e75;bottom:5px;left:16px;transform:rotate(45deg);border-right:2px solid #fffaf4;border-bottom:2px solid #fffaf4}.pin.active .pin-disc,.pin.active:after{background:#8a3ef0}.pin.done .pin-disc,.pin.done:after{background:#36ab8b}.pin.done svg{width:23px;height:23px;stroke-width:3}.pin.selected{filter:drop-shadow(0 0 10px #f6e0ff)}.pin.selected .pin-disc{outline:4px solid #d9c4ff66;outline-offset:3px}.pin.active:before{content:'';position:absolute;inset:-9px -9px 0;border-radius:50%;border:1px solid #e6cbff99;animation:breathe 3s ease-in-out infinite}.pin-caption{position:absolute;white-space:nowrap;top:50%;left:51px;padding:5px 10px;border-radius:8px;background:#fffcf5;font-size:11px;font-weight:900;box-shadow:0 3px 14px #30245733;opacity:0;transition:opacity .15s;color:#3f245f;pointer-events:none}.pin:hover .pin-caption,.pin:focus-visible .pin-caption,.pin.active .pin-caption{opacity:1}.pin.locked .pin-disc{background:#615778;font-size:16px}.pin.locked:after{background:#615778}.pin-lock{position:absolute;right:-5px;bottom:9px;width:17px;height:17px;border-radius:50%;border:1px solid #fff;background:#625776;display:grid;place-items:center;z-index:2;color:#fff}.pin-lock svg{width:11px;height:11px;stroke-width:1.7}
+.ui{cursor:auto}.location{position:absolute;top:22px;left:27px;background:#fffaf0ef;backdrop-filter:blur(12px);border:1px solid #fff8;border-radius:13px;padding:14px 18px;min-width:210px;box-shadow:0 7px 30px #352d5422;pointer-events:none;z-index:5}.eyebrow{font-size:10px;font-weight:900;letter-spacing:1.3px;color:#86629f;text-transform:uppercase}.location h2{font-family:Georgia,serif;font-size:20px;line-height:1.2;margin:5px 0}.location>span:last-child{font-size:11px;color:#8c7c97}.quest{position:absolute;right:26px;top:23px;display:flex;align-items:center;gap:9px;padding:10px 17px;border:1px solid #d8bbef55;border-radius:24px;background:#33215cbf;backdrop-filter:blur(12px);color:#fff4dd;font-size:12px;font-weight:800;z-index:5}.quest svg{color:#e7bb66;width:20px;height:20px}.edge-nav{position:absolute;top:49%;width:36px;height:65px;border:1px solid #fff5;border-radius:12px;background:#24194b55;backdrop-filter:blur(10px);color:#fff;z-index:5}.edge-nav.prev{left:15px}.edge-nav.next{right:15px}.prev svg{transform:rotate(180deg)}.edge-nav:disabled{opacity:0;pointer-events:none}.unit-card{position:absolute;bottom:100px;right:26px;width:295px;padding:22px 23px 20px;border:1px solid #fff;border-radius:17px;background:#fffcf6f5;box-shadow:0 10px 45px #24194b33;backdrop-filter:blur(15px);z-index:8;cursor:auto}.card-close{position:absolute;right:8px;top:8px;display:grid;place-items:center;width:28px;height:28px;background:none;border:0;color:#a694b7}.card-close svg{width:15px;height:15px}.unit-card>.eyebrow{font-size:9px;display:block;max-width:230px;line-height:1.6}.unit-card h2{font-family:Georgia,'Times New Roman',serif;font-size:29px;letter-spacing:-.6px;margin:7px 0;line-height:1.1}.unit-card p{font-size:12px;color:#867591;line-height:1.6;margin:9px 0 13px}.primary{border:0;background:linear-gradient(110deg,#8b47e7,#6636bd);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:9px;min-height:44px;padding:11px 18px;width:100%;font-weight:800;font-size:14px;box-shadow:0 4px 10px #6a36b322}.primary svg{width:20px;height:20px}.unit-card.locked .primary{background:#ede6f5;color:#593f7c;box-shadow:none}.lesson-progress{display:flex;gap:4px;margin:0 0 14px}.lesson-progress i{height:7px;border-radius:5px;flex:1;background:#e0d2f0}.lesson-progress i.filled{background:#8450d5}.resume{position:absolute;right:26px;bottom:101px;display:flex;align-items:center;gap:9px;border:1px solid #fff8;background:#fffcf0f5;padding:11px 14px;border-radius:12px;font-size:12px;font-weight:900;box-shadow:0 6px 24px #30204e33;z-index:6}.resume svg{width:18px;height:18px}
+.zone-nav{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;gap:5px;padding:6px;border-radius:14px;background:#22163dbf;backdrop-filter:blur(15px);border:1px solid #fff3;z-index:9}.zone-tab{border:0;color:#eadff4;min-width:39px;min-height:36px;padding:8px 12px;border-radius:9px;background:transparent;font-size:11px;font-weight:800;white-space:nowrap;display:flex;align-items:center;gap:7px}.zone-tab b{display:grid;place-items:center;font-size:10px;font-weight:800;border:1px solid #fff4;border-radius:50%;width:20px;height:20px}.zone-tab[aria-current=true]{background:#fffcf2;color:#3f245f}.zone-tab[aria-current=true] b{border-color:#bda3d3}.zone-tab:not([aria-current=true]) span{display:none}.dock{position:absolute;left:27px;bottom:26px;display:flex;align-items:center;padding:3px 7px;background:#fffcf2ed;border:1px solid #fff8;backdrop-filter:blur(16px);border-radius:12px;box-shadow:0 6px 25px #39275533;z-index:9;gap:0}.dock button{height:36px;min-width:34px;display:flex;align-items:center;justify-content:center;gap:6px;background:none;border:0;border-radius:6px;color:#3e256b}.dock button svg{width:17px;height:17px}.dock button:hover{background:#e8ddf3}.dock button span{font-size:11px;font-weight:900}.dock i{height:19px;width:1px;background:#d9cce5;margin:0 7px}.dock output{font-weight:900;font-size:11px;min-width:42px;text-align:center}.drag-hint{position:absolute;left:27px;bottom:83px;color:#fff5ec;text-shadow:0 1px 8px #27183e;font-size:10px;pointer-events:none;font-weight:700}.drag-hint span{padding:0 6px;opacity:.5}.overview-hint{position:absolute;left:0;right:0;top:13%;text-align:center;pointer-events:none;color:#fff7ef}.overview-hint .eyebrow{color:#e9d4fa}.overview-hint h2{font-family:Georgia,serif;font-size:36px;letter-spacing:-1px;margin:9px 0}.overview-hint p{font-size:12px;opacity:.8}.overview-mode .location,.overview-mode .quest,.overview-mode .edge-nav,.overview-mode .unit-card,.overview-mode .resume{display:none!important}.zone-badge{position:absolute;pointer-events:auto;transform:translate(-50%,-100%);border:1px solid #f9eaff88;background:#fff9f0ee;border-radius:10px;padding:10px 15px;box-shadow:0 5px 25px #30245344;text-align:left;max-width:180px}.zone-badge strong{font-family:Georgia,serif;display:block;font-size:14px;line-height:1.2}.zone-badge span{display:block;font-size:10px;margin-top:4px;color:#876a9c}.toast{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);padding:10px 17px;border-radius:10px;background:#201839ec;color:#fff;font-size:12px;z-index:11;max-width:85%;text-align:center;pointer-events:none}
+.overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:22px}.backdrop{position:absolute;inset:0;background:#1a123476;backdrop-filter:blur(8px)}.dialog{position:relative;width:min(570px,100%);max-height:88vh;overflow:auto;background:#fffcf6;border:1px solid #fffd;border-radius:22px;padding:34px;box-shadow:0 25px 100px #100c3477}.dialog>h2{font-family:Georgia,serif;font-size:31px;letter-spacing:-.6px;margin:8px 0 24px}.dialog-close{position:absolute;right:15px;top:15px;display:grid;place-items:center;width:30px;height:30px;background:#f0e9f5;border:0;border-radius:50%}.dialog-close svg{width:17px;height:17px}.dialog p{font-size:13px;line-height:1.8;color:#7c6b8b}.text-button{border:0;background:none;padding:8px 0;text-decoration:underline;color:#7d4eb1;font-size:12px}.story-emblem{display:grid;place-items:center;width:70px;height:70px;margin:0 auto 25px;background:#eee4f5;border-radius:50%;color:#9c7027}.story-emblem svg{width:40px;height:40px;fill:#f7d684;stroke:#9c7027}.dialog.story{text-align:center}.handoff-caption{font-size:11px!important;padding:13px;background:#f1ebf5;border-radius:9px}.loading-message{position:absolute;inset:40%;color:white;text-align:center}
+.zone-badge{width:clamp(55px,15vw,180px)}
+.brand h1{margin:0}
+#atmosphere{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;max-width:none;fill:none;stroke:none;overflow:hidden}
+#world #world-bridges{overflow:hidden}#world .tile.future{filter:drop-shadow(0 18px 24px #35204b33)}
+#world-bridge-art{display:none}
+#world-background{position:absolute;max-width:none;object-fit:fill;pointer-events:none}#world-bridges{position:absolute;max-width:none;overflow:visible;pointer-events:none;stroke:none;fill:none;flex-shrink:initial}.tile{mask-image:none;filter:drop-shadow(0 18px 24px #35204b33);transform-origin:center}.tile.future{filter:saturate(.9) brightness(.94) drop-shadow(0 18px 24px #35204b33)}
+.overview-hint{left:27px;right:auto;top:auto;bottom:87px;text-align:left}.overview-hint h2,.overview-hint p{display:none}.overview-hint .eyebrow{font-size:9px;color:#fff3e8;text-shadow:0 1px 5px #33224e}.overview-mode .drag-hint{display:none}.overview-mode .zone-badge{background:#fffcf1e0;border-color:#fff8;box-shadow:0 3px 15px #37214b33;padding:8px 12px;max-width:172px}.overview-mode .zone-badge strong{font-size:13px}.overview-mode .zone-badge span{font-size:9px}
+@media(min-width:651px) and (max-width:850px){.dock{bottom:82px}.unit-card,.resume{bottom:145px}.drag-hint{bottom:137px}.zone-nav{left:20px;right:auto;transform:none}.toast{bottom:146px}}
+@keyframes breathe{50%{transform:scale(1.08);opacity:.25}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(min-width:1500px){.zone-tab:not([aria-current=true]) span{display:block}.zone-nav{left:auto;right:26px;transform:none}.unit-card{bottom:105px;width:320px}.unit-card h2{font-size:33px}}
+@media(max-width:1050px){.zone-nav{left:auto;right:20px;transform:none}.unit-card{right:20px;bottom:93px;width:265px;padding:18px}.zone-tab{padding:7px 9px}.zone-tab span{max-width:145px;overflow:hidden;text-overflow:ellipsis}.dock{left:20px}.location{left:20px}.quest{right:20px;max-width:240px;font-size:11px}.drag-hint{left:20px}}
+@media(max-width:650px){.topbar{height:66px;padding:0 17px;gap:8px}.brand{gap:9px}.brand-mark{width:32px;height:32px;outline-offset:2px}.brand-mark svg{width:24px;height:24px}.brand h1{font-size:18px;letter-spacing:-.6px}.brand div>span{font-size:8px;letter-spacing:1px}.brand div>span i,.brand div>span i+span{display:none}.header-actions{gap:11px}.total{font-size:9px;padding-bottom:6px}.total strong{font-size:13px}.avatar{display:none}.stage{height:calc(100dvh - 66px)}.location{left:14px;top:14px;padding:11px 13px;min-width:165px;max-width:66%}.location h2{font-size:17px}.location .eyebrow{font-size:8px}.location>span:last-child{font-size:10px}.quest{top:17px;right:14px;padding:9px;border-radius:50%}.quest>span{display:none}.quest svg{width:20px;height:20px}.edge-nav{width:29px;height:50px;top:44%}.edge-nav.prev{left:7px}.edge-nav.next{right:7px}.unit-card{left:14px;right:14px;bottom:118px;width:auto;padding:16px 18px;max-width:400px}.unit-card h2{font-size:25px;margin:5px 0}.unit-card p{font-size:11px;margin:6px 0 10px}.unit-card .primary{min-height:39px;padding:8px}.lesson-progress{margin-bottom:10px}.zone-nav{left:14px;right:14px;bottom:14px;justify-content:space-between;padding:5px;gap:0;border-radius:11px}.zone-tab{padding:6px;min-width:31px;min-height:30px;gap:5px}.zone-tab span{max-width:122px;font-size:9px}.zone-tab b{width:19px;height:19px}.dock{bottom:66px;left:50%;transform:translateX(-50%);border-radius:9px;padding:2px 5px;white-space:nowrap}.dock button{height:31px;min-width:30px}.dock output{min-width:37px}.dock i{margin:0 5px}.drag-hint{bottom:109px;left:14px;font-size:9px}.card-is-open .drag-hint{display:none}.resume{right:14px;bottom:118px;font-size:11px}.toast{bottom:123px;font-size:11px}.pin{transform:translate(-50%,-100%) scale(.88);transform-origin:bottom center}.overview-hint{top:16%}.overview-hint h2{font-size:27px}.overview-hint .eyebrow{font-size:8px}.zone-badge{max-width:100px;padding:7px 9px}.zone-badge strong{font-size:10px}.zone-badge span{font-size:8px}.dialog{padding:27px 23px}.dialog>h2{font-size:27px}}
+
+</style>
+<style>
+/* Existing ELand brand assets; no generated substitute wordmark. */
+@font-face{font-family:Nunito;font-style:normal;font-weight:400;font-display:swap;src:url('../assets/a5906e15ceb68f73d3b2c207.woff2')}
+@font-face{font-family:Nunito;font-style:normal;font-weight:400;font-display:swap;src:url('../assets/2a755616268a9285541121f1.woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
+@font-face{font-family:Nunito;font-style:normal;font-weight:600;font-display:swap;src:url('../assets/45f437de32ff5973eb5616b4.woff2')}
+@font-face{font-family:Nunito;font-style:normal;font-weight:600;font-display:swap;src:url('../assets/cf95b95d712b0185f0e61550.woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
+@font-face{font-family:Nunito;font-style:normal;font-weight:800;font-display:swap;src:url('../assets/2363d3ed037283ebb961e8c4.woff2')}
+@font-face{font-family:Nunito;font-style:normal;font-weight:800;font-display:swap;src:url('../assets/fac6740eb7a0d5627c287a82.woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
+:root{--eland-purple:#5038BC;--eland-lavender:#EAE4FA;--eland-lime:#D9EF82}
+body,.brand h1,.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.dialog>h2{font-family:Nunito,'Segoe UI',sans-serif}
+.location h2,.unit-card h2,.overview-hint h2,.zone-badge strong,.dialog>h2{font-weight:800}
+.brand{gap:0}.brand h1{margin:0;line-height:1}.brand-logo{display:block;width:148px;height:auto;max-width:none;object-fit:contain}
+.topbar{color:var(--eland-purple)}.topbar .total-track{background:var(--eland-lavender)}.topbar .total-track i{background:var(--eland-purple)}.topbar .avatar{background:var(--eland-lavender);color:var(--eland-purple);border-color:var(--eland-lavender)}
+@media(max-width:650px){.brand-logo{width:116px}}
+
+/* Map banner: brand, whole journey, learner account. */
+.topbar{gap:16px}.banner-start{display:flex;align-items:center;gap:28px;min-width:0}.topbar .brand-logo{width:104px}.journey-button{min-height:42px;padding:9px 17px;border:1px solid #ded5f5;border-radius:12px;background:#f4f0fd;color:var(--eland-purple);font-size:14px;font-weight:800;line-height:1.25}.journey-button:hover{background:var(--eland-lavender)}.account{position:relative;flex-shrink:0}.account-trigger{display:flex;align-items:center;justify-content:center;width:56px;height:56px;min-height:56px;padding:6px;border:1px solid #ded5f5;border-radius:50%;background:var(--eland-lavender);color:var(--eland-purple);font-size:12px;font-weight:800}.account-trigger span{max-width:100%;white-space:normal;overflow-wrap:anywhere;line-height:1.2;text-align:center}.account-menu{position:absolute;right:0;top:calc(100% + 10px);width:170px;padding:6px;background:#fffcf6;border:1px solid #e3daf6;border-radius:14px;box-shadow:0 10px 32px #34235b26}.account-menu a,.account-menu button{display:block;width:100%;padding:11px 13px;border:0;border-radius:9px;background:transparent;color:var(--eland-purple);font:800 14px Nunito,'Segoe UI',sans-serif;text-align:left;text-decoration:none;cursor:pointer}.account-menu a:hover,.account-menu button:hover{background:#f1ecfc}.topbar button:focus-visible,.account-menu a:focus-visible{outline:3px solid var(--eland-purple);outline-offset:3px}.dock .map-info{font-size:15px;font-weight:800}
+@media(max-width:650px){.topbar{padding:0 12px;gap:8px}.banner-start{gap:10px}.topbar .brand-logo{width:76px}.journey-button{max-width:132px;min-height:40px;padding:7px 10px;font-size:11px}.account-trigger{width:44px;height:44px;min-height:44px;padding:4px;font-size:10px}}
+@media(max-width:360px){.topbar{padding:0 10px}.banner-start{gap:8px}.topbar .brand-logo{width:65px}.journey-button{max-width:116px}}
+
+/* Round Unit button with a separate, always-visible name and lesson count. */
+.pin{display:block;width:44px;max-width:none;height:44px;min-height:44px;padding:0;border:0;border-radius:50%;background:none;box-shadow:none;filter:drop-shadow(0 2px 3px #17123633);transform:translate(-50%,-100%);text-align:left}
+.pin .pin-disc{position:absolute;top:3px;left:6px;width:32px;height:32px;border:2px solid #fffdf9;font-size:14px}
+.pin.active:before{display:none}
+.pin:after{display:block;top:30px;bottom:auto;left:17px;width:10px;height:10px;border-right:2px solid #fffdf9;border-bottom:2px solid #fffdf9;z-index:0}
+.pin.done svg{width:18px;height:18px}
+.pin.locked .pin-disc{font-size:13px}
+.pin .pin-lock{right:1px;left:auto;bottom:3px;width:13px;height:13px}
+.pin .pin-lock svg{width:8px;height:8px}
+.pin.selected{filter:drop-shadow(0 2px 3px #17123633);border:0;box-shadow:none}
+.pin.selected .pin-disc{outline:2px solid #d9c4ff99;outline-offset:2px}
+.pin-copy{position:absolute;top:50%;left:43px;transform:translateY(-50%);display:flex;flex-direction:column;gap:2px;width:max-content;max-width:150px;padding:5px 7px;border:1px solid #ffffffb3;border-radius:8px;background:#fffdf9;box-shadow:0 2px 6px #211a391a;pointer-events:auto}
+.pin-name{display:block;white-space:normal;overflow-wrap:normal;font-size:11px;font-weight:800;line-height:1.2;color:#30214f}
+.pin-progress{font-size:9px;font-weight:700;line-height:1.1;color:#7259a5;white-space:nowrap}
+.pin.done .pin-progress{color:#27866d}
+.pin.locked .pin-progress{color:#82798e}
+.pin:hover,.pin:focus-visible{z-index:4}
+@media(max-width:650px){.pin{transform:translate(-50%,-100%);transform-origin:bottom center}.pin-copy{max-width:132px}}
+
+/* Unit lesson picker: green completed rows and a selection-dependent CTA. */
+.dialog.unit-lessons{width:min(460px,100%);padding:28px 26px 24px;border-radius:24px;background:#fff}
+.unit-lessons>#dialog-kicker{display:block;text-align:center;color:#7863d0;font-size:10px;letter-spacing:1.2px;font-weight:800;padding:8px 28px 0}
+.unit-lessons>#dialog-title{margin:9px 20px 10px;text-align:center;font-size:24px;line-height:1.25}
+.unit-lessons .unit-lessons-intro{margin:0 0 20px;text-align:center;font-size:12px;line-height:1.6;color:#80758d}
+.unit-lesson-list{display:flex;flex-direction:column;gap:9px}
+.unit-lesson{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;padding:10px 12px;border:2px solid transparent;border-radius:13px;background:#f0edfc;color:#5038bc;text-align:left;transition:border-color .15s,box-shadow .15s}
+.unit-lesson-number{display:grid;place-items:center;flex-shrink:0;width:31px;height:31px;border-radius:10px;background:#6750d5;color:#fff;font-size:14px;font-weight:800}
+.unit-lesson-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.unit-lesson-label{font-size:11px;font-weight:800;line-height:1.1}
+.unit-lesson-name{font-size:13px;font-weight:800;line-height:1.25}
+.unit-lesson.is-complete{background:#e6f5ed;color:#21694e}
+.unit-lesson.is-complete .unit-lesson-number{background:#309d74}
+.unit-lesson-check{display:grid;place-items:center;margin-left:auto;flex-shrink:0;color:#27865f}
+.unit-lesson-check svg{width:21px;height:21px;stroke-width:2.8}
+.unit-lesson[aria-pressed="true"]{border-color:#7155ce;box-shadow:0 0 0 2px #e8e1fa}
+.unit-lesson.is-complete[aria-pressed="true"]{border-color:#309d74;box-shadow:0 0 0 2px #d6eee2}
+.unit-lesson:disabled{opacity:.65}
+.unit-lessons #unit-lesson-action{width:100%;min-height:46px;margin-top:18px;justify-content:center;background:#5942c8;color:#fff;border:0;border-radius:12px;font-weight:800}
+.unit-lessons #unit-lesson-feedback{margin:12px 0 0;text-align:center;color:#665585;font-size:11px}
+.unit-lessons #unit-lesson-feedback:empty{display:none}
+@media(max-width:650px){.dialog.unit-lessons{padding:23px 18px 20px}.unit-lessons>#dialog-title{font-size:22px}.unit-lesson{min-height:55px}}
+@media(prefers-reduced-motion:reduce){.unit-lesson{transition:none}}
+
+</style>
+<style>
+/* Desert artwork; ELand logo, Nunito and brand purple remain consistent. */
+body{background:#b48458}.stage{background:#b48458}.world{width:1px;height:1px;overflow:visible}
+#world-ground{position:absolute;max-width:none;stroke:none;fill:none;pointer-events:none;overflow:hidden}
+#world-districts{position:absolute;max-width:none;stroke:none;fill:none;pointer-events:none;overflow:visible}#world .tile{display:none!important}
+#world .tile,#world .tile.future{filter:none;transform-origin:center}
+.location{max-width:350px}.location h2{font-size:19px}.location .eyebrow{color:#8f612c}
+.quest{background:#4a3027df;border-color:#ffda9555}.quest svg{color:#ffe2a0}
+.pin.active .pin-disc,.pin.active:after{background:#5038BC}.pin.done .pin-disc,.pin.done:after{background:#38846c}
+.primary{background:#5038BC}.total-track{background:#EAE4FA}.total-track i{background:#5038BC}
+.zone-nav{max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:none;white-space:nowrap;right:20px;left:auto;transform:none;background:#4a3027ed}
+.zone-tab{flex-shrink:0}.zone-tab:not([aria-current=true]) span{display:none!important}.zone-tab span{max-width:145px;overflow:hidden;text-overflow:ellipsis}
+.zone-tab[aria-current=true]{color:#5038BC;background:#fff9ef}.zone-badge{border-color:#ebc794;background:#fffaf2ef}
+.overview-mode .zone-badge{background:#fffaf2ed}.overview-hint .eyebrow{color:#fff8e8}.story-emblem{background:#f4e3c3;color:#8f612c}.story-emblem svg{fill:#ffe2a0;stroke:#8f612c}
+.unit-card>.eyebrow{max-width:245px}
+.resume{color:#fff;background:#5038BC;border-color:#c8baf1}.overview-mode .resume{display:flex!important}
+@media(min-width:651px) and (max-width:1100px){.dock{bottom:78px}.drag-hint{bottom:130px}.unit-card,.resume{bottom:135px}.zone-nav{right:20px;bottom:20px}}
+@media(max-width:650px){.zone-nav{left:12px;right:12px;max-width:none;justify-content:space-between}.zone-tab{min-width:28px;padding:5px}.zone-tab span{display:none!important}.zone-tab b{width:20px;height:20px}.location{max-width:76%;min-width:155px}.location h2{font-size:16px}.overview-mode .zone-badge{max-width:112px;width:112px;padding:7px}.overview-mode .zone-badge strong{font-size:10px}}
+
+</style>
+<style>
+/* Centered level, full map artwork and one centered discovery action. */
+.overlay.journey-overlay{padding:32px}
+.journey-overlay .backdrop{background:#21173b52;backdrop-filter:blur(3px)}
+.dialog.journey{display:flex;flex-direction:column;width:min(700px,calc(100vw - 64px));max-height:calc(100dvh - 96px);padding:0;background:#fff;border:1px solid #ffffffb3;border-radius:26px;overflow:hidden;box-shadow:0 28px 90px #1b103d4d,0 8px 24px #1b103d24}
+.dialog.journey>#dialog-kicker{display:none}
+.dialog.journey>#dialog-title{position:relative;flex-shrink:0;margin:0;padding:23px 64px 5px;max-width:none;border:0;background:none;color:#34214f;font-size:24px;font-weight:800;line-height:1.3;letter-spacing:-.5px;text-align:center;box-shadow:none}
+.dialog.journey>#dialog-body{display:flex;flex-direction:column;min-height:0}
+.journey #journey-world{flex-shrink:0;margin:0;padding:0 48px 18px;color:#7c6b8b;font-size:15px;font-weight:700;line-height:1.4;text-align:center}
+.journey .dialog-close{top:20px;right:20px;z-index:4;width:34px;height:34px;border:1px solid #eae3f6;background:#f5f1fc;color:#432d71}
+.journey .dialog-close:hover{background:#ece5f8}
+.journey-carousel{position:relative;flex:0 1 auto;height:clamp(220px,34dvh,300px);min-height:0}
+.journey-picture{position:relative;height:100%;min-width:0;overflow:hidden;background:#e8e1f4;isolation:isolate}
+.journey-picture img{display:block;width:100%;height:100%;user-select:none}
+.journey-picture .journey-art-backdrop{position:absolute;inset:0;object-fit:cover;filter:blur(20px);transform:scale(1.15);opacity:.78;z-index:-1}
+.journey-picture #journey-image{position:relative;object-fit:contain;z-index:0}
+.journey-picture-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#25134412 0,transparent 29%,transparent 78%,#2a174713 100%);z-index:1}
+.journey-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;display:grid;place-items:center;width:40px;height:40px;border:1px solid #ffffffb8;border-radius:50%;background:#fffffff0;color:#5038bc;box-shadow:0 4px 16px #2314431f;backdrop-filter:blur(10px);transition:background .15s,box-shadow .15s}
+#journey-previous{left:18px}#journey-next{right:18px}
+.journey-arrow:hover{background:#fff;box-shadow:0 5px 20px #23144330}.journey-arrow svg{width:18px;height:18px}
+#journey-previous svg{transform:rotate(180deg)}
+.journey-summary{display:flex;flex-shrink:0;align-items:center;justify-content:center;padding:25px 24px 29px}
+.journey #journey-explore{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;width:240px;max-width:100%;min-height:48px;margin:0 auto;padding:9px 44px;border:1px solid #5135bd;border-radius:13px;background:linear-gradient(135deg,#6544d5,#5038bc);box-shadow:0 5px 0 #3e2993,0 8px 18px #5038bc24;font-size:14px;font-weight:800;transition:background .15s,box-shadow .15s,transform .15s}
+.journey #journey-explore:hover{background:linear-gradient(135deg,#704ee3,#593fca);box-shadow:0 5px 0 #3e2993,0 10px 24px #5038bc35;transform:translateY(-1px)}
+.journey #journey-explore:active{transform:translateY(2px);box-shadow:0 2px 0 #3e2993,0 5px 12px #5038bc24}
+.journey-cta-arrow{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:29px;height:29px;flex-shrink:0;border:1px solid #ffffff1f;border-radius:9px;background:#ffffff15}
+.journey-cta-arrow svg{width:17px;height:17px}
+@media(max-width:650px){
+ .overlay.journey-overlay{padding:16px}.dialog.journey{width:calc(100vw - 32px);max-height:calc(100dvh - 96px);border-radius:22px}
+ .dialog.journey>#dialog-title{padding:20px 48px 5px;font-size:20px;letter-spacing:-.3px}
+ .journey #journey-world{padding:0 40px 15px;font-size:14px}
+ .journey .dialog-close{top:16px;right:14px;width:30px;height:30px}
+ .journey-carousel{height:clamp(205px,32dvh,270px)}.journey-arrow{width:34px;height:34px}#journey-previous{left:11px}#journey-next{right:11px}
+ .journey-summary{padding:22px 18px 26px}.journey #journey-explore{width:min(260px,100%);min-height:46px;font-size:13px}
+}
+@media(max-height:560px){.dialog.journey{max-height:calc(100dvh - 48px)}.dialog.journey>#dialog-title{padding-top:17px;padding-bottom:4px;font-size:20px}.journey #journey-world{padding-bottom:12px;font-size:14px}.journey .dialog-close{top:13px}.journey-carousel{height:160px}.journey-summary{padding-top:18px;padding-bottom:22px}.journey #journey-explore{min-height:43px}}
+@media(prefers-reduced-motion:reduce){.journey-arrow,.journey #journey-explore{transition:none}}
+
+</style>
+</head>
+<body data-onboarding-url="../index.html">
+<svg class="icons" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="star" viewBox="0 0 24 24"><path d="m12 2 2.5 6.8 7.3.3-5.7 4.6 1.9 7.1-6-4-6 4 1.9-7.1L2.2 9.1l7.3-.3Z"/></symbol>
+<symbol id="target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></symbol>
+<symbol id="fit" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+</defs></svg>
+<header class="topbar"><div class="banner-start"><div class="brand"><h1><img class="brand-logo" data-brand-logo="eland-logo" src="../assets/f38871835347383c43292fa0.png" alt="ELand" width="2164" height="727"></h1></div><button id="journey-open" class="journey-button" type="button">Xem toàn bộ hành trình</button></div><div id="account" class="account"><button id="account-open" class="account-trigger" type="button" aria-expanded="false" aria-controls="account-menu"><span id="learner-name">Bạn nhỏ</span></button><nav id="account-menu" class="account-menu" aria-label="Tài khoản" hidden><a id="account-profile" href="./10-tien-do.html?map=pre-a2">Hồ sơ</a><button id="account-logout" type="button">Đăng xuất</button></nav></div></header>
+<main id="stage" class="stage" tabindex="0" role="region" aria-label="Bản đồ 20 Unit, kéo để khám phá" aria-describedby="keyboard-help">
+<p class="sr-only" id="keyboard-help">Kéo để di chuyển. Dùng hai ngón tay để thu phóng. Phím mũi tên di chuyển, cộng trừ thu phóng, Home xem toàn cảnh, End về Unit đang học. Tab để chọn Unit; Escape đóng bảng.</p>
+<svg id="atmosphere" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+<div id="world" class="world" aria-hidden="true">
+<img id="world-background" src="../assets/4f7bb001ff9a37bd1c8ba484.webp" alt="" hidden>
+<svg id="world-ground" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+<svg id="world-districts" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+<img class="tile" data-image="dunes" src="../assets/408e1413b6c09cc55308edc8.webp" width="1672" height="941" alt="" draggable="false">
+<img class="tile" data-image="canyon" src="../assets/2c625e6d2f7310c54ab597c2.webp" width="1672" height="941" alt="" draggable="false">
+<img class="tile" data-image="geode" src="../assets/284643e910fa366fbbb85700.webp" width="1672" height="941" alt="" draggable="false">
+<img class="tile" data-image="salt" src="../assets/5278f8f305eadf6b0c299f82.webp" width="1672" height="941" alt="" draggable="false">
+<img class="tile" data-image="summit" src="../assets/0aa0e2a96240bd306926d20c.png" width="1672" height="941" alt="" draggable="false">
+<svg id="world-bridges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+<img class="junction-source" data-junction="4-5" src="../assets/58b7ef39bb927c0dd65f64ee.webp" alt="" hidden>
+<img class="junction-source" data-junction="8-9" src="../assets/7ae7265c9c631c3327511d03.webp" alt="" hidden>
+<img class="junction-source" data-junction="12-13" src="../assets/5c7a4b7a0e4c408c19421686.webp" alt="" hidden>
+<img class="junction-source" data-junction="16-17" src="../assets/5e9c9a65c148604cefed734d.webp" alt="" hidden>
+</div>
+<div id="pins" class="pins"></div><div id="overview-labels" class="overview-labels"></div>
+<div class="location ui"><span id="location-status" class="eyebrow">ĐANG KHÁM PHÁ</span><h2 id="location-name">Biển Cát Thủy Tinh</h2><span id="location-count">Unit 1–4</span></div>
+<button id="story-open" class="quest ui" type="button"><svg><use href="#star"/></svg><span>Dấu tích vương quốc thất lạc</span></button>
+<div id="overview-hint" class="overview-hint ui" hidden><span class="eyebrow">NĂM MIỀN KHÁM PHÁ</span><h2>Hành trình của em</h2><p>Chọn một khu để đến gần hơn.</p></div>
+<button id="previous-zone" class="edge-nav prev ui" type="button" aria-label="Đến khu trước"><svg><use href="#chevron"/></svg></button>
+<button id="next-zone" class="edge-nav next ui" type="button" aria-label="Đến khu tiếp theo"><svg><use href="#chevron"/></svg></button>
+<aside id="unit-card" class="unit-card ui" aria-label="Unit đã chọn"><button id="card-close" class="card-close" type="button" aria-label="Thu gọn thẻ Unit"><svg><use href="#close"/></svg></button><span id="card-kicker" class="eyebrow"></span><h2 id="card-title"></h2><p id="card-copy"></p><div id="lesson-progress" class="lesson-progress" aria-label="Tiến độ bài học"></div><button id="card-action" class="primary" type="button"></button></aside>
+<button id="resume" type="button" class="resume ui" hidden><svg><use href="#target"/></svg><span>Về bài đang học</span></button>
+<nav id="zone-nav" class="zone-nav ui" aria-label="Các khu trong Vương quốc Núi Pha Lê"></nav>
+<nav class="dock ui" aria-label="Điều khiển bản đồ"><button id="zoom-out" type="button" aria-label="Thu nhỏ"><svg><use href="#minus"/></svg></button><output id="zoom-value">100%</output><button id="zoom-in" type="button" aria-label="Phóng to"><svg><use href="#plus"/></svg></button><i></i><button id="fit-map" type="button"><svg><use href="#fit"/></svg><span>Toàn cảnh</span></button><i></i><button id="locate-current" type="button" aria-label="Về Unit đang học"><svg><use href="#target"/></svg></button><i></i><button id="about-open" class="map-info" type="button" aria-label="Cách dùng bản đồ">i</button></nav>
+<span id="drag-hint" class="drag-hint">Kéo để khám phá <span>·</span> Cuộn để thu phóng</span>
+<div id="toast" class="toast ui" role="status" aria-live="polite" hidden></div>
+</main>
+<div id="overlay" class="overlay" hidden><div id="backdrop" class="backdrop"></div><section id="dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" tabindex="-1"><button id="dialog-close" type="button" class="dialog-close" aria-label="Đóng"><svg><use href="#close"/></svg></button><span id="dialog-kicker" class="eyebrow"></span><h2 id="dialog-title"></h2><div id="dialog-body"></div></section></div>
+<script>
+(function(root){
+  'use strict';
+  const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
+  const number=(n,fallback)=>Number.isFinite(Number(n))?Number(n):fallback;
+  function createModel(){
+    const names=['Biển Cát Thủy Tinh','Khe Đá Đổi Màu','Lòng Núi Pha Lê','Hồ Gương Muối','Đỉnh Mặt Trời'];
+    const ids=['dunes','canyon','geode','salt','summit'];
+    const hints=['Thành phố trong gương đang ở đâu?','Ai đã để lại những dấu tích khổng lồ?','Bí mật nào nằm sâu trong lòng núi?','Cánh cửa dưới hồ dẫn tới đâu?','Lần theo dấu mặt trời tới đỉnh núi.'];
+    const anchors=[
+      [[315,753],[590,600],[1185,472],[1393,292]],
+      [[340,778],[777,552],[1170,400],[1560,235]],
+      [[233,725],[615,550],[1035,535],[1485,273]],
+      [[243,778],[670,496],[1140,425],[1484,219]],
+      [[295,780],[909,490],[1200,490],[1510,183]]
+    ];
+    const entry=[null,[15,850],[15,805],[15,850],[220,890]];
+    const exit=[[1650,445],[1650,195],[1650,280],[1650,80],null];
+    const layout=[[0,1400,false],[1600,850,false],[3200,300,false],[3500,-600,true],[1600,-1400,true]];
+    const districts=[];
+    for(let i=0;i<5;i++){
+      districts.push({id:ids[i],index:i,name:names[i],hint:hints[i],x:layout[i][0],y:layout[i][1],flip:layout[i][2],label:[layout[i][0]+836,layout[i][1]+30],width:1672,height:941,entry:entry[i],exit:exit[i],first:i*4+1,last:i*4+4,image:'assets/'+ids[i]+'-cutout.png'});
+    }
+    const units=districts.flatMap((d,i)=>anchors[i].map((p,j)=>({id:i*4+j+1,title:'Unit '+(i*4+j+1),hasTitle:false,district:i,x:d.x+(d.flip?1672-p[0]:p[0]),y:d.y+p[1]})));
+    const bends=[[[1700,1770]],[[3280,1070]],[[5130,610],[5400,440],[5320,270]],[[3340,-430],[3200,-470]]];
+    const connections=districts.slice(0,4).map((d,i)=>{
+      const points=[dock(d,d.exit),...bends[i],dock(districts[i+1],districts[i+1].entry)];
+      const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),pad=i===3?280:280;
+      const x=Math.min(...xs)-pad,y=Math.min(...ys)-pad;
+      return {from:i,to:i+1,id:d.last+'-'+districts[i+1].first,patchRect:[x,y,Math.max(...xs)-x+pad,Math.max(...ys)-y+pad],points,stairs:true};
+    });
+    return {districts,units,connections,bounds:{x:-140,y:-1520,width:5800,height:4100}};
+  }
+  function createState(saved={}){
+    const s={completed:clamp(Math.floor(number(saved.completed,0)),0,20),selected:2};
+    Object.defineProperty(s,'active',{get:()=>Math.min(20,s.completed+1)});
+    s.selected=clamp(Math.floor(number(saved.selected,s.active)),1,20);
+    if(!Number.isFinite(Number(saved.selected))||Number(saved.selected)<1||Number(saved.selected)>20)s.selected=s.active;
+    const valid=id=>Number.isInteger(id)&&id>=1&&id<=20;
+    s.status=id=>!valid(id)?'locked':id<=s.completed?'done':id===s.active?'active':'locked';
+    s.launch=id=>!valid(id)||s.status(id)==='locked'?null:{unitId:id,level:'Pre A2',mode:s.status(id)==='done'?'review':'continue',prototype:true};
+    return s;
+  }
+  function makeCamera(width,height,bounds){
+    const c={width:Math.max(1,width),height:Math.max(1,height),bounds,x:0,y:0,scale:.7,max:1.8};
+    Object.defineProperty(c,'min',{get:()=>Math.max(.001,Math.min(Math.max(1,c.width-24)/bounds.width,Math.max(1,c.height-24)/bounds.height))});
+    c.constrain=()=>{
+      c.scale=clamp(number(c.scale,c.min),c.min,c.max);
+      const scaledW=bounds.width*c.scale,scaledH=bounds.height*c.scale;
+      const limit=(v,lo,size,span)=>span<=size?(size-span)/2-lo*c.scale:clamp(v,size-(lo*c.scale+span)-60,-lo*c.scale+60);
+      c.x=limit(c.x,bounds.x,c.width,scaledW);c.y=limit(c.y,bounds.y,c.height,scaledH);return c;
+    };
+    c.toWorld=(x,y)=>({x:(x-c.x)/c.scale,y:(y-c.y)/c.scale});
+    c.focus=(x,y,scale)=>{c.scale=clamp(number(scale,.7),c.min,c.max);c.x=c.width*.5-x*c.scale;c.y=c.height*.5-y*c.scale;return c.constrain();};
+    c.fitWorld=()=>c.focus(bounds.x+bounds.width/2,bounds.y+bounds.height/2,c.min);
+    c.zoomAt=(scale,x,y)=>{const w=c.toWorld(x,y);c.scale=clamp(number(scale,scale===Infinity?c.max:c.min),c.min,c.max);c.x=x-w.x*c.scale;c.y=y-w.y*c.scale;return c.constrain();};
+    c.pan=(dx,dy)=>{c.x+=number(dx,0);c.y+=number(dy,0);return c.constrain();};
+    c.resize=(w,h)=>{const p=c.toWorld(c.width/2,c.height/2),wasFit=Math.abs(c.scale-c.min)<.001;c.width=Math.max(1,w);c.height=Math.max(1,h);return wasFit?c.fitWorld():c.focus(p.x,p.y,c.scale);};
+    return c.constrain();
+  }
+  const dock=(d,p)=>[d.x+(d.flip?d.width-p[0]:p[0]),d.y+p[1]];
+  const API={createModel,createState,makeCamera,clamp,dock};
+  if(typeof module!=='undefined'&&module.exports)module.exports=API;else root.WonderlandModel=API;
+})(typeof window==='undefined'?globalThis:window);
+
+</script><script>
+(function(root){
+ 'use strict';
+ const path=pts=>pts.map((p,i)=>(i?'L':'M')+p.join(' ')).join(' ');
+ function renderDistricts(districts,uris){return districts.map(d=>`<g transform="translate(${d.flip?d.x+d.width:d.x} ${d.y})${d.flip?' scale(-1 1)':''}"><defs><linearGradient id="edge-x-${d.id}"><stop offset="0" stop-color="black"/><stop offset=".055" stop-color="white"/><stop offset=".945" stop-color="white"/><stop offset="1" stop-color="black"/></linearGradient><linearGradient id="edge-y-${d.id}" x2="0" y2="1"><stop offset="0" stop-color="black"/><stop offset=".09" stop-color="white"/><stop offset=".91" stop-color="white"/><stop offset="1" stop-color="black"/></linearGradient><mask id="soft-x-${d.id}"><rect width="1672" height="941" fill="url(#edge-x-${d.id})"/></mask><mask id="soft-y-${d.id}"><rect width="1672" height="941" fill="url(#edge-y-${d.id})"/></mask></defs><g mask="url(#soft-x-${d.id})"><g mask="url(#soft-y-${d.id})"><image data-district="${d.id}" width="1672" height="941" href="${uris[d.id]}"/></g></g></g>`).join('');}
+ function renderGround(b,uri){return `<defs><filter id="ground-blend"><feGaussianBlur stdDeviation="130"/></filter><mask id="ground-mask" maskUnits="userSpaceOnUse" x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}"><rect x="${b.x+100}" y="${b.y+100}" width="${b.width-200}" height="${b.height-200}" fill="white" filter="url(#ground-blend)"/></mask></defs><image href="${uri}" x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" preserveAspectRatio="xMidYMid slice" mask="url(#ground-mask)"/>`;}
+ // Physical paving guide for imagegen and a fallback during asset preparation. Not a glowing route overlay.
+ function renderGuides(edges){return edges.map(e=>{
+  const p=path(e.points);return `<g data-connection="${e.id}"><path d="${p}" fill="none" stroke="#9c623b" stroke-width="155" stroke-linecap="round" stroke-linejoin="round"/><path d="${p}" fill="none" stroke="#b97c46" stroke-width="100" stroke-linecap="round" stroke-linejoin="round"/><path d="${p}" fill="none" stroke="#f7d797" stroke-width="82" stroke-linecap="round" stroke-linejoin="round"/><path d="${p}" fill="none" stroke="#ba8a50" stroke-width="82" stroke-dasharray="2 18" stroke-linejoin="round"/></g>`;
+ }).join('');}
+ function renderJunctionPatches(edges,uris){return edges.map(e=>{
+  if(!uris[e.id])return renderGuides([e]);
+  const [x,y,w,h]=e.patchRect;
+  return `<defs><filter id="feather-${e.id}" filterUnits="userSpaceOnUse" x="${x}" y="${y}" width="${w}" height="${h}"><feGaussianBlur stdDeviation="13"/></filter><mask id="mask-${e.id}" maskUnits="userSpaceOnUse" x="${x}" y="${y}" width="${w}" height="${h}"><g filter="url(#feather-${e.id})"><path d="${path(e.points)}" fill="none" stroke="white" stroke-width="300" stroke-linecap="round" stroke-linejoin="round"/></g></mask></defs><g class="contextual-junction" data-connection="${e.id}"><image href="${uris[e.id]}" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="none" mask="url(#mask-${e.id})"/></g>`;
+ }).join('');}
+ root.WonderlandLandscape={renderGround,renderDistricts,renderGuides,renderJunctionPatches};
+})(typeof window==='undefined'?globalThis:window);
+
+</script><script>
+(function(root){
+ 'use strict';
+ function getSlices(c,b){
+  const p=(id,dx,dy,dw,dh,source,flipX=false,flipY=false)=>({id,x:dx,y:dy,width:dw,height:dh,source,flipX,flipY});
+  return [
+   p('cover',0,0,c.width,c.height,[0,0,1672,941])
+  ];
+ }
+ function markup(c,b,uri){
+  return `<defs><image id="sky-texture" href="${uri}" width="1672" height="941" preserveAspectRatio="none"/></defs>`+getSlices(c,b).map(p=>{
+   return `<svg data-sky-slice="${p.id}" x="${p.x}" y="${p.y}" width="${p.width}" height="${p.height}" style="width:${p.width}px;height:${p.height}px" viewBox="${p.source.join(' ')}" preserveAspectRatio="xMidYMid slice" overflow="hidden"><use href="#sky-texture"/></svg>`;
+  }).join('');
+ }
+ function update(nodes,c,b){
+  const pieces=getSlices(c,b);
+  nodes.forEach((el,i)=>{const p=pieces[i];
+   el.setAttribute('x',p.x);el.setAttribute('y',p.y);el.setAttribute('width',p.width);el.setAttribute('height',p.height);
+   el.style.width=p.width+'px';el.style.height=p.height+'px';
+  });
+ }
+ const API={getSlices,markup,update};
+ if(typeof module!=='undefined'&&module.exports)module.exports=API;else root.WonderlandAtmosphere=API;
+})(typeof window==='undefined'?globalThis:window);
+
+</script><script>
+(()=>{
+  'use strict';
+  // Vietnamese names describe the product journey; they are not certification claims.
+  const catalog=[
+    {id:'pre-a1',level:'Pre A1',name:'Cơ bản',world:'Học viện Ánh Sao',preview:'../assets/332f15d0e32059ea7824ee6c.webp',file:'06d-map-noi-cau-20-unit.html'},
+    {id:'a1',level:'A1',name:'Nền tảng',world:'Rừng Thì Thầm',preview:'../assets/6a442fae08bcb59130230ed0.webp',file:'07-map-a1-rung-thi-tham-30-unit.html'},
+    {id:'pre-a2',level:'Pre A2',name:'Mở rộng',world:'Vương quốc Núi Pha Lê',preview:'../assets/7d27798280c15c83209a337c.webp',file:'08-map-prea2-vuong-quoc-pha-le-20-unit.html'},
+    {id:'a2',level:'A2',name:'Tự tin',world:'Thành phố Phiêu Lưu',preview:'../assets/d07870a1dd560beb6b6e40a4.webp',file:'09-map-a2-thanh-pho-phieu-luu-30-unit.html'}
+  ];
+  const $=s=>document.querySelector(s);
+  let options,index=0;
+  function active(){return options&&!$('#overlay').hidden&&$('#dialog').classList.contains('journey');}
+  function update(next){
+    index=(next+catalog.length)%catalog.length;const item=catalog[index];
+    $('#dialog-title').textContent=item.level+' · '+item.name;
+    $('#journey-world').textContent=item.world;
+    $('#journey-image').setAttribute('src',item.preview);
+    $('#journey-image-backdrop').setAttribute('src',item.preview);
+    $('#journey-image').setAttribute('alt','Toàn cảnh '+item.world);
+    $('#journey-announcement').textContent=item.level+' · '+item.name+' — '+item.world;
+  }
+  function explore(){
+    const item=catalog[index],flow=options.flow==='signup'?'signup':'survey';
+    const proceed=window.dispatchEvent(new CustomEvent('wonderland:open-map',{cancelable:true,detail:{level:item.level,levelId:item.id,mode:'explore',flow,prototype:true}}));
+    if(proceed===false)return;
+    if(item.id===options.current){options.closeDialog();options.fitCurrent();return;}
+    window.location.assign(item.file+'?flow='+flow+'#toan-canh');
+  }
+  function open(config){
+    options=config;index=Math.max(0,catalog.findIndex(item=>item.id===config.current));
+    config.openDialog('journey','','',`<p id="journey-world"></p><div class="journey-carousel" role="group" aria-roledescription="carousel" aria-label="Bốn thế giới tiếng Anh">
+  <div class="journey-picture"><img id="journey-image-backdrop" class="journey-art-backdrop" alt="" aria-hidden="true" draggable="false"><img id="journey-image" width="1024" height="768" alt="" draggable="false"><div class="journey-picture-shade" aria-hidden="true"></div></div>
+  <button id="journey-previous" type="button" class="journey-arrow" aria-label="Xem level trước"><svg aria-hidden="true"><use href="#chevron"/></svg></button>
+  <button id="journey-next" type="button" class="journey-arrow" aria-label="Xem level tiếp theo"><svg aria-hidden="true"><use href="#chevron"/></svg></button>
+</div>
+<div class="journey-summary"><button id="journey-explore" type="button" class="primary">Khám phá ngay <span class="journey-cta-arrow" aria-hidden="true"><svg><use href="#arrow"/></svg></span></button></div>
+<p id="journey-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>`);
+    $('#journey-previous').addEventListener('click',()=>update(index-1));
+    $('#journey-next').addEventListener('click',()=>update(index+1));
+    $('#journey-explore').addEventListener('click',explore);
+    update(index);
+  }
+  document.addEventListener('keydown',e=>{if(!active()||e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();update(index+(e.key==='ArrowLeft'?-1:1));}});
+  window.WonderlandJourney={open};
+})();
+
+</script><script>
+(()=>{
+  'use strict';
+  const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
+  const {createModel,createState,makeCamera,clamp}=window.WonderlandModel;
+  const model=createModel(),stage=$('#stage'),world=$('#world'),storageKey='eland-prea2-map-20-unit-v1';
+  let saved={};try{const value=JSON.parse(localStorage.getItem(storageKey)||'{}');if(value&&typeof value==='object')saved=value;}catch{}
+  const state=createState(saved),rect=stage.getBoundingClientRect(),camera=makeCamera(rect.width,rect.height,model.bounds);
+  let zone=Math.floor((state.active-1)/4),overview=false,cardOpen=true,suppressUntil=0,toastTimer,restoreFocus=null;
+  const pointers=new Map();let gesture=null;
+  const icon=id=>`<svg aria-hidden="true"><use href="#${id}"/></svg>`;
+  const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const save=()=>{try{localStorage.setItem(storageKey,JSON.stringify({completed:state.completed,selected:state.selected}));}catch{}};
+  const unit=id=>model.units[clamp(Number(id),1,20)-1];
+  const normalScale=()=>camera.width<650?Math.min(.85,Math.max(.58,camera.height/1000)):Math.min(1.12,camera.width*.96/1672,camera.height*.96/941);
+  function toast(copy){$('#toast').textContent=copy;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{$('#toast').hidden=true},2800);}
+  model.districts.forEach(d=>{
+    const img=$(`[data-image="${d.id}"]`);img.style.left=d.x+'px';img.style.top=d.y+'px';img.style.transform=d.flip?'scaleX(-1)':'none';
+    img.addEventListener('error',()=>toast('Không tải được một phần bản đồ. Hãy tải lại trang.'));
+    const tab=document.createElement('button');tab.type='button';tab.className='zone-tab';tab.dataset.zone=d.index;tab.setAttribute('aria-label',d.name+`, Unit ${d.first}–${d.last}`);tab.innerHTML=`<b>${d.index+1}</b><span>${escape(d.name)}</span>`;$('#zone-nav').append(tab);
+    const badge=document.createElement('button');badge.type='button';badge.className='zone-badge';badge.dataset.zone=d.index;badge.innerHTML=`<strong>${escape(d.name)}</strong><span>Unit ${d.first}–${d.last}</span>`;$('#overview-labels').append(badge);
+  });
+  const background=$('#world-background'),bridges=$('#world-bridges'),ground=$('#world-ground');
+  const bounds=model.bounds;ground.setAttribute('viewBox',`${bounds.x} ${bounds.y} ${bounds.width} ${bounds.height}`);ground.style.cssText=`left:${bounds.x}px;top:${bounds.y}px;width:${bounds.width}px;height:${bounds.height}px`;ground.innerHTML=window.WonderlandLandscape.renderGround(bounds,background.getAttribute('src'));
+  const districtScene=$('#world-districts');districtScene.setAttribute('viewBox',`${bounds.x} ${bounds.y} ${bounds.width} ${bounds.height}`);districtScene.style.cssText=`left:${bounds.x}px;top:${bounds.y}px;width:${bounds.width}px;height:${bounds.height}px`;
+  districtScene.innerHTML=window.WonderlandLandscape.renderDistricts(model.districts,Object.fromEntries(model.districts.map(d=>[d.id,$(`[data-image="${d.id}"]`).getAttribute('src')])));
+  for(const el of [background,bridges]){el.style.left=model.bounds.x+'px';el.style.top=model.bounds.y+'px';el.style.width=model.bounds.width+'px';el.style.height=model.bounds.height+'px';}
+  bridges.setAttribute('viewBox',`${model.bounds.x} ${model.bounds.y} ${model.bounds.width} ${model.bounds.height}`);
+  bridges.innerHTML=window.WonderlandLandscape.renderJunctionPatches(model.connections,Object.fromEntries($$('.junction-source').map(img=>[img.dataset.junction,img.getAttribute('src')])));
+  const atmosphere=$('#atmosphere');
+  atmosphere.innerHTML=window.WonderlandAtmosphere.markup(camera,model.bounds,background.getAttribute('src'));
+  const skyNodes=Array.from(atmosphere.querySelectorAll('[data-sky-slice]'));
+  model.units.forEach(u=>{
+    const pin=document.createElement('button');pin.type='button';pin.className='pin';pin.dataset.unit=u.id;$('#pins').append(pin);
+  });
+  const pinNodes=$$('.pin'),badgeNodes=$$('.zone-badge'),tabNodes=$$('.zone-tab');
+  const learnedLessons=u=>state.status(u.id)==='done'?4:0;
+  function updateContent(){
+    for(const pin of pinNodes){
+      const u=unit(pin.dataset.unit),status=state.status(u.id);pin.className=`pin ${status}${state.selected===u.id?' selected':''}`;
+      const learned=learnedLessons(u);
+      pin.innerHTML=`<span class="pin-disc">${status==='done'?icon('check'):u.id}</span>${status==='locked'?'<span class="pin-lock">'+icon('lock')+'</span>':''}<span class="pin-copy"><span class="pin-name">${escape(u.title)}</span><span class="pin-progress">${learned}/4 bài</span></span>`;
+      pin.setAttribute('title',u.title+' — '+learned+'/4 bài');
+      pin.setAttribute('aria-label',`Unit ${u.id}: ${u.title}, ${learned}/4 bài, ${status==='done'?'đã hoàn thành':status==='active'?'đang học':'chưa mở'}`);
+      if(status==='active')pin.setAttribute('aria-current','step');else pin.removeAttribute('aria-current');
+    }
+    model.districts.forEach(d=>$(`[data-image="${d.id}"]`).classList.toggle('future',d.first>state.active));
+    updateCard();render();
+  }
+  function updateCard(){
+    const u=unit(state.selected),d=model.districts[u.district],status=state.status(u.id),card=$('#unit-card');
+    card.classList.toggle('locked',status==='locked');
+    $('#card-kicker').textContent=`UNIT ${u.id} · ${d.name}`;
+    $('#card-title').textContent=u.title;
+    $('#card-copy').textContent=status==='locked'?`Hoàn thành Unit ${u.id-1} để mở địa điểm này.`:status==='done'?'Em đã khám phá địa điểm này. Cùng ôn lại nhé!':'Một khám phá mới đang chờ em.';
+    $('#lesson-progress').hidden=true;
+    $('#lesson-progress').innerHTML=Array.from({length:4},(_,i)=>`<i class="${i<3?'filled':''}"></i>`).join('');
+    $('#card-action').innerHTML=status==='locked'?`${icon('target')} Về bài đang học`:status==='done'?`Ôn lại ${icon('arrow')}`:`Học tiếp ${icon('arrow')}`;
+    card.hidden=!cardOpen||overview;
+    stage.classList.toggle('card-is-open',cardOpen&&!overview);
+    $('#resume').hidden=cardOpen&&!overview;
+    $('#resume').innerHTML=`${icon('arrow')}<span>${state.completed===20?'Ôn lại':'Học tiếp'} Unit ${state.active}</span>`;
+  }
+  function setCard(open){cardOpen=open;updateCard();}
+  function inferZone(){const center=camera.toWorld(camera.width/2,camera.height/2);return model.districts.reduce((best,d)=>Math.hypot(center.x-d.x-836,center.y-d.y-470)<Math.hypot(center.x-best.x-836,center.y-best.y-470)?d:best,model.districts[0]).index;}
+  function render(){
+    atmosphere.setAttribute('viewBox',`0 0 ${camera.width} ${camera.height}`);
+    window.WonderlandAtmosphere.update(skyNodes,camera,model.bounds);
+    world.style.transform=`translate(${camera.x}px,${camera.y}px) scale(${camera.scale})`;
+    if(!overview)zone=inferZone();
+    stage.classList.toggle('overview-mode',overview);$('#pins').hidden=overview;$('#overview-labels').hidden=!overview;$('#overview-hint').hidden=!overview;
+    const d=model.districts[zone];$('#location-name').textContent=d.name;
+    $('#location-count').textContent=`Unit ${d.first}–${d.last} · Đã khám phá ${Math.max(0,Math.min(4,state.completed-d.first+1))}/4`;$('#location-status').textContent=d.first>state.active?'VÙNG ĐẤT PHÍA TRƯỚC':'ĐANG KHÁM PHÁ';
+    for(const pin of pinNodes){const u=unit(pin.dataset.unit),x=u.x*camera.scale+camera.x,y=u.y*camera.scale+camera.y;pin.style.left=x+'px';pin.style.top=y+'px';pin.hidden=overview||x<-70||x>camera.width+70||y<0||y>camera.height+70;}
+    for(const badge of badgeNodes){const z=model.districts[Number(badge.dataset.zone)];badge.style.left=(z.label[0]*camera.scale+camera.x)+'px';badge.style.top=(z.label[1]*camera.scale+camera.y)+'px';}
+    for(const tab of tabNodes){const isCurrent=Number(tab.dataset.zone)===zone&&!overview;tab.setAttribute('aria-current',String(isCurrent));}
+    $('#previous-zone').disabled=zone===0;$('#next-zone').disabled=zone===4;
+    $('#zoom-value').textContent=Math.round(camera.scale/normalScale()*100)+'%';
+    $('#zoom-out').disabled=camera.scale<=camera.min+.001;$('#zoom-in').disabled=camera.scale>=camera.max-.001;
+    $('#unit-card').hidden=!cardOpen||overview;$('#resume').hidden=cardOpen&&!overview;stage.classList.toggle('card-is-open',cardOpen&&!overview);
+  }
+  function focusUnit(id){
+    const u=unit(id);overview=false;zone=u.district;
+    camera.focus(u.x,u.y,Math.max(normalScale(),camera.width<650?.7:.8));
+    // Keep the selected destination in the open area above/beside the card.
+    if(camera.width>=650){camera.x-=camera.width*.10;camera.constrain();}else{camera.y-=camera.height*.14;camera.constrain();}
+    render();
+  }
+  function goZone(index){
+    zone=clamp(Number(index),0,4);overview=false;const d=model.districts[zone];
+    state.selected=state.active>=d.first&&state.active<=d.last?state.active:d.first;
+    camera.focus(d.x+836,d.y+470,normalScale());
+    if(camera.width<650){const u=unit(state.selected);camera.focus(u.x,u.y,.7);camera.y-=camera.height*.13;camera.constrain();}
+    cardOpen=true;save();updateContent();
+  }
+  function selectUnit(id,focus=false){if(performance.now()<suppressUntil)return;state.selected=unit(id).id;overview=false;cardOpen=true;save();if(focus)focusUnit(state.selected);updateContent();}
+  function locate(){state.selected=state.active;cardOpen=true;focusUnit(state.active);save();updateContent();}
+  function fit(){overview=true;setCard(false);camera.fitWorld();render();}
+  function zoom(factor,x=camera.width/2,y=camera.height/2){camera.zoomAt(camera.scale*factor,x,y);overview=camera.scale<normalScale()*.48;setCard(false);render();}
+  $('#pins').addEventListener('click',e=>{const p=e.target.closest('[data-unit]');if(p){if(performance.now()<suppressUntil)return;p.focus();selectUnit(p.dataset.unit,true);showUnitLessons();}});
+  $('#zone-nav').addEventListener('click',e=>{const z=e.target.closest('[data-zone]');if(z)goZone(z.dataset.zone);});
+  $('#overview-labels').addEventListener('click',e=>{const z=e.target.closest('[data-zone]');if(z)goZone(z.dataset.zone);});
+  $('#next-zone').addEventListener('click',()=>goZone(zone+1));$('#previous-zone').addEventListener('click',()=>goZone(zone-1));
+  $('#zoom-in').addEventListener('click',()=>zoom(1.25));$('#zoom-out').addEventListener('click',()=>zoom(1/1.25));$('#fit-map').addEventListener('click',fit);$('#locate-current').addEventListener('click',locate);$('#resume').addEventListener('click',()=>launchUnit(state.active));$('#card-close').addEventListener('click',()=>setCard(false));
+  // Account links stay independent from map progress and camera controls.
+  const account=$('#account'),accountButton=$('#account-open'),accountMenu=$('#account-menu');
+  const entryFlow=String(window.location?.search||'').match(/[?&]flow=(survey|signup)(?:&|$)/)?.[1]||'survey';
+  const profileLink=$('#account-profile');profileLink.setAttribute('href',profileLink.getAttribute('href')+'&flow='+entryFlow);
+  if(entryFlow==='survey'){
+    const createAccount=document.createElement('a');
+    createAccount.id='account-create';
+    createAccount.textContent='Tạo tài khoản';
+    const mapKey=new URL(profileLink.href,window.location.href).searchParams.get('map');
+    const signupParams=new URLSearchParams({from:'guest-map',map:mapKey});
+    createAccount.href='../index.html?'+signupParams.toString();
+    $('#account-logout').replaceWith(createAccount);
+  }
+  function closeAccount(restore=false){accountMenu.hidden=true;accountButton.setAttribute('aria-expanded','false');if(restore)accountButton.focus();}
+  accountButton.addEventListener('click',()=>{const open=accountMenu.hidden;accountMenu.hidden=!open;accountButton.setAttribute('aria-expanded',String(open));});
+  document.addEventListener('click',e=>{if(!account.contains(e.target))closeAccount();});
+  account.addEventListener('focusout',e=>{if(!account.contains(e.relatedTarget))closeAccount();});
+  account.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(e.key))e.stopPropagation();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!accountMenu.hidden){e.preventDefault();closeAccount(true);}});
+  $('#account-profile').addEventListener('click',e=>{closeAccount();if(!window.dispatchEvent(new CustomEvent('wonderland:open-profile',{cancelable:true,detail:{prototype:true}})))e.preventDefault();});
+  $('#account-logout')?.addEventListener('click',()=>{closeAccount(true);if(window.dispatchEvent(new CustomEvent('wonderland:logout',{cancelable:true,detail:{prototype:true,flow:entryFlow}}))!==false)window.location.assign(document.body.dataset.onboardingUrl+'?flow='+entryFlow);});
+  $('#journey-open').addEventListener('click',()=>window.WonderlandJourney.open({current:'pre-a2',flow:entryFlow,openDialog,closeDialog,fitCurrent:fit}));
+  function openDialog(kind,title,kicker,body){
+    restoreFocus=document.activeElement;stage.setAttribute('inert','');$('.topbar').setAttribute('inert','');$('#overlay').classList.toggle('journey-overlay',kind==='journey');$('#dialog').className='dialog '+kind;$('#dialog-title').textContent=title;$('#dialog-kicker').textContent=kicker;$('#dialog-body').innerHTML=body;$('#overlay').hidden=false;$('#dialog-close').focus();
+  }
+  function closeDialog(){if($('#overlay').hidden)return;$('#overlay').hidden=true;stage.removeAttribute('inert');$('.topbar').removeAttribute('inert');$('#overlay').classList.remove('journey-overlay');restoreFocus?.focus?.();}
+  $('#dialog-close').addEventListener('click',closeDialog);$('#backdrop').addEventListener('click',closeDialog);
+  $('#about-open').addEventListener('click',()=>openDialog('about','Cách dùng bản đồ','',`<p>Kéo để di chuyển trên bản đồ. Cuộn hoặc dùng các nút thu phóng để xem rõ hơn.</p><p>Chọn một Unit để xem các bài học. Bấm Toàn cảnh để xem toàn bộ hành trình.</p>`));
+  $('#story-open').addEventListener('click',()=>openDialog('story','Dấu tích vương quốc thất lạc','THEO DẤU MẶT TRỜI',`<div class="story-emblem">${icon('star')}</div><p>Trong gương hiện lên một thành phố mà quanh em không hề có. Ai từng sống ở nơi này?</p><p>Đi qua người gác hóa đá, cuốn sách khổng lồ và cánh cửa chìm dưới hồ, em sẽ lần theo những dấu tích còn lại của vương quốc.</p><button type="button" class="primary" data-dialog-locate>Theo dấu tích ${icon('arrow')}</button>`));
+  function showUnitLessons(id=state.selected){
+    const u=unit(id);if(state.status(u.id)==='locked')return;
+    const names=['Word Explorer','Grammar Quest','Listening Lab','Speaking Studio'];
+    const learned=learnedLessons(u);let selected=Math.min(4,learned+1);if(learned===4)selected=1;
+    const rows=names.map((name,i)=>{const n=i+1,done=n<=learned,available=done||n===learned+1;return `<button type="button" class="unit-lesson${done?' is-complete':''}" data-lesson="${n}" aria-pressed="${n===selected}" aria-label="Bài ${n}: ${name}, ${done?'đã hoàn thành':available?'đang học':'chưa đến bài này'}" ${available?'':'disabled'} ${!done&&available?'aria-current="step"':''}><span class="unit-lesson-number">${n}</span><span class="unit-lesson-copy"><span class="unit-lesson-label">Bài ${n}</span><span class="unit-lesson-name">${name}</span></span>${done?'<span class="unit-lesson-check" aria-hidden="true">'+icon('check')+'</span>':''}</button>`;}).join('');
+    openDialog('unit-lessons',u.title,`UNIT ${u.id}`,`<p class="unit-lessons-intro">Hoàn thành 4 bài theo thứ tự để mở Unit tiếp theo.</p><div class="unit-lesson-list" role="group" aria-label="Chọn bài học">${rows}</div><button id="unit-lesson-action" type="button" class="primary"></button><p id="unit-lesson-feedback" role="status" aria-live="polite"></p>`);
+    const choose=n=>{selected=n;for(const row of $$('.unit-lesson'))row.setAttribute('aria-pressed',String(Number(row.dataset.lesson)===n));$('#unit-lesson-action').textContent=n<=learned?'Ôn lại':'Học tiếp';$('#unit-lesson-feedback').textContent='';};
+    choose(selected);
+    for(const row of $$('.unit-lesson'))row.addEventListener('click',()=>{if(!row.disabled&&!row.hasAttribute('disabled'))choose(Number(row.dataset.lesson));});
+    $('#unit-lesson-action').addEventListener('click',()=>{
+      const payload=state.launch(u.id);if(!payload||selected>learned+1)return;
+      const detail={...payload,lessonNumber:selected,lessonName:names[selected-1],mode:selected<=learned?'review':'continue'};
+      const proceed=window.dispatchEvent(new CustomEvent('wonderland:open-lesson',{cancelable:true,detail}));
+      if(proceed!==false)$('#unit-lesson-feedback').textContent=`Bài học này chưa khả dụng.`;
+    });
+  }
+  function launchUnit(id){
+    const payload=state.launch(id);if(!payload){locate();return;}
+    window.dispatchEvent(new CustomEvent('wonderland:open-unit',{detail:payload}));
+    showUnitLessons(payload.unitId);
+  }
+  $('#card-action').addEventListener('click',()=>launchUnit(state.selected));
+  $('#dialog-body').addEventListener('click',e=>{
+    if(e.target.closest('[data-dialog-close]'))closeDialog();
+    if(e.target.closest('[data-dialog-locate]')){closeDialog();locate();}
+  });
+  const point=e=>{const r=stage.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
+  const distance=(a,b)=>Math.max(1,Math.hypot(a.x-b.x,a.y-b.y));
+  function rebase(){
+    const ps=[...pointers.values()];if(ps.length>=2){const mid={x:(ps[0].x+ps[1].x)/2,y:(ps[0].y+ps[1].y)/2};gesture={mode:'pinch',distance:distance(ps[0],ps[1]),scale:camera.scale,anchor:camera.toWorld(mid.x,mid.y),moved:true};}
+    else if(ps.length===1)gesture={mode:'pan',last:{...ps[0]},origin:{...ps[0]},moved:gesture?.moved||false};else gesture=null;
+  }
+  stage.addEventListener('pointerdown',e=>{
+    if(e.button!==undefined&&e.button!==0)return;
+    if(e.target.closest('.ui'))return;
+    pointers.set(e.pointerId,point(e));
+    // Capturing on the stage during a pin tap would retarget its click to the stage.
+    if(!e.target.closest('.pin')){try{stage.setPointerCapture(e.pointerId)}catch{}}
+    rebase();
+    if(pointers.size>1){setCard(false);suppressUntil=performance.now()+300;}
+  });
+  stage.addEventListener('pointermove',e=>{
+    if(!pointers.has(e.pointerId)||!gesture)return;const p=point(e);pointers.set(e.pointerId,p);
+    if(gesture.mode==='pinch'&&pointers.size>=2){
+      const ps=[...pointers.values()],mid={x:(ps[0].x+ps[1].x)/2,y:(ps[0].y+ps[1].y)/2};camera.scale=clamp(gesture.scale*distance(ps[0],ps[1])/gesture.distance,camera.min,camera.max);camera.x=mid.x-gesture.anchor.x*camera.scale;camera.y=mid.y-gesture.anchor.y*camera.scale;camera.constrain();gesture.moved=true;overview=camera.scale<normalScale()*.48;
+    }else if(gesture.mode==='pan'){
+      if(!gesture.moved&&Math.hypot(p.x-gesture.origin.x,p.y-gesture.origin.y)<5)return;
+      camera.pan(p.x-gesture.last.x,p.y-gesture.last.y);gesture.last=p;gesture.moved=true;
+    }
+    if(gesture.moved){try{stage.setPointerCapture(e.pointerId)}catch{};setCard(false);stage.classList.add('dragging');suppressUntil=performance.now()+250;$('#drag-hint').style.opacity='.45';}
+    render();
+  });
+  function endPointer(e){if(!pointers.has(e.pointerId))return;const moved=gesture?.moved;pointers.delete(e.pointerId);try{stage.releasePointerCapture(e.pointerId)}catch{};if(moved)suppressUntil=performance.now()+250;rebase();if(!pointers.size)stage.classList.remove('dragging');}
+  stage.addEventListener('pointerup',endPointer);stage.addEventListener('pointercancel',endPointer);stage.addEventListener('lostpointercapture',e=>{if(pointers.has(e.pointerId))endPointer(e);});
+  stage.addEventListener('wheel',e=>{if(e.target.closest('.ui'))return;e.preventDefault();const p=point(e),delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?camera.height:1);zoom(Math.exp(-clamp(delta,-500,500)*.0015),p.x,p.y);},{passive:false});
+  document.addEventListener('keydown',e=>{
+    if(!$('#overlay').hidden){
+      if(e.key==='Escape'){e.preventDefault();closeDialog();return;}
+      if(e.key==='Tab'){
+        const nodes=$$('#dialog button:not([disabled]),#dialog a[href],#dialog input,#dialog summary,#dialog [tabindex="0"]').filter(n=>{const details=n.closest('details');return !n.closest('[hidden]')&&(!details||details.hasAttribute('open')||n.tagName==='SUMMARY');}),first=nodes[0],last=nodes[nodes.length-1];
+        if(e.shiftKey&&(document.activeElement===first||document.activeElement===$('#dialog'))){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
+      }return;
+    }
+    if(e.target.closest?.('input,textarea,select'))return;
+    const keys=['+','=','-','_','Home','End','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'];if(!keys.includes(e.key))return;
+    if(e.key.startsWith('Arrow')&&e.target.closest?.('.ui'))return;
+    e.preventDefault();if(e.key==='Home')fit();else if(e.key==='End')locate();else if(e.key==='+'||e.key==='=')zoom(1.25);else if(e.key==='-'||e.key==='_')zoom(.8);else{camera.pan(e.key==='ArrowLeft'?100:e.key==='ArrowRight'?-100:0,e.key==='ArrowUp'?100:e.key==='ArrowDown'?-100:0);setCard(false);render();}
+  });
+  window.addEventListener('resize',()=>{const r=stage.getBoundingClientRect();camera.resize(r.width,r.height);if(overview)camera.fitWorld();render();});
+  window.WonderlandMapDemo={getSnapshot:()=>({completed:state.completed,active:state.active,selected:state.selected,zone,overview,pointerCount:pointers.size,camera:{x:camera.x,y:camera.y,scale:camera.scale,min:camera.min,max:camera.max,width:camera.width,height:camera.height}})};
+  goZone(zone);state.selected=state.active;updateContent();if(window.location?.hash==='#toan-canh')fit();
+})();
+
+</script>
+</body></html>
