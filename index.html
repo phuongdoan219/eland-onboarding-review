@@ -51,26 +51,37 @@
     background: #fff;
   }
   #eland-onboarding-desktop-1123 .eland-logo { display: block; width: 115px; height: auto; }
+  #eland-onboarding-desktop-1123 {
+    --eland-welcome-focus: radial-gradient(ellipse 49% 72% at 50% 46%,
+      #fcf7ff 0%, #f7f0fffa 34%, #f3eaffec 53%, #ecdff9a6 70%, #e5d1f53d 86%, transparent 100%);
+    --eland-welcome-scene:
+      var(--eland-welcome-focus),
+      linear-gradient(180deg, #f8edffde 0%, #f2e3ff70 25%, #d7bdf423 69%, #62519848 100%),
+      url('./assets/7c1b0fa5c48bb3a31ef03a36.webp') center / cover no-repeat,
+      #cbb5e8;
+  }
+  #eland-onboarding-desktop-1123:has(> .eland-hero:not([hidden])) {
+    background: var(--eland-welcome-scene);
+  }
+  #eland-onboarding-desktop-1123:has(> .eland-hero:not([hidden])) > .eland-header {
+    border-bottom-color: transparent;
+    background: transparent;
+  }
   #eland-onboarding-desktop-1123 .eland-hero {
     display: grid;
     place-items: center;
     padding: clamp(24px, 5vw, 64px) clamp(16px, 5vw, 56px);
-    background:
-      radial-gradient(ellipse at 78% 12%, #ece6ff 0%, transparent 43%),
-      radial-gradient(ellipse at 15% 88%, #fff3df 0%, transparent 37%),
-      #f8f7ff;
+    background: var(--eland-welcome-scene);
+  }
+  #eland-onboarding-desktop-1123:has(> .eland-hero:not([hidden])) > .eland-hero {
+    background: transparent;
   }
   #eland-onboarding-desktop-1123 .eland-hero-layout {
     display: grid;
-    width: min(100%, 880px);
-    grid-template-columns: minmax(0, 1.15fr) minmax(220px, .85fr);
+    width: min(100%, 808px);
+    grid-template-columns: minmax(0, 1.1fr) minmax(235px, .9fr);
     align-items: center;
-    gap: clamp(18px, 3vw, 38px);
-    padding: clamp(28px, 4.4vw, 62px);
-    border: 1px solid #e9e2ff;
-    border-radius: clamp(24px, 3vw, 38px);
-    background: linear-gradient(120deg, #fff 28%, #f7f3ff 100%);
-    box-shadow: 0 18px 60px #47348912;
+    gap: clamp(20px, 3vw, 42px);
   }
   #eland-onboarding-desktop-1123 .eland-hero-title {
     font-size: clamp(38px, 4.6vw, 57px);
@@ -100,38 +111,30 @@
     position: relative;
     isolation: isolate;
     display: grid;
-    width: min(100%, 300px);
-    aspect-ratio: 1 / 1.02;
+    width: min(100%, 336px);
+    aspect-ratio: 1 / 1.03;
     place-items: center;
     justify-self: center;
-    background:
-      radial-gradient(circle at 91% 24%, #c6b6f6 0 3px, transparent 4px),
-      radial-gradient(circle at 13% 18%, #f3c878 0 4px, transparent 5px),
-      radial-gradient(circle at 8% 72%, #c5b8ef 0 3px, transparent 4px),
-      radial-gradient(circle at 90% 77%, #f5d59a 0 5px, transparent 6px);
   }
   #eland-onboarding-desktop-1123 .eland-hero-art::before {
     position: absolute;
     z-index: -1;
-    inset: 9% 5% 5%;
-    border: 1px solid #ddcef8;
-    border-radius: 48% 52% 52% 48% / 46% 52% 48% 54%;
-    background: radial-gradient(ellipse at 36% 28%, #fdfaff, #e4d9fc 88%);
-    box-shadow: 0 0 0 9px #ebe4fc99;
+    inset: -3% -12%;
+    background: radial-gradient(ellipse at 47% 53%, #fdf9ff 1%, #f5e3ffca 37%, #dbc7f052 57%, transparent 72%);
     content: "";
   }
   #eland-onboarding-desktop-1123 .eland-hero-art::after {
     position: absolute;
     z-index: -1;
-    inset: auto 19% 10%;
-    height: 8%;
+    inset: auto 16% 7%;
+    height: 9%;
     border-radius: 50%;
-    background: #9a87cf47;
+    background: #6252a047;
     content: "";
-    filter: blur(8px);
+    filter: blur(10px);
   }
   #eland-onboarding-desktop-1123 .eland-hero-art .eland-wolf {
-    width: min(84%, 252px);
+    width: min(85%, 280px);
     height: auto;
     max-height: none;
   }
@@ -400,25 +403,33 @@
     }
     #eland-onboarding-desktop-1123 .eland-survey-art .eland-wolf { width: 138px; }
   }
+  @media (max-width: 1000px) {
+    #eland-onboarding-desktop-1123 {
+      --eland-welcome-focus: radial-gradient(ellipse 67% 66% at 50% 46%,
+        #fcf7ff 0%, #f7f0fffa 36%, #f3eaffec 60%, #ecdff9a1 78%, transparent 100%);
+    }
+  }
   @media (max-width: 690px) {
-    #eland-onboarding-desktop-1123 .eland-hero { padding-block: 20px; }
+    #eland-onboarding-desktop-1123 {
+      --eland-welcome-focus: radial-gradient(ellipse 104% 58% at 50% 48%,
+        #fcf7ff 0%, #f7f0fffa 39%, #f3eaffec 64%, #ecdff99c 83%, transparent 100%);
+    }
+    #eland-onboarding-desktop-1123 .eland-hero { padding: 20px 22px 34px; }
     #eland-onboarding-desktop-1123 .eland-hero-layout {
-      width: min(100%, 438px);
+      width: min(100%, 390px);
       grid-template-columns: minmax(0, 1fr);
       gap: 14px;
-      padding: 20px clamp(16px, 6vw, 36px) 24px;
       text-align: center;
     }
     #eland-onboarding-desktop-1123 .eland-hero-art {
       grid-row: 1;
-      width: min(49vw, 180px);
+      width: min(55vw, 55svh, 202px);
     }
-    #eland-onboarding-desktop-1123 .eland-hero-art::before { box-shadow: 0 0 0 5px #ebe4fc99; }
     #eland-onboarding-desktop-1123 .eland-hero-title { font-size: clamp(32px, 8vw, 40px); }
     #eland-onboarding-desktop-1123 .eland-hero .eland-hero-copy { margin: 10px auto 0; }
     #eland-onboarding-desktop-1123 .eland-hero-actions {
       display: grid;
-      width: min(100%, 312px);
+      width: min(100%, 304px);
       gap: 10px;
       margin: 18px auto 0;
     }
