@@ -245,6 +245,51 @@
     transform: translate(-50%, -50%) rotate(-25deg);
     background: radial-gradient(ellipse, #fff4c7d4, transparent 69%);
   }
+  #eland-onboarding-desktop-1123 .eland-wolf-poses {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  #eland-onboarding-desktop-1123 .eland-wolf-pose {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    filter: drop-shadow(0 6px 8px #56374c26);
+  }
+  #eland-onboarding-desktop-1123 .eland-wolf-greeting[data-posed] > .eland-wolf { opacity: 0; }
+  #eland-onboarding-desktop-1123 .eland-motion-toggle {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 3%;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid #5038bc82;
+    border-radius: 50%;
+    background: #fbf1e8ef;
+    color: var(--eland-welcome-purple);
+    cursor: pointer;
+  }
+  #eland-onboarding-desktop-1123 .eland-motion-toggle span {
+    width: 12px;
+    height: 14px;
+    border-inline: 3px solid currentColor;
+  }
+  #eland-onboarding-desktop-1123 .eland-motion-toggle[data-paused] span {
+    width: 13px;
+    border: 0;
+    background: currentColor;
+    clip-path: polygon(16% 0, 100% 50%, 16% 100%);
+  }
+  #eland-onboarding-desktop-1123 .eland-hero[data-motion-paused] :is(.eland-welcome-cloud, .eland-cloud-glint) {
+    animation-play-state: paused;
+  }
   #eland-onboarding-desktop-1123 .eland-wolf-play {
     position: absolute;
     inset: 0;
@@ -314,7 +359,7 @@
   }
   @media (prefers-reduced-motion: no-preference) {
     #eland-onboarding-desktop-1123 .eland-welcome-cloud {
-      animation: eland-cloud-cross var(--cloud-duration) linear var(--cloud-delay) 1 both;
+      animation: eland-cloud-cross var(--cloud-duration) linear var(--cloud-delay) infinite both;
     }
     #eland-onboarding-desktop-1123 .eland-cloud-glint {
       animation: eland-gate-glint .88s ease-in-out 2.75s 1 both;
@@ -335,11 +380,10 @@
     #eland-onboarding-desktop-1123 .eland-cloud-two { --cloud-y: 16%; }
   }
   #eland-onboarding-desktop-1123 .eland-wolf-greeting {
-    --wolf-approach-x: 94%;
-    --wolf-approach-y: 21%;
-    --wolf-paw-x: 98%;
-    --wolf-paw-y: 42%;
-    --wolf-play-lean: 2deg;
+    --drop-entry-x: 115%;
+    --drop-hi-x: 105%;
+    --drop-there-x: 102%;
+    --drop-brand-x: 110%;
     position: relative;
     display: grid;
     min-width: 0;
@@ -677,6 +721,7 @@
       aspect-ratio: 1672 / 941;
       transform: translateX(-72%);
     }
+    #eland-onboarding-desktop-1123 .eland-wolf-greeting { --drop-entry-x: 109%; --drop-brand-x: 105%; }
     #eland-onboarding-desktop-1123 .eland-cloud-one { --cloud-y: 7%; }
     #eland-onboarding-desktop-1123 .eland-cloud-two { --cloud-y: 19%; }
     #eland-onboarding-desktop-1123 .eland-hero-layout {
@@ -720,7 +765,7 @@
     <button type="button" class="eland-link eland-route-switch" data-route-switch hidden>Về trang đầu</button>
   </header>
 
-  <section class="eland-hero" data-pane="welcome" aria-labelledby="eland-desktop-welcome">
+  <section class="eland-hero" data-pane="welcome" data-motion-paused aria-labelledby="eland-desktop-welcome">
     <div class="eland-welcome-scene" aria-hidden="true">
       <div class="eland-motion-sprite eland-welcome-cloud eland-cloud-one">
         <img src="./assets/eland-welcome-cloud.webp" alt="" decoding="async">
@@ -749,14 +794,22 @@
       <div class="eland-hero-art">
         <button type="button" class="eland-wolf-greeting" data-welcome-greeting aria-label="Chào Sói Nhỏ">
           <img class="eland-wolf" src="./assets/eland-welcome-wolf-playing.webp" alt="" width="360" height="420">
+          <span class="eland-wolf-poses" aria-hidden="true"></span>
           <span class="eland-wolf-play" aria-hidden="true">
             <span class="eland-motion-sprite eland-welcome-butterfly">
               <img src="./assets/eland-welcome-butterfly.webp" alt="" decoding="async">
             </span>
-            <span class="eland-flight-card eland-flight-card-hello">HELLO</span>
-            <span class="eland-flight-card eland-flight-card-fly">FLY</span>
+            <span class="eland-flight-card">HI</span>
+            <span class="eland-flight-card">THERE!</span>
+            <span class="eland-flight-card">A WARM</span>
+            <span class="eland-flight-card">WELCOME</span>
+            <span class="eland-flight-card">TO</span>
+            <span class="eland-flight-card">ELand!</span>
           </span>
           <span class="eland-greeting-star" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="eland-motion-toggle" data-welcome-motion-toggle aria-label="Tạm dừng chuyển động" hidden>
+          <span aria-hidden="true"></span>
         </button>
       </div>
     </div>
@@ -1125,18 +1178,32 @@
   (() => {
     const hero = document.querySelector('[data-pane="welcome"]');
     const button = hero.querySelector('[data-welcome-greeting]');
+    const toggle = hero.querySelector('[data-welcome-motion-toggle]');
     const wolf = button.querySelector('.eland-wolf');
+    const poseContainer = button.querySelector('.eland-wolf-poses');
     const star = button.querySelector('.eland-greeting-star');
     const butterfly = button.querySelector('.eland-welcome-butterfly');
-    const cards = button.querySelectorAll('.eland-flight-card');
+    const cards = Array.from(button.querySelectorAll('.eland-flight-card'));
     const scene = hero.querySelector('[data-welcome-scene]');
     const stones = scene.querySelectorAll('[data-guide-step]');
     const spark = scene.querySelector('.eland-path-spark');
     const gate = scene.querySelector('.eland-gate-light');
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let active = [];
+    const supportsAnimation = typeof butterfly.animate === 'function';
+    const cycle = 12400;
+    const timing = { duration: cycle, iterations: Infinity, easing: 'linear' };
+    const poseSequence = [
+      [0, '01'], [2220, '03'], [3470, '04'], [4830, '05'], [5700, '04'],
+      [6330, '03'], [9510, '07'], [9970, '08'], [10320, '07'],
+      [10670, '08'], [11030, '07'], [12230, '01'],
+    ];
+    let poseLayers = [];
+    let posesRequested = false;
+    let posesReady = false;
+    let userPaused = false;
+    let effects = [];
+    let greeting = [];
     let stillTimer;
-    let playedOnEntry = false;
 
     for (const sprite of hero.querySelectorAll('.eland-motion-sprite')) {
       const image = sprite.querySelector('img');
@@ -1152,91 +1219,153 @@
     if (wolf.complete && !wolf.naturalWidth) showOriginalWolf();
     else wolf.addEventListener('error', showOriginalWolf, { once: true });
 
+    function preparePoses() {
+      if (posesRequested) return;
+      posesRequested = true;
+      const ids = [...new Set(poseSequence.map(([, id]) => id))];
+      const pending = ids.map(async id => {
+        const image = new Image();
+        image.className = 'eland-wolf-pose';
+        image.alt = '';
+        image.draggable = false;
+        image.src = './assets/eland-welcome-pose-' + id + '.webp';
+        await image.decode();
+        return { id, image };
+      });
+      Promise.all(pending).then(layers => {
+        poseLayers = layers;
+        poseContainer.append(...layers.map(layer => layer.image));
+      }).catch(() => {
+        // The original mascot remains visible if the poses cannot be loaded.
+      }).finally(() => {
+        posesReady = true;
+        syncPlayback();
+      });
+    }
+
+    const phase = ms => ms / cycle;
+    function flyAt(ms, left, top, wing, angle, opacity = 1) {
+      return { left, top, opacity, offset: phase(ms),
+        transform: 'translate(-50%, -50%) rotate(' + angle + 'deg) scaleX(' + wing + ')' };
+    }
+
+    function releaseCard(card, step, driftX, driftY, tilt) {
+      const position = { left: step.left, top: step.top };
+      const at = step.offset * cycle;
+      const origin = 'translate(-50%, -50%) scale(.76)';
+      const down = 'translate(-50%, -50%) translate(' + driftX + 'px, ' + driftY + 'px) rotate(' + tilt + 'deg)';
+      const frames = [
+        [0, 0, origin], [at - 1, 0, origin], [at, .55, origin], [at + 320, 1, down],
+        [at + 1040, 1, down], [at + 1400, 0, down], [cycle, 0, down],
+      ];
+      return card.animate(frames.map(([ms, opacity, transform]) => ({
+        ...position, opacity, transform, offset: phase(ms),
+      })), timing);
+    }
+
+    function poseFrames(id) {
+      const frames = [{ offset: 0, opacity: Number(id === poseSequence[0][1]) }];
+      for (let index = 1; index < poseSequence.length; index++) {
+        const [ms, current] = poseSequence[index];
+        const prior = poseSequence[index - 1][1];
+        if (id !== current && id !== prior) continue;
+        frames.push(
+          { offset: phase(ms - 105), opacity: Number(id === prior) },
+          { offset: phase(ms), opacity: Number(id === current) },
+        );
+      }
+      frames.push({ offset: 1, opacity: Number(id === poseSequence.at(-1)[1]) });
+      return frames;
+    }
+
+    function startLoop() {
+      const hi = flyAt(1200, 'var(--drop-hi-x)', '59%', .92, -12);
+      const there = flyAt(2500, 'var(--drop-there-x)', '13%', .7, -16);
+      const warm = flyAt(3800, '69%', '-5%', .95, 6);
+      const welcome = flyAt(5100, '15%', '16%', .73, 15);
+      const hand = flyAt(6600, '100%', '41%', .86, 5);
+      const brand = flyAt(8000, 'var(--drop-brand-x)', '26%', 1, -13);
+      effects = [
+        butterfly.animate([
+          flyAt(0, 'var(--drop-entry-x)', '72%', .83, -18, 0),
+          flyAt(440, 'var(--drop-hi-x)', '67%', 1, -15),
+          hi, flyAt(1840, 'var(--drop-there-x)', '38%', .83, -25), there,
+          flyAt(3070, '88%', '0%', .97, -8), warm,
+          flyAt(4460, '38%', '1%', .91, 10), welcome,
+          flyAt(5580, '39%', '-5%', .86, -3),
+          flyAt(5930, '71%', '-8%', 1, 9),
+          flyAt(6300, '91%', '19%', .75, 9),
+          hand, flyAt(7190, '100%', '41%', 1, 0), brand,
+          flyAt(8930, 'var(--drop-entry-x)', '8%', .83, -21, 0),
+          flyAt(cycle, 'var(--drop-entry-x)', '72%', .83, -18, 0),
+        ], timing),
+        releaseCard(cards[0], hi, 6, 17, -7),
+        releaseCard(cards[1], there, 8, 16, 7),
+        releaseCard(cards[2], warm, -7, 18, -7),
+        releaseCard(cards[3], welcome, -8, 16, -7),
+        releaseCard(cards[4], hand, 9, 20, 7),
+        releaseCard(cards[5], brand, 7, 19, 6),
+        ...poseLayers.map(({ id, image }) => image.animate(poseFrames(id), timing)),
+      ];
+      button.toggleAttribute('data-posed', poseLayers.length > 0);
+    }
+
     function clearGreeting() {
-      active.forEach(effect => effect.cancel());
-      active = [];
+      greeting.forEach(effect => effect.cancel());
+      greeting = [];
       window.clearTimeout(stillTimer);
       star.removeAttribute('data-visible');
     }
 
-    function flyAt(left, top, wing, angle, opacity, offset) {
-      return { left, top, opacity, offset,
-        transform: 'translate(-50%, -50%) rotate(' + angle + 'deg) scaleX(' + wing + ')' };
-    }
+    function syncPlayback() {
+      const reduced = motion.matches || !supportsAnimation;
+      const visible = !hero.hidden && !document.hidden;
+      const running = !reduced && visible && !userPaused;
+      const toggleLabel = userPaused ? 'Phát chuyển động' : 'Tạm dừng chuyển động';
+      toggle.hidden = reduced;
+      toggle.setAttribute('aria-label', toggleLabel);
+      toggle.title = toggleLabel;
+      toggle.toggleAttribute('data-paused', userPaused);
+      hero.toggleAttribute('data-motion-paused', !running);
 
-    function releaseCard(card, beat, timing, driftX, driftY, tilt) {
-      const { left, top, offset } = beat;
-      const land = 'translate(-50%, -50%) translate(' + driftX + 'px, ' + driftY + 'px) rotate(' + tilt + 'deg)';
-      return card.animate([
-        { opacity: .38, transform: 'translate(-50%, -50%) scale(.72)' },
-        { opacity: 1, transform: land, offset: .35 },
-        { opacity: 1, transform: land + ' translateY(-3px)', offset: .42 },
-        { opacity: 1, transform: land, offset: .52 },
-        { opacity: 1, transform: land, offset: .82 },
-        { opacity: 0, transform: land },
-      ].map(frame => ({ ...frame, left, top })), {
-        duration: 1900,
-        delay: timing.delay + timing.duration * offset,
-        easing: 'ease-out',
-      });
-    }
-
-    function playWithButterfly(delay) {
-      const timing = { duration: 6900, delay, easing: 'linear' };
-      const hello = flyAt('14%', '18%', .81, 12, 1, .45);
-      const hand = flyAt('var(--wolf-paw-x)', 'var(--wolf-paw-y)', 1, 9, 1, .71);
-      const fly = flyAt(hand.left, hand.top, .72, 1, 1, .81);
-      active.push(
-        butterfly.animate([
-          flyAt('101%', '63%', .82, -18, 0, 0),
-          flyAt('97%', '43%', 1, -13, 1, .12),
-          flyAt('89%', '20%', .66, -24, 1, .22),
-          flyAt('62%', '8%', 1, 0, 1, .32),
-          flyAt('32%', '10%', .73, 15, 1, .39),
-          hello,
-          flyAt('29%', '8%', 1, -8, 1, .51),
-          flyAt('var(--wolf-approach-x)', 'var(--wolf-approach-y)', .89, -5, 1, .62),
-          hand,
-          fly,
-          flyAt('95%', '29%', 1, -13, 1, .92),
-          flyAt('101%', '19%', .81, -18, 0, 1),
-        ], timing),
-        wolf.animate([
-          { transform: 'none' },
-          { transform: 'rotate(-1deg)', offset: hello.offset },
-          { transform: 'none', offset: .58 },
-          { transform: 'translateY(-3px) rotate(var(--wolf-play-lean))', offset: hand.offset },
-          { transform: 'translateY(-2px) rotate(var(--wolf-play-lean))', offset: fly.offset },
-          { transform: 'none', offset: .93 },
-          { transform: 'none' },
-        ], timing),
-        releaseCard(cards[0], hello, timing, -7, 46, -8),
-        releaseCard(cards[1], fly, timing, 9, 40, 8),
-      );
-    }
-
-    function playOnEntry() {
-      if (hero.hidden) {
+      if (reduced) {
+        effects.forEach(effect => effect.cancel());
+        effects = [];
+        button.removeAttribute('data-posed');
         clearGreeting();
-      } else if (!playedOnEntry && !motion.matches && typeof wolf.animate === 'function') {
-        playedOnEntry = true;
-        playWithButterfly(530);
+        return;
+      }
+
+      if (running && !effects.length) {
+        if (posesReady) startLoop();
+        else preparePoses();
+      }
+
+      for (const effect of [...effects, ...greeting]) {
+        if (running && effect.playState === 'paused') effect.play();
+        if (!running && effect.playState === 'running') effect.pause();
       }
     }
 
-    new MutationObserver(playOnEntry).observe(hero, { attributes: true, attributeFilter: ['hidden'] });
-    playOnEntry();
+    new MutationObserver(syncPlayback).observe(hero, { attributes: true, attributeFilter: ['hidden'] });
+    document.addEventListener('visibilitychange', syncPlayback);
+    motion.addEventListener('change', syncPlayback);
+    toggle.addEventListener('click', () => {
+      userPaused = !userPaused;
+      syncPlayback();
+    });
+    syncPlayback();
 
     button.addEventListener('click', () => {
       clearGreeting();
-      if (motion.matches || typeof wolf.animate !== 'function') {
+      if (motion.matches || !supportsAnimation || userPaused) {
         star.setAttribute('data-visible', '');
         stillTimer = window.setTimeout(() => star.removeAttribute('data-visible'), 550);
         return;
       }
 
-      playWithButterfly(0);
-      active.push(
+      effects.forEach(effect => { effect.currentTime = 0; });
+      greeting = [
         star.animate([
           { opacity: 0, transform: 'scale(.55)' },
           { opacity: 1, transform: 'scale(1)', offset: .28 },
@@ -1260,9 +1389,8 @@
           { opacity: .84, offset: .37 },
           { opacity: 0 },
         ], { duration: 610, delay: 1520, easing: 'ease-in-out' }),
-      );
+      ];
     });
-    motion.addEventListener('change', clearGreeting);
   })();
 </script>
 
