@@ -1227,15 +1227,13 @@
     const params = new URLSearchParams(window.location.search);
     const sourceMap = params.get('map');
     const source = params.get('from');
-    const fromGuest = Object.hasOwn(maps, sourceMap) && ['guest-profile', 'guest-map', 'guest-survey'].includes(source);
-    const editing = fromGuest && source === 'guest-survey';
+    const fromGuest = Object.hasOwn(maps, sourceMap) && ['guest-profile', 'guest-map'].includes(source);
     const defaultMap = new URL('./maps/' + maps[gradeMapKeys[0]], window.location.href);
-    const initialPane = editing ? questions[0] : fromGuest ? 'signup' : 'welcome';
+    const initialPane = fromGuest ? 'signup' : 'welcome';
     const answersKey = 'eland:onboarding-answers-v2';
     const previousAnswersKey = 'eland:onboarding-answers-v1';
     const historyKey = 'elandOnboarding';
     let current;
-    let gradeAtEntry;
     let answers = Array(questions.length).fill(null);
 
     const validChoice = value => Number.isInteger(value) && value >= 0 && value < 4;
@@ -1335,14 +1333,15 @@
 
     function readEntry(state) {
       const entry = state?.[historyKey];
-      if (entry && (panes.has(entry.pane) || entry.pane === 'signup-success') &&
+      // Ignore history entries from the retired map survey editor.
+      if (entry && !Object.hasOwn(entry, 'gradeAtEntry') &&
+          (panes.has(entry.pane) || entry.pane === 'signup-success') &&
           Number.isInteger(entry.depth) && entry.depth >= 0) return entry;
       return { pane: initialPane, previous: null, depth: 0 };
     }
 
     function storeEntry(entry, replace) {
-      const stored = editing ? { ...entry, gradeAtEntry } : entry;
-      history[replace ? 'replaceState' : 'pushState']({ [historyKey]: stored }, '');
+      history[replace ? 'replaceState' : 'pushState']({ [historyKey]: entry }, '');
     }
 
     function goTo(pane, replace = false) {
@@ -1370,9 +1369,7 @@
     function advanceSurvey(index) {
       if (answers[index] === null) return;
       if (index === questions.length - 1) {
-        const grade = answers[0];
-        const mapKey = editing && grade === gradeAtEntry ? sourceMap : gradeMapKeys[grade];
-        openMap('survey', mapKey);
+        openMap('survey', gradeMapKeys[answers[0]]);
       } else {
         goTo(questions[index + 1]);
       }
@@ -1387,10 +1384,9 @@
         choose(index, Number(button.dataset.answer));
         advanceSurvey(index);
       } else if (button === routeSwitch) {
-        if (editing) returnToGuestSource();
-        else goTo('welcome');
+        goTo('welcome');
       } else if (button.dataset.back) {
-        if ((editing && index === 0) || (fromGuest && button === signupBack)) returnToGuestSource();
+        if (fromGuest && button === signupBack) returnToGuestSource();
         else goBack(button.dataset.back);
       } else if (button.dataset.show) {
         goTo(button.dataset.show);
@@ -1427,12 +1423,8 @@
       goTo('signup-success');
     });
 
-    if (fromGuest && !editing) {
+    if (fromGuest) {
       signupBack.textContent = source === 'guest-profile' ? 'Quay lại hồ sơ' : 'Quay lại bản đồ';
-    }
-    if (editing) {
-      panes.get(questions[0]).querySelector('[data-back]').setAttribute('aria-label', 'Quay lại bản đồ');
-      routeSwitch.textContent = 'Về bản đồ';
     }
 
     window.addEventListener('popstate', event => {
@@ -1450,10 +1442,6 @@
     });
     loadAnswers();
     const firstEntry = readEntry(history.state);
-    if (editing) {
-      const storedGrade = firstEntry.gradeAtEntry;
-      gradeAtEntry = storedGrade === null || validChoice(storedGrade) ? storedGrade : answers[0];
-    }
     storeEntry(firstEntry, true);
     render(firstEntry, firstEntry.pane !== 'welcome');
   })();
